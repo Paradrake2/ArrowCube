@@ -1,0 +1,5 @@
+{
+  "name": "ArrowCube.Game",
+  "rootNamespace": "ArrowCube.Game",
+  "references": ["ArrowCube.Topology", "ArrowCube.Movement", "ArrowCube.Generation", "ArrowCube.Gameplay", "ArrowCube.Presentation", "ArrowCube.Controls", "Unity.InputSystem", "Unity.ugui"]
+}

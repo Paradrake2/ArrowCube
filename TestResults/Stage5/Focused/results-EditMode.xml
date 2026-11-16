@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="17" result="Passed" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.7947386">
+  <test-suite type="TestSuite" id="1000" name="Project-f8598b1a1f82" fullname="Project-f8598b1a1f82" runstate="Runnable" testcasecount="259" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.794739" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1311" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/S5D/Project-f8598b1a1f82/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="259" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.781417" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="48828" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1312" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="259" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.779775" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1313" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="259" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.774724" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1143" name="GameplaySceneAssetTests" fullname="ArrowCube.Tests.GameplaySceneAssetTests" classname="ArrowCube.Tests.GameplaySceneAssetTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:18Z" duration="0.038517" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1144" name="GameAndSettingsLabAreDistinctEnabledScenesAndOnlyGameContainsTheGameplayController" fullname="ArrowCube.Tests.GameplaySceneAssetTests.GameAndSettingsLabAreDistinctEnabledScenesAndOnlyGameContainsTheGameplayController" methodname="GameAndSettingsLabAreDistinctEnabledScenesAndOnlyGameContainsTheGameplayController" classname="ArrowCube.Tests.GameplaySceneAssetTests" runstate="Runnable" seed="792878203" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:18Z" duration="0.024591" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1145" name="GameplaySessionTests" fullname="ArrowCube.Tests.GameplaySessionTests" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.723256" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1148" name="CompletedRemovalUsesTheSameGridAsAnimationAndStaleCallbacksCannotDeductOrRemoveTwice" fullname="ArrowCube.Tests.GameplaySessionTests.CompletedRemovalUsesTheSameGridAsAnimationAndStaleCallbacksCannotDeductOrRemoveTwice" methodname="CompletedRemovalUsesTheSameGridAsAnimationAndStaleCallbacksCannotDeductOrRemoveTwice" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="1080481199" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:18Z" duration="0.020301" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1149" name="HintUsesCurrentStateAndLimitedPowerUpsAreConsumedOnlyOnSuccessfulActions" fullname="ArrowCube.Tests.GameplaySessionTests.HintUsesCurrentStateAndLimitedPowerUpsAreConsumedOnlyOnSuccessfulActions" methodname="HintUsesCurrentStateAndLimitedPowerUpsAreConsumedOnlyOnSuccessfulActions" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="868223720" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:18Z" duration="0.001420" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1158" name="LevelRecipesAreDeterministicAndSettingsDoNotChangeAnExistingSnapshot" fullname="ArrowCube.Tests.GameplaySessionTests.LevelRecipesAreDeterministicAndSettingsDoNotChangeAnExistingSnapshot" methodname="LevelRecipesAreDeterministicAndSettingsDoNotChangeAnExistingSnapshot" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="1601756370" result="Passed" start-time="2026-11-16 03:21:18Z" end-time="2026-11-16 03:21:19Z" duration="0.542204" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1157" name="LocalSaveUsesChecksumAndBackupAndNeverDependsOnRegenerationForResume" fullname="ArrowCube.Tests.GameplaySessionTests.LocalSaveUsesChecksumAndBackupAndNeverDependsOnRegenerationForResume" methodname="LocalSaveUsesChecksumAndBackupAndNeverDependsOnRegenerationForResume" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="1991626643" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.046412" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1150" name="PauseBlocksActionsAndTimeButCapturedPendingAttemptsAreSafeToReload" fullname="ArrowCube.Tests.GameplaySessionTests.PauseBlocksActionsAndTimeButCapturedPendingAttemptsAreSafeToReload" methodname="PauseBlocksActionsAndTimeButCapturedPendingAttemptsAreSafeToReload" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="892460899" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.001364" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1155" name="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode" fullname="ArrowCube.Tests.GameplaySessionTests.SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.102656" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1152" name="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode(0)" fullname="ArrowCube.Tests.GameplaySessionTests.SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode(0)" methodname="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="746191442" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.052110" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1153" name="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode(1)" fullname="ArrowCube.Tests.GameplaySessionTests.SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode(1)" methodname="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="962912762" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.030880" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1154" name="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode(2)" fullname="ArrowCube.Tests.GameplaySessionTests.SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode(2)" methodname="SavedGeometryRecipeAndUndoHistorySurviveJsonReloadInEveryExitMode" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="1423520514" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.018563" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1147" name="StandardModeDeductsExactlyOncePerCompletedFailureAndRejectsMovesAfterFailure" fullname="ArrowCube.Tests.GameplaySessionTests.StandardModeDeductsExactlyOncePerCompletedFailureAndRejectsMovesAfterFailure" methodname="StandardModeDeductsExactlyOncePerCompletedFailureAndRejectsMovesAfterFailure" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="292025396" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.000695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1156" name="TamperedHistoryCannotRestoreBlockedNormalRemovalsOrDuplicatePaths" fullname="ArrowCube.Tests.GameplaySessionTests.TamperedHistoryCannotRestoreBlockedNormalRemovalsOrDuplicatePaths" methodname="TamperedHistoryCannotRestoreBlockedNormalRemovalsOrDuplicatePaths" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="22184538" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.002885" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1146" name="UnlimitedIsDefaultAndMistakesNeverCauseGameOverOrChangeOccupancy" fullname="ArrowCube.Tests.GameplaySessionTests.UnlimitedIsDefaultAndMistakesNeverCauseGameOverOrChangeOccupancy" methodname="UnlimitedIsDefaultAndMistakesNeverCauseGameOverOrChangeOccupancy" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="855453571" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.000801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1151" name="VictoryStarsUnlocksAndRestartPreserveExactPuzzleWhileReplayKeepsBestRatings" fullname="ArrowCube.Tests.GameplaySessionTests.VictoryStarsUnlocksAndRestartPreserveExactPuzzleWhileReplayKeepsBestRatings" methodname="VictoryStarsUnlocksAndRestartPreserveExactPuzzleWhileReplayKeepsBestRatings" classname="ArrowCube.Tests.GameplaySessionTests" runstate="Runnable" seed="1883899716" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.001700" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1161" name="MultiBlockerTests" fullname="ArrowCube.Tests.MultiBlockerTests" classname="ArrowCube.Tests.MultiBlockerTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.008984" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1166" name="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay" fullname="ArrowCube.Tests.MultiBlockerTests.IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay" classname="ArrowCube.Tests.MultiBlockerTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.007848" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1162" name="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(0)" fullname="ArrowCube.Tests.MultiBlockerTests.IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(0)" methodname="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay" classname="ArrowCube.Tests.MultiBlockerTests" runstate="Runnable" seed="588311198" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.002848" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1163" name="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(1)" fullname="ArrowCube.Tests.MultiBlockerTests.IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(1)" methodname="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay" classname="ArrowCube.Tests.MultiBlockerTests" runstate="Runnable" seed="863450522" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.000686" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1164" name="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(2)" fullname="ArrowCube.Tests.MultiBlockerTests.IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(2)" methodname="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay" classname="ArrowCube.Tests.MultiBlockerTests" runstate="Runnable" seed="171205462" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.000350" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1165" name="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(3)" fullname="ArrowCube.Tests.MultiBlockerTests.IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay(3)" methodname="IndependentBlockersAreConfirmedByEverySubsetAndActualGameplay" classname="ArrowCube.Tests.MultiBlockerTests" runstate="Runnable" seed="505589190" result="Passed" start-time="2026-11-16 03:21:19Z" end-time="2026-11-16 03:21:19Z" duration="0.000816" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\S5D\Project-f8598b1a1f82\results-EditMode.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

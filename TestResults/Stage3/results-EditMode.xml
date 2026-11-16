@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="147" result="Passed" total="147" passed="147" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:18Z" duration="15.1114493">
+  <test-suite type="TestSuite" id="1000" name="Project-08345f4e991848aba8779e5ba0de6dad" fullname="Project-08345f4e991848aba8779e5ba0de6dad" runstate="Runnable" testcasecount="147" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:18Z" duration="15.111449" total="147" passed="147" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1176" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/Stage3Validation/Project-08345f4e991848aba8779e5ba0de6dad/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="147" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:18Z" duration="15.102575" total="147" passed="147" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="20060" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1177" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="147" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:18Z" duration="15.102214" total="147" passed="147" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1178" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="147" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:18Z" duration="15.102016" total="147" passed="147" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="ArrowPathTests" fullname="ArrowCube.Tests.ArrowPathTests" classname="ArrowCube.Tests.ArrowPathTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.043360" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1005" name="DisconnectedDiagonalDuplicateAndOutOfBoundsPathsAreRejected" fullname="ArrowCube.Tests.ArrowPathTests.DisconnectedDiagonalDuplicateAndOutOfBoundsPathsAreRejected" methodname="DisconnectedDiagonalDuplicateAndOutOfBoundsPathsAreRejected" classname="ArrowCube.Tests.ArrowPathTests" runstate="Runnable" seed="957986283" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.017207" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="GeometryIsDefensivelyCopiedAndReadOnly" fullname="ArrowCube.Tests.ArrowPathTests.GeometryIsDefensivelyCopiedAndReadOnly" methodname="GeometryIsDefensivelyCopiedAndReadOnly" classname="ArrowCube.Tests.ArrowPathTests" runstate="Runnable" seed="1363418359" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.004768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="HeadDirectionUsesTheHeadFaceAfterRotatingAcrossAnEdge" fullname="ArrowCube.Tests.ArrowPathTests.HeadDirectionUsesTheHeadFaceAfterRotatingAcrossAnEdge" methodname="HeadDirectionUsesTheHeadFaceAfterRotatingAcrossAnEdge" classname="ArrowCube.Tests.ArrowPathTests" runstate="Runnable" seed="952956180" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001007" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="OneCellPathHasExplicitHeadingAndNoSegments" fullname="ArrowCube.Tests.ArrowPathTests.OneCellPathHasExplicitHeadingAndNoSegments" methodname="OneCellPathHasExplicitHeadingAndNoSegments" classname="ArrowCube.Tests.ArrowPathTests" runstate="Runnable" seed="1210437682" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="OnePathRetainsOrderedCellsAndSegmentsAcrossThreeFaces" fullname="ArrowCube.Tests.ArrowPathTests.OnePathRetainsOrderedCellsAndSegmentsAcrossThreeFaces" methodname="OnePathRetainsOrderedCellsAndSegmentsAcrossThreeFaces" classname="ArrowCube.Tests.ArrowPathTests" runstate="Runnable" seed="1632226034" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.004236" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1007" name="CubeSurfaceGeometryTests" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.027679" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1012" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.019785" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1008" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(1)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(1)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1663123100" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.007465" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1009" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(3)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(3)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="402786392" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001483" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1010" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(6)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(6)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1034102748" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002165" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1011" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(20)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(20)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="400175115" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.007737" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1015" name="InvalidGeometryArgumentsAreRejected" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.InvalidGeometryArgumentsAreRejected" methodname="InvalidGeometryArgumentsAreRejected" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="405210818" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000862" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="MultiFacePolylineIncludesEveryBendAndSeam" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.MultiFacePolylineIncludesEveryBendAndSeam" methodname="MultiFacePolylineIncludesEveryBendAndSeam" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="899266312" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002858" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="WorldPositionRespectsTranslationRotationAndScale" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.WorldPositionRespectsTranslationRotationAndScale" methodname="WorldPositionRespectsTranslationRotationAndScale" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="148984720" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.003066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1016" name="CubeTopologyTests" fullname="ArrowCube.Tests.CubeTopologyTests" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" testcasecount="28" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.487859" total="28" passed="28" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1041" name="AllSixFacesAreOneConnectedSurface" fullname="ArrowCube.Tests.CubeTopologyTests.AllSixFacesAreOneConnectedSurface" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002847" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1037" name="AllSixFacesAreOneConnectedSurface(1)" fullname="ArrowCube.Tests.CubeTopologyTests.AllSixFacesAreOneConnectedSurface(1)" methodname="AllSixFacesAreOneConnectedSurface" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1096765671" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001056" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1038" name="AllSixFacesAreOneConnectedSurface(2)" fullname="ArrowCube.Tests.CubeTopologyTests.AllSixFacesAreOneConnectedSurface(2)" methodname="AllSixFacesAreOneConnectedSurface" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="441835534" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000228" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1039" name="AllSixFacesAreOneConnectedSurface(6)" fullname="ArrowCube.Tests.CubeTopologyTests.AllSixFacesAreOneConnectedSurface(6)" methodname="AllSixFacesAreOneConnectedSurface" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1613285414" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000240" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1040" name="AllSixFacesAreOneConnectedSurface(20)" fullname="ArrowCube.Tests.CubeTopologyTests.AllSixFacesAreOneConnectedSurface(20)" methodname="AllSixFacesAreOneConnectedSurface" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1537200639" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000691" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1043" name="CornersHaveTwoDistinctCardinalWrapsAndNoDiagonalShortcut" fullname="ArrowCube.Tests.CubeTopologyTests.CornersHaveTwoDistinctCardinalWrapsAndNoDiagonalShortcut" methodname="CornersHaveTwoDistinctCardinalWrapsAndNoDiagonalShortcut" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="2062633752" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002794" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1023" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.473048" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1017" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(1)" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(1)" methodname="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="539506987" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.004069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1018" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(2)" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(2)" methodname="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="268123309" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.003011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1019" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(3)" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(3)" methodname="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="732289588" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.008119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1020" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(6)" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(6)" methodname="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="432224800" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.030011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1021" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(8)" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(8)" methodname="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="690691959" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.059805" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1022" name="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(20)" fullname="ArrowCube.Tests.CubeTopologyTests.EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry(20)" methodname="EveryStepIsReversibleAndAllSeamsMatchIndependentFaceGeometry" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="719215549" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.366995" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1042" name="FaceFramesAreOrthonormalAndOutwardFacing" fullname="ArrowCube.Tests.CubeTopologyTests.FaceFramesAreOrthonormalAndOutwardFacing" methodname="FaceFramesAreOrthonormalAndOutwardFacing" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1758919159" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="InvalidSizesCoordinatesFacesAndDirectionsFailExplicitly" fullname="ArrowCube.Tests.CubeTopologyTests.InvalidSizesCoordinatesFacesAndDirectionsFailExplicitly" methodname="InvalidSizesCoordinatesFacesAndDirectionsFailExplicitly" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="38732129" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001194" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1036" name="KnownEdgeMappings" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.003984" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1024" name="KnownEdgeMappings(Front,4,1,Right,Right,0,1,Right)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Front,4,1,Right,Right,0,1,Right)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1164004261" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000461" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1025" name="KnownEdgeMappings(Front,1,4,Up,Top,1,0,Up)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Front,1,4,Up,Top,1,0,Up)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1892915822" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000159" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1026" name="KnownEdgeMappings(Front,0,1,Left,Left,4,1,Left)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Front,0,1,Left,Left,4,1,Left)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="2009669018" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000179" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1027" name="KnownEdgeMappings(Front,1,0,Down,Bottom,1,4,Down)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Front,1,0,Down,Bottom,1,4,Down)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="141104251" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000199" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1028" name="KnownEdgeMappings(Right,4,1,Right,Back,0,1,Right)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Right,4,1,Right,Back,0,1,Right)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="13220012" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000214" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1029" name="KnownEdgeMappings(Right,1,4,Up,Top,4,1,Left)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Right,1,4,Up,Top,4,1,Left)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="2026277569" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000149" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1030" name="KnownEdgeMappings(Right,1,0,Down,Bottom,4,3,Left)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Right,1,0,Down,Bottom,4,3,Left)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1379170963" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000176" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1031" name="KnownEdgeMappings(Back,4,1,Right,Left,0,1,Right)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Back,4,1,Right,Left,0,1,Right)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="614927624" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1032" name="KnownEdgeMappings(Back,1,4,Up,Top,3,4,Down)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Back,1,4,Up,Top,3,4,Down)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="117717821" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1033" name="KnownEdgeMappings(Back,1,0,Down,Bottom,3,0,Up)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Back,1,0,Down,Bottom,3,0,Up)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="940698369" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000164" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1034" name="KnownEdgeMappings(Left,1,4,Up,Top,0,3,Right)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Left,1,4,Up,Top,0,3,Right)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1862648777" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000169" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1035" name="KnownEdgeMappings(Left,1,0,Down,Bottom,0,1,Right)" fullname="ArrowCube.Tests.CubeTopologyTests.KnownEdgeMappings(Left,1,0,Down,Bottom,0,1,Right)" methodname="KnownEdgeMappings" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="641551541" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000154" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1047" name="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting" fullname="ArrowCube.Tests.CubeTopologyTests.StraightTraversalWrapsFourFacesAndReturnsWithoutExiting" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000834" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1044" name="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting(1)" fullname="ArrowCube.Tests.CubeTopologyTests.StraightTraversalWrapsFourFacesAndReturnsWithoutExiting(1)" methodname="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="1828234114" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000250" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1045" name="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting(3)" fullname="ArrowCube.Tests.CubeTopologyTests.StraightTraversalWrapsFourFacesAndReturnsWithoutExiting(3)" methodname="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="83042594" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000060" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1046" name="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting(6)" fullname="ArrowCube.Tests.CubeTopologyTests.StraightTraversalWrapsFourFacesAndReturnsWithoutExiting(6)" methodname="StraightTraversalWrapsFourFacesAndReturnsWithoutExiting" classname="ArrowCube.Tests.CubeTopologyTests" runstate="Runnable" seed="2052331400" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="ExitRulesTests" fullname="ArrowCube.Tests.ExitRulesTests" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.045696" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1065" name="ABlockerAcrossTheNextSeamIsNotOnTheEdgeDepartureTrajectory" fullname="ArrowCube.Tests.ExitRulesTests.ABlockerAcrossTheNextSeamIsNotOnTheEdgeDepartureTrajectory" methodname="ABlockerAcrossTheNextSeamIsNotOnTheEdgeDepartureTrajectory" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="708240268" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.010500" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="BothDisabledFindsNoExitEvenWhenACompatibleGateExists" fullname="ArrowCube.Tests.ExitRulesTests.BothDisabledFindsNoExitEvenWhenACompatibleGateExists" methodname="BothDisabledFindsNoExitEvenWhenACompatibleGateExists" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="971474515" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002283" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="BoundaryGateDoesNotOverrideAnOrdinaryEdgeExitInHybridMode" fullname="ArrowCube.Tests.ExitRulesTests.BoundaryGateDoesNotOverrideAnOrdinaryEdgeExitInHybridMode" methodname="BoundaryGateDoesNotOverrideAnOrdinaryEdgeExitInHybridMode" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1652265557" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001781" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1080" name="CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes" fullname="ArrowCube.Tests.ExitRulesTests.CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.013625" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1078" name="CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes(5)" fullname="ArrowCube.Tests.ExitRulesTests.CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes(5)" methodname="CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1250009858" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.009107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes(6)" fullname="ArrowCube.Tests.ExitRulesTests.CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes(6)" methodname="CrossFaceBodyBendsSurviveFractionalMotionForBothExitTypes" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="596878905" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.004011" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1075" name="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage" fullname="ArrowCube.Tests.ExitRulesTests.DiagramMatchesDependenciesWithBlueRemovableAtEveryStage" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.003926" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1071" name="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(0)" fullname="ArrowCube.Tests.ExitRulesTests.DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(0)" methodname="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="576204473" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002342" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1072" name="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(1)" fullname="ArrowCube.Tests.ExitRulesTests.DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(1)" methodname="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="972699816" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000298" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1073" name="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(2)" fullname="ArrowCube.Tests.ExitRulesTests.DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(2)" methodname="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1005191349" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1074" name="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(3)" fullname="ArrowCube.Tests.ExitRulesTests.DiagramMatchesDependenciesWithBlueRemovableAtEveryStage(3)" methodname="DiagramMatchesDependenciesWithBlueRemovableAtEveryStage" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1737676270" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000295" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1062" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.004891" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1056" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Front)" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Front)" methodname="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1843038011" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.002849" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1057" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Right)" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Right)" methodname="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1824835854" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000237" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1058" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Back)" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Back)" methodname="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1657266999" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000202" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1059" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Left)" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Left)" methodname="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="214433441" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000212" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1060" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Top)" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Top)" methodname="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="754684495" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000193" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1061" name="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Bottom)" fullname="ArrowCube.Tests.ExitRulesTests.EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead(Bottom)" methodname="EveryFaceAndHeadingExitsTangentiallyWithoutWrappingItsHead" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1246375211" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000186" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1077" name="FirstValidExitCanPrecedeABlockerButAGateCannotBypassItsOwnOccupant" fullname="ArrowCube.Tests.ExitRulesTests.FirstValidExitCanPrecedeABlockerButAGateCannotBypassItsOwnOccupant" methodname="FirstValidExitCanPrecedeABlockerButAGateCannotBypassItsOwnOccupant" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="93735342" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000561" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1054" name="IndependentSwitchesControlTheSamePathWithAnInteriorGate" fullname="ArrowCube.Tests.ExitRulesTests.IndependentSwitchesControlTheSamePathWithAnInteriorGate" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001189" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1051" name="IndependentSwitchesControlTheSamePathWithAnInteriorGate(True,False,CubeEdge)" fullname="ArrowCube.Tests.ExitRulesTests.IndependentSwitchesControlTheSamePathWithAnInteriorGate(True,False,CubeEdge)" methodname="IndependentSwitchesControlTheSamePathWithAnInteriorGate" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1299849332" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000540" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1052" name="IndependentSwitchesControlTheSamePathWithAnInteriorGate(False,True,DirectionalGate)" fullname="ArrowCube.Tests.ExitRulesTests.IndependentSwitchesControlTheSamePathWithAnInteriorGate(False,True,DirectionalGate)" methodname="IndependentSwitchesControlTheSamePathWithAnInteriorGate" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1580838435" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1053" name="IndependentSwitchesControlTheSamePathWithAnInteriorGate(True,True,DirectionalGate)" fullname="ArrowCube.Tests.ExitRulesTests.IndependentSwitchesControlTheSamePathWithAnInteriorGate(True,True,DirectionalGate)" methodname="IndependentSwitchesControlTheSamePathWithAnInteriorGate" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="329409303" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1070" name="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled" fullname="ArrowCube.Tests.ExitRulesTests.LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.003988" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1066" name="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(0)" fullname="ArrowCube.Tests.ExitRulesTests.LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(0)" methodname="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="890217636" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.001268" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1067" name="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(1)" fullname="ArrowCube.Tests.ExitRulesTests.LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(1)" methodname="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="957980698" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000087" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1068" name="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(2)" fullname="ArrowCube.Tests.ExitRulesTests.LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(2)" methodname="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="88479690" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000088" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1069" name="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(3)" fullname="ArrowCube.Tests.ExitRulesTests.LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled(3)" methodname="LegacyGatePuzzlesKeepTheirExactGateBehaviorWhenEdgesAreDisabled" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1860594817" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1050" name="NewRulesAndAnUnspecifiedSimulationDefaultToBothExitMethods" fullname="ArrowCube.Tests.ExitRulesTests.NewRulesAndAnUnspecifiedSimulationDefaultToBothExitMethods" methodname="NewRulesAndAnUnspecifiedSimulationDefaultToBothExitMethods" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="795766400" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000581" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1076" name="OneHybridLevelUsesBothExitTypesWithoutConflicts" fullname="ArrowCube.Tests.ExitRulesTests.OneHybridLevelUsesBothExitTypesWithoutConflicts" methodname="OneHybridLevelUsesBothExitTypesWithoutConflicts" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="673322606" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000365" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="WrongDirectionGateIsIgnoredWhileAnEnabledEdgeStillWorks" fullname="ArrowCube.Tests.ExitRulesTests.WrongDirectionGateIsIgnoredWhileAnEnabledEdgeStillWorks" methodname="WrongDirectionGateIsIgnoredWhileAnEnabledEdgeStillWorks" classname="ArrowCube.Tests.ExitRulesTests" runstate="Runnable" seed="1456893553" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:03Z" duration="0.000347" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1081" name="GenerationStressTests" fullname="ArrowCube.Tests.GenerationStressTests" classname="ArrowCube.Tests.GenerationStressTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:17Z" duration="14.003582" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1082" name="GeneratesAndReplays1008PuzzlesAcrossSixDifficultiesAndThreeExitModes" fullname="ArrowCube.Tests.GenerationStressTests.GeneratesAndReplays1008PuzzlesAcrossSixDifficultiesAndThreeExitModes" methodname="GeneratesAndReplays1008PuzzlesAcrossSixDifficultiesAndThreeExitModes" classname="ArrowCube.Tests.GenerationStressTests" runstate="Runnable" seed="1452770240" result="Passed" start-time="2026-11-15 15:03:03Z" end-time="2026-11-15 15:03:17Z" duration="14.003013" asserts="0">
+              <properties>
+                <property name="Category" value="GenerationStress" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1083" name="PathAnimationGeometryTests" fullname="ArrowCube.Tests.PathAnimationGeometryTests" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.011424" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1085" name="ASeamUsesItsExactSharedMidpointAndKeepsMotionContinuous" fullname="ArrowCube.Tests.PathAnimationGeometryTests.ASeamUsesItsExactSharedMidpointAndKeepsMotionContinuous" methodname="ASeamUsesItsExactSharedMidpointAndKeepsMotionContinuous" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="1382794980" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000938" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1086" name="DepartureFollowsTheNormalAndDoesNotJumpOrShrinkTheBody" fullname="ArrowCube.Tests.PathAnimationGeometryTests.DepartureFollowsTheNormalAndDoesNotJumpOrShrinkTheBody" methodname="DepartureFollowsTheNormalAndDoesNotJumpOrShrinkTheBody" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="439579337" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000442" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1084" name="FractionalMotionPreservesEveryBendAndEveryCubeSeam" fullname="ArrowCube.Tests.PathAnimationGeometryTests.FractionalMotionPreservesEveryBendAndEveryCubeSeam" methodname="FractionalMotionPreservesEveryBendAndEveryCubeSeam" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="393588851" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.007769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="FractionalSlideReversalReturnsTheExactOriginalPolyline" fullname="ArrowCube.Tests.PathAnimationGeometryTests.FractionalSlideReversalReturnsTheExactOriginalPolyline" methodname="FractionalSlideReversalReturnsTheExactOriginalPolyline" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="1523836583" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000723" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1088" name="InvalidProgressIsRejectedAndOneCellPathsHaveOneBodySample" fullname="ArrowCube.Tests.PathAnimationGeometryTests.InvalidProgressIsRejectedAndOneCellPathsHaveOneBodySample" methodname="InvalidProgressIsRejectedAndOneCellPathsHaveOneBodySample" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="1800779408" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000408" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1089" name="PathMovementSimulatorTests" fullname="ArrowCube.Tests.PathMovementSimulatorTests" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" testcasecount="24" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.016742" total="24" passed="24" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1111" name="AdjacentPathsAndPathsBeyondTheExitDoNotCauseFalsePositives" fullname="ArrowCube.Tests.PathMovementSimulatorTests.AdjacentPathsAndPathsBeyondTheExitDoNotCauseFalsePositives" methodname="AdjacentPathsAndPathsBeyondTheExitDoNotCauseFalsePositives" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1321477855" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000371" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1109" name="AWrongHeadingDoesNotOpenAGate" fullname="ArrowCube.Tests.PathMovementSimulatorTests.AWrongHeadingDoesNotOpenAGate" methodname="AWrongHeadingDoesNotOpenAGate" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="646485556" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000269" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1091" name="BentCrossFaceBodyFollowsEveryPreviousSegmentRatherThanTranslatingRigidly" fullname="ArrowCube.Tests.PathMovementSimulatorTests.BentCrossFaceBodyFollowsEveryPreviousSegmentRatherThanTranslatingRigidly" methodname="BentCrossFaceBodyFollowsEveryPreviousSegmentRatherThanTranslatingRigidly" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1609763155" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.001694" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1108" name="ClosedCircuitTerminatesAndDoesNotMistakeAnyCubeEdgeForAnExit" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ClosedCircuitTerminatesAndDoesNotMistakeAnyCubeEdgeForAnExit" methodname="ClosedCircuitTerminatesAndDoesNotMistakeAnyCubeEdgeForAnExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1547698103" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000642" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1107" name="EnteringANonVacatedBodyCellIsAnActualSelfCollision" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EnteringANonVacatedBodyCellIsAnActualSelfCollision" methodname="EnteringANonVacatedBodyCellIsAnActualSelfCollision" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="814894226" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000330" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1106" name="EnteringTheSimultaneouslyVacatedTailIsNotASelfCollision" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EnteringTheSimultaneouslyVacatedTailIsNotASelfCollision" methodname="EnteringTheSimultaneouslyVacatedTailIsNotASelfCollision" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1012528068" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1098" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.001988" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1092" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Front)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Front)" methodname="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="700578507" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000566" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1093" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Right)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Right)" methodname="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1521721221" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000147" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1094" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Back)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Back)" methodname="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="997042942" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000134" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Left)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Left)" methodname="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1367079866" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000131" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Top)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Top)" methodname="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1824583034" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000133" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1097" name="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Bottom)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit(Bottom)" methodname="EveryFaceAndHeadingCanTraverseMultipleEdgesBeforeAnExplicitExit" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1711306760" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000132" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1101" name="FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState" fullname="ArrowCube.Tests.PathMovementSimulatorTests.FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.003404" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1099" name="FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState(2,4,Back,0,2)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState(2,4,Back,0,2)" methodname="FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1583905186" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.002821" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1100" name="FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState(3,2,Top,4,2)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState(3,2,Top,4,2)" methodname="FullTrajectoryFindsDistantBlockerAcrossASeamWithoutChangingState" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1487816121" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000260" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1110" name="GateAtInitialHeadStillRequiresTheWholeTailToDrain" fullname="ArrowCube.Tests.PathMovementSimulatorTests.GateAtInitialHeadStillRequiresTheWholeTailToDrain" methodname="GateAtInitialHeadStillRequiresTheWholeTailToDrain" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="705240343" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000314" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1102" name="ImmediateCollisionDoesNotAllowAnyDiscreteStep" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ImmediateCollisionDoesNotAllowAnyDiscreteStep" methodname="ImmediateCollisionDoesNotAllowAnyDiscreteStep" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1914476836" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000321" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1117" name="InvalidInputsAndFrameIndicesFailExplicitly" fullname="ArrowCube.Tests.PathMovementSimulatorTests.InvalidInputsAndFrameIndicesFailExplicitly" methodname="InvalidInputsAndFrameIndicesFailExplicitly" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="886972941" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000982" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1116" name="ManualPuzzleSolutionsClearAllCellsAndSegments" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ManualPuzzleSolutionsClearAllCellsAndSegments" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.003220" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1112" name="ManualPuzzleSolutionsClearAllCellsAndSegments(0)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ManualPuzzleSolutionsClearAllCellsAndSegments(0)" methodname="ManualPuzzleSolutionsClearAllCellsAndSegments" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1173514874" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.002430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1113" name="ManualPuzzleSolutionsClearAllCellsAndSegments(1)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ManualPuzzleSolutionsClearAllCellsAndSegments(1)" methodname="ManualPuzzleSolutionsClearAllCellsAndSegments" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1413359650" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1114" name="ManualPuzzleSolutionsClearAllCellsAndSegments(2)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ManualPuzzleSolutionsClearAllCellsAndSegments(2)" methodname="ManualPuzzleSolutionsClearAllCellsAndSegments" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="837778939" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000119" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1115" name="ManualPuzzleSolutionsClearAllCellsAndSegments(3)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.ManualPuzzleSolutionsClearAllCellsAndSegments(3)" methodname="ManualPuzzleSolutionsClearAllCellsAndSegments" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="2105889979" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000121" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1105" name="RemovingTheBlockerMakesTheOriginalSnakeRemovable" fullname="ArrowCube.Tests.PathMovementSimulatorTests.RemovingTheBlockerMakesTheOriginalSnakeRemovable" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000618" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1103" name="RemovingTheBlockerMakesTheOriginalSnakeRemovable(2)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.RemovingTheBlockerMakesTheOriginalSnakeRemovable(2)" methodname="RemovingTheBlockerMakesTheOriginalSnakeRemovable" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1253216283" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000297" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1104" name="RemovingTheBlockerMakesTheOriginalSnakeRemovable(3)" fullname="ArrowCube.Tests.PathMovementSimulatorTests.RemovingTheBlockerMakesTheOriginalSnakeRemovable(3)" methodname="RemovingTheBlockerMakesTheOriginalSnakeRemovable" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="62901725" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000074" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1090" name="StraightSnakeExitsOnlyAfterItsEntireBodyHasDeparted" fullname="ArrowCube.Tests.PathMovementSimulatorTests.StraightSnakeExitsOnlyAfterItsEntireBodyHasDeparted" methodname="StraightSnakeExitsOnlyAfterItsEntireBodyHasDeparted" classname="ArrowCube.Tests.PathMovementSimulatorTests" runstate="Runnable" seed="1688315041" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.000559" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1118" name="PuzzleGeneratorTests" fullname="ArrowCube.Tests.PuzzleGeneratorTests" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" testcasecount="39" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:18Z" duration="0.457857" total="39" passed="39" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1158" name="CustomGridProfilesWorkAndCollectionsCannotBeMutated" fullname="ArrowCube.Tests.PuzzleGeneratorTests.CustomGridProfilesWorkAndCollectionsCannotBeMutated" methodname="CustomGridProfilesWorkAndCollectionsCannotBeMutated" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1379562928" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.002007" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1137" name="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" fullname="ArrowCube.Tests.PuzzleGeneratorTests.EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:18Z" duration="0.361814" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1119" name="GeneratesVerified_Tutorial_0" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Tutorial_0" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="943373950" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.005937" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1120" name="GeneratesVerified_Tutorial_1" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Tutorial_1" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1686414016" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.003768" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1121" name="GeneratesVerified_Tutorial_2" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Tutorial_2" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1817925668" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.002293" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1122" name="GeneratesVerified_Easy_0" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Easy_0" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="184654684" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.005748" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="GeneratesVerified_Easy_1" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Easy_1" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="615695435" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.005415" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1124" name="GeneratesVerified_Easy_2" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Easy_2" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="881042695" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.005450" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1125" name="GeneratesVerified_Medium_0" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Medium_0" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1812574363" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.009111" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1126" name="GeneratesVerified_Medium_1" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Medium_1" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1095108788" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:17Z" duration="0.009707" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1127" name="GeneratesVerified_Medium_2" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Medium_2" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1461699745" result="Passed" start-time="2026-11-15 15:03:17Z" end-time="2026-11-15 15:03:18Z" duration="0.008800" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1128" name="GeneratesVerified_Hard_0" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Hard_0" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1024460745" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.025984" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1129" name="GeneratesVerified_Hard_1" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Hard_1" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="2085008549" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.017030" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1130" name="GeneratesVerified_Hard_2" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Hard_2" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="927834372" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.017171" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1131" name="GeneratesVerified_Very Hard_0" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Very Hard_0" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1941444865" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.030871" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1132" name="GeneratesVerified_Very Hard_1" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Very Hard_1" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1047193180" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.027453" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1133" name="GeneratesVerified_Very Hard_2" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Very Hard_2" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1684224558" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.039065" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1134" name="GeneratesVerified_Expert_0" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Expert_0" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1498946689" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.047906" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1135" name="GeneratesVerified_Expert_1" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Expert_1" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="925306198" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.040613" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1136" name="GeneratesVerified_Expert_2" fullname="ArrowCube.Tests.PuzzleGeneratorTests.GeneratesVerified_Expert_2" methodname="EveryDifficultyAndExitModeHasConnectedCrossFaceGeometryAndAVerifiedSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="440294452" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.057477" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1145" name="ImpossibleQualityBoundsAreRejectedInsteadOfReturningAPartialPuzzle" fullname="ArrowCube.Tests.PuzzleGeneratorTests.ImpossibleQualityBoundsAreRejectedInsteadOfReturningAPartialPuzzle" methodname="ImpossibleQualityBoundsAreRejectedInsteadOfReturningAPartialPuzzle" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1133548199" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.001546" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1159" name="InspectorProfileAssetsCreateImmutableRecipeSnapshots" fullname="ArrowCube.Tests.PuzzleGeneratorTests.InspectorProfileAssetsCreateImmutableRecipeSnapshots" methodname="InspectorProfileAssetsCreateImmutableRecipeSnapshots" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="199406083" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.003465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1160" name="ReconstructingAllRecipeValuesReproducesTheSavedGenerationInputs" fullname="ArrowCube.Tests.PuzzleGeneratorTests.ReconstructingAllRecipeValuesReproducesTheSavedGenerationInputs" methodname="ReconstructingAllRecipeValuesReproducesTheSavedGenerationInputs" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1488456118" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.008394" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1142" name="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.071751" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1138" name="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(0)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(0)" methodname="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="288409170" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.016833" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1139" name="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(-1)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(-1)" methodname="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="762486404" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.016662" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1140" name="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(int.MinValue)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(int.MinValue)" methodname="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1670440882" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.018304" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1141" name="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(int.MaxValue)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution(int.MaxValue)" methodname="SeedRecipeAndVersionReproduceExactGeometryGatesRulesAndSolution" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1786222946" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.017965" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1157" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.001837" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1146" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(1,0)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(1,0)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="428578729" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000376" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1147" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(5,0)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(5,0)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1885243775" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000072" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1148" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(6,1)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(6,1)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1619057306" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000048" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1149" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(15,1)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(15,1)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1213984690" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000043" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1150" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(16,2)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(16,2)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="888639676" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000041" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1151" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(30,2)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(30,2)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1309360591" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1152" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(31,3)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(31,3)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="624797801" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1153" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(60,3)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(60,3)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1240982717" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000040" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1154" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(61,4)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(61,4)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="543642827" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1155" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(100,4)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(100,4)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="106936291" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000039" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1156" name="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(101,5)" fullname="ArrowCube.Tests.PuzzleGeneratorTests.SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles(101,5)" methodname="SuggestedLevelBandsSelectProfilesWithoutConstrainingCustomProfiles" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="572029085" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000037" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1144" name="UnityMatchesTheEngineIndependentDotnetGoldenFingerprint" fullname="ArrowCube.Tests.PuzzleGeneratorTests.UnityMatchesTheEngineIndependentDotnetGoldenFingerprint" methodname="UnityMatchesTheEngineIndependentDotnetGoldenFingerprint" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="87912379" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.002490" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="VersionMismatchDisabledExitsAndCancellationFailExplicitly" fullname="ArrowCube.Tests.PuzzleGeneratorTests.VersionMismatchDisabledExitsAndCancellationFailExplicitly" methodname="VersionMismatchDisabledExitsAndCancellationFailExplicitly" classname="ArrowCube.Tests.PuzzleGeneratorTests" runstate="Runnable" seed="1997861562" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.001411" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1161" name="PuzzleValidatorTests" fullname="ArrowCube.Tests.PuzzleValidatorTests" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.003622" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1169" name="RejectsUnsolvableEmptyOverlappingAndIncorrectSolutionPuzzles" fullname="ArrowCube.Tests.PuzzleValidatorTests.RejectsUnsolvableEmptyOverlappingAndIncorrectSolutionPuzzles" methodname="RejectsUnsolvableEmptyOverlappingAndIncorrectSolutionPuzzles" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="452289325" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.001315" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1170" name="ReportsAllDiagramDependenciesAndOnlyCountsActualBends" fullname="ArrowCube.Tests.PuzzleValidatorTests.ReportsAllDiagramDependenciesAndOnlyCountsActualBends" methodname="ReportsAllDiagramDependenciesAndOnlyCountsActualBends" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="1036719224" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000392" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1168" name="SolvesManualPuzzlesUsingTheirActualExitSettings" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.001385" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1162" name="SolvesManualPuzzlesUsingTheirActualExitSettings(0)" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings(0)" methodname="SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="1550074855" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000279" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1163" name="SolvesManualPuzzlesUsingTheirActualExitSettings(1)" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings(1)" methodname="SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="1411855786" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000090" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1164" name="SolvesManualPuzzlesUsingTheirActualExitSettings(2)" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings(2)" methodname="SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="895912330" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1165" name="SolvesManualPuzzlesUsingTheirActualExitSettings(3)" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings(3)" methodname="SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="1175755315" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000100" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1166" name="SolvesManualPuzzlesUsingTheirActualExitSettings(5)" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings(5)" methodname="SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="1926854831" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000145" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1167" name="SolvesManualPuzzlesUsingTheirActualExitSettings(6)" fullname="ArrowCube.Tests.PuzzleValidatorTests.SolvesManualPuzzlesUsingTheirActualExitSettings(6)" methodname="SolvesManualPuzzlesUsingTheirActualExitSettings" classname="ArrowCube.Tests.PuzzleValidatorTests" runstate="Runnable" seed="762057545" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1171" name="SurfaceGridTests" fullname="ArrowCube.Tests.SurfaceGridTests" classname="ArrowCube.Tests.SurfaceGridTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.002324" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1172" name="CellAndSegmentQueriesAgreeAcrossSeamsAndRemovalClearsBoth" fullname="ArrowCube.Tests.SurfaceGridTests.CellAndSegmentQueriesAgreeAcrossSeamsAndRemovalClearsBoth" methodname="CellAndSegmentQueriesAgreeAcrossSeamsAndRemovalClearsBoth" classname="ArrowCube.Tests.SurfaceGridTests" runstate="Runnable" seed="1012721359" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1173" name="InvalidAddIsAtomicAndDuplicateIdsAreRejected" fullname="ArrowCube.Tests.SurfaceGridTests.InvalidAddIsAtomicAndDuplicateIdsAreRejected" methodname="InvalidAddIsAtomicAndDuplicateIdsAreRejected" classname="ArrowCube.Tests.SurfaceGridTests" runstate="Runnable" seed="1303037170" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1175" name="PathsMustBeConnectedOnTheOccupancyGridsOwnTopology" fullname="ArrowCube.Tests.SurfaceGridTests.PathsMustBeConnectedOnTheOccupancyGridsOwnTopology" methodname="PathsMustBeConnectedOnTheOccupancyGridsOwnTopology" classname="ArrowCube.Tests.SurfaceGridTests" runstate="Runnable" seed="478583419" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000300" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1174" name="StaleForeignAndAlreadyCommittedPlansCannotRemoveAPath" fullname="ArrowCube.Tests.SurfaceGridTests.StaleForeignAndAlreadyCommittedPlansCannotRemoveAPath" methodname="StaleForeignAndAlreadyCommittedPlansCannotRemoveAPath" classname="ArrowCube.Tests.SurfaceGridTests" runstate="Runnable" seed="598529448" result="Passed" start-time="2026-11-15 15:03:18Z" end-time="2026-11-15 15:03:18Z" duration="0.000316" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\Stage3Validation\Project-08345f4e991848aba8779e5ba0de6dad\results-EditMode.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

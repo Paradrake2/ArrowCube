@@ -1,0 +1,4 @@
+pipeline,material,angle,front_r,front_g,front_b
+urp,opaque,0,0.000,0.000,0.000
+urp,opaque,1,0.000,0.000,0.000
+urp,opaque,2,0.000,0.000,0.000

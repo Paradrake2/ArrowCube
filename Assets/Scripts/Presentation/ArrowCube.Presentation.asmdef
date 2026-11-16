@@ -1,0 +1,5 @@
+{
+  "name": "ArrowCube.Presentation",
+  "rootNamespace": "ArrowCube.Presentation",
+  "references": ["ArrowCube.Topology", "ArrowCube.Movement", "ArrowCube.Generation"]
+}

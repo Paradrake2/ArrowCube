@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="38" result="Passed" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:26:26Z" duration="50.4653025">
+  <test-suite type="TestSuite" id="1056" name="Project-7e2b8d5bb8d1" fullname="Project-7e2b8d5bb8d1" runstate="Runnable" testcasecount="42" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:26:26Z" duration="50.465303" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1045" name="ArrowCube.Movement.PlayMode.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/WGF/Project-7e2b8d5bb8d1/Library/ScriptAssemblies/ArrowCube.Movement.PlayMode.Tests.dll" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:26:26Z" duration="50.455389" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="27664" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1046" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:26:26Z" duration="50.454872" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1047" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="38" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:26:26Z" duration="50.454514" total="38" passed="38" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="ControlsInputTests" fullname="ArrowCube.Tests.ControlsInputTests" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:25:36Z" duration="1.204328" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1002" name="ARealInputSystemMouseClickIncludingSameUpdatePressAndReleaseActivatesOnePath" fullname="ArrowCube.Tests.ControlsInputTests.ARealInputSystemMouseClickIncludingSameUpdatePressAndReleaseActivatesOnePath" methodname="ARealInputSystemMouseClickIncludingSameUpdatePressAndReleaseActivatesOnePath" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="1073591645" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:25:35Z" duration="0.292330" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="BufferedLongPressUsesDeviceTimestampsEvenWhenBothEventsArriveInOneFrame" fullname="ArrowCube.Tests.ControlsInputTests.BufferedLongPressUsesDeviceTimestampsEvenWhenBothEventsArriveInOneFrame" methodname="BufferedLongPressUsesDeviceTimestampsEvenWhenBothEventsArriveInOneFrame" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="91563882" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:25:35Z" duration="0.007250" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="CancelledTouchUiFingerAndThreeFingerGesturesCannotLeakAnActivation" fullname="ArrowCube.Tests.ControlsInputTests.CancelledTouchUiFingerAndThreeFingerGesturesCannotLeakAnActivation" methodname="CancelledTouchUiFingerAndThreeFingerGesturesCannotLeakAnActivation" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="1728281869" result="Passed" start-time="2026-11-16 04:25:35Z" end-time="2026-11-16 04:25:36Z" duration="0.015232" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="CustomSlidersPreserveOtherSettingsWhileMasterAndResetApplyCoherentDefaults" fullname="ArrowCube.Tests.ControlsInputTests.CustomSlidersPreserveOtherSettingsWhileMasterAndResetApplyCoherentDefaults" methodname="CustomSlidersPreserveOtherSettingsWhileMasterAndResetApplyCoherentDefaults" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="166788299" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.374007" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="DependencyInspectionSelectsAnArrowWithoutChangingGameplayAndCanBeDisabled" fullname="ArrowCube.Tests.ControlsInputTests.DependencyInspectionSelectsAnArrowWithoutChangingGameplayAndCanBeDisabled" methodname="DependencyInspectionSelectsAnArrowWithoutChangingGameplayAndCanBeDisabled" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="923692905" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.179287" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="DeviceResetDoesNotTurnAnInputActionCancellationIntoAClick" fullname="ArrowCube.Tests.ControlsInputTests.DeviceResetDoesNotTurnAnInputActionCancellationIntoAClick" methodname="DeviceResetDoesNotTurnAnInputActionCancellationIntoAClick" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="14989540" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.012320" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="FilledTriangleInteriorIsClickableAndTheBodyJoinsItsBase" fullname="ArrowCube.Tests.ControlsInputTests.FilledTriangleInteriorIsClickableAndTheBodyJoinsItsBase" methodname="FilledTriangleInteriorIsClickableAndTheBodyJoinsItsBase" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="1404045910" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.009564" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="InspectorThicknessWidensEveryArrowLiveAndTheVisibleEdgesAreClickable" fullname="ArrowCube.Tests.ControlsInputTests.InspectorThicknessWidensEveryArrowLiveAndTheVisibleEdgesAreClickable" methodname="InspectorThicknessWidensEveryArrowLiveAndTheVisibleEdgesAreClickable" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="556887490" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.021108" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="LeftPathDragsDoNotActivateWhileEmptyAndRightDragsOrbit" fullname="ArrowCube.Tests.ControlsInputTests.LeftPathDragsDoNotActivateWhileEmptyAndRightDragsOrbit" methodname="LeftPathDragsDoNotActivateWhileEmptyAndRightDragsOrbit" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="49305981" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.010116" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="PickerRejectsHiddenPathsAndSelectsEitherVisibleFaceOfACrossFacePath" fullname="ArrowCube.Tests.ControlsInputTests.PickerRejectsHiddenPathsAndSelectsEitherVisibleFaceOfACrossFacePath" methodname="PickerRejectsHiddenPathsAndSelectsEitherVisibleFaceOfACrossFacePath" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="714224513" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.011056" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="PinchZoomAndTwoToOneTransitionNeverProduceATap" fullname="ArrowCube.Tests.ControlsInputTests.PinchZoomAndTwoToOneTransitionNeverProduceATap" methodname="PinchZoomAndTwoToOneTransitionNeverProduceATap" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="607530248" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.007149" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="RealTouchTapActivatesAndTouchDragStartingOnAPathOnlyOrbits" fullname="ArrowCube.Tests.ControlsInputTests.RealTouchTapActivatesAndTouchDragStartingOnAPathOnlyOrbits" methodname="RealTouchTapActivatesAndTouchDragStartingOnAPathOnlyOrbits" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="477206340" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.008421" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="RegeneratingOrDisablingInputDuringAPressCancelsItsPendingTap" fullname="ArrowCube.Tests.ControlsInputTests.RegeneratingOrDisablingInputDuringAPressCancelsItsPendingTap" methodname="RegeneratingOrDisablingInputDuringAPressCancelsItsPendingTap" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="1889134190" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.007055" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="Stage4BuildsAResponsiveTouchUiAndKeepsTheWorldViewportSeparate" fullname="ArrowCube.Tests.ControlsInputTests.Stage4BuildsAResponsiveTouchUiAndKeepsTheWorldViewportSeparate" methodname="Stage4BuildsAResponsiveTouchUiAndKeepsTheWorldViewportSeparate" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="1153848055" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.204641" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="UiOriginAndFocusLossNeverActivateOrRotateThePuzzle" fullname="ArrowCube.Tests.ControlsInputTests.UiOriginAndFocusLossNeverActivateOrRotateThePuzzle" methodname="UiOriginAndFocusLossNeverActivateOrRotateThePuzzle" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="1080816430" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.007124" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="WheelResetAndFullscreenShortcutUseInputSystemActions" fullname="ArrowCube.Tests.ControlsInputTests.WheelResetAndFullscreenShortcutUseInputSystemActions" methodname="WheelResetAndFullscreenShortcutUseInputSystemActions" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="191287161" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.009014" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1006" name="ZoomSpeedCanBeTunedLiveAndNormalizedWheelInputIsNotDividedTwice" fullname="ArrowCube.Tests.ControlsInputTests.ZoomSpeedCanBeTunedLiveAndNormalizedWheelInputIsNotDividedTwice" methodname="ZoomSpeedCanBeTunedLiveAndNormalizedWheelInputIsNotDividedTwice" classname="ArrowCube.Tests.ControlsInputTests" runstate="Runnable" seed="786687050" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:36Z" duration="0.009868" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1019" name="GameplayIntegrationTests" fullname="ArrowCube.Tests.GameplayIntegrationTests" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:39Z" duration="2.587732" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1024" name="CampaignGenerationProgressionAndContinueDoNotUseTheManualTestCube" fullname="ArrowCube.Tests.GameplayIntegrationTests.CampaignGenerationProgressionAndContinueDoNotUseTheManualTestCube" methodname="CampaignGenerationProgressionAndContinueDoNotUseTheManualTestCube" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="107579551" result="Passed" start-time="2026-11-16 04:25:36Z" end-time="2026-11-16 04:25:37Z" duration="1.097177" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="FailedOverlayBlocksInputAndUnlimitedToggleResumesTheSamePartiallyClearedPuzzle" fullname="ArrowCube.Tests.GameplayIntegrationTests.FailedOverlayBlocksInputAndUnlimitedToggleResumesTheSamePartiallyClearedPuzzle" methodname="FailedOverlayBlocksInputAndUnlimitedToggleResumesTheSamePartiallyClearedPuzzle" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="1385835663" result="Passed" start-time="2026-11-16 04:25:37Z" end-time="2026-11-16 04:25:38Z" duration="0.488610" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="HammerUndoHintAndReloadShareExactOccupancyAndKeepCameraPose" fullname="ArrowCube.Tests.GameplayIntegrationTests.HammerUndoHintAndReloadShareExactOccupancyAndKeepCameraPose" methodname="HammerUndoHintAndReloadShareExactOccupancyAndKeepCameraPose" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="924495064" result="Passed" start-time="2026-11-16 04:25:38Z" end-time="2026-11-16 04:25:38Z" duration="0.096257" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="KeyboardHintUndoAndPauseUseTheGameplayStateAndKeepTheCameraPose" fullname="ArrowCube.Tests.GameplayIntegrationTests.KeyboardHintUndoAndPauseUseTheGameplayStateAndKeepTheCameraPose" methodname="KeyboardHintUndoAndPauseUseTheGameplayStateAndKeepTheCameraPose" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="1196899777" result="Passed" start-time="2026-11-16 04:25:38Z" end-time="2026-11-16 04:25:38Z" duration="0.094360" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="MenuScrollIsSixAndAllGameplaySettingsRemainAccessible" fullname="ArrowCube.Tests.GameplayIntegrationTests.MenuScrollIsSixAndAllGameplaySettingsRemainAccessible" methodname="MenuScrollIsSixAndAllGameplaySettingsRemainAccessible" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="1435996682" result="Passed" start-time="2026-11-16 04:25:38Z" end-time="2026-11-16 04:25:38Z" duration="0.027747" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="PauseFreezesInFlightMovementAndRestartCancelsItsStaleCallback" fullname="ArrowCube.Tests.GameplayIntegrationTests.PauseFreezesInFlightMovementAndRestartCancelsItsStaleCallback" methodname="PauseFreezesInFlightMovementAndRestartCancelsItsStaleCallback" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="1824479809" result="Passed" start-time="2026-11-16 04:25:38Z" end-time="2026-11-16 04:25:38Z" duration="0.276669" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="RealAnimationsDeductHeartsOnceAndVictoryOccursOnlyAfterTheFinalRemovalCommits" fullname="ArrowCube.Tests.GameplayIntegrationTests.RealAnimationsDeductHeartsOnceAndVictoryOccursOnlyAfterTheFinalRemovalCommits" methodname="RealAnimationsDeductHeartsOnceAndVictoryOccursOnlyAfterTheFinalRemovalCommits" classname="ArrowCube.Tests.GameplayIntegrationTests" runstate="Runnable" seed="836613869" result="Passed" start-time="2026-11-16 04:25:38Z" end-time="2026-11-16 04:25:39Z" duration="0.503926" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1027" name="GameplaySceneTests" fullname="ArrowCube.Tests.GameplaySceneTests" classname="ArrowCube.Tests.GameplaySceneTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 04:25:39Z" end-time="2026-11-16 04:25:40Z" duration="0.577558" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1028" name="GameplaySceneCanGenerateSaveAndReloadAnExactPartiallyClearedLevel" fullname="ArrowCube.Tests.GameplaySceneTests.GameplaySceneCanGenerateSaveAndReloadAnExactPartiallyClearedLevel" methodname="GameplaySceneCanGenerateSaveAndReloadAnExactPartiallyClearedLevel" classname="ArrowCube.Tests.GameplaySceneTests" runstate="Runnable" seed="172112283" result="Passed" start-time="2026-11-16 04:25:39Z" end-time="2026-11-16 04:25:39Z" duration="0.401841" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="SettingsLabLaunchesItsExactPuzzleAndKeepsGenerationSettingsOnReturn" fullname="ArrowCube.Tests.GameplaySceneTests.SettingsLabLaunchesItsExactPuzzleAndKeepsGenerationSettingsOnReturn" methodname="SettingsLabLaunchesItsExactPuzzleAndKeepsGenerationSettingsOnReturn" classname="ArrowCube.Tests.GameplaySceneTests" runstate="Runnable" seed="1640188942" result="Passed" start-time="2026-11-16 04:25:39Z" end-time="2026-11-16 04:25:40Z" duration="0.174470" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1030" name="GenerationDemoTests" fullname="ArrowCube.Tests.GenerationDemoTests" classname="ArrowCube.Tests.GenerationDemoTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-16 04:25:40Z" end-time="2026-11-16 04:26:11Z" duration="31.515745" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1032" name="AllThreeModesPlayACompleteGeneratedSolutionThroughTheSharedMovementRenderer" fullname="ArrowCube.Tests.GenerationDemoTests.AllThreeModesPlayACompleteGeneratedSolutionThroughTheSharedMovementRenderer" methodname="AllThreeModesPlayACompleteGeneratedSolutionThroughTheSharedMovementRenderer" classname="ArrowCube.Tests.GenerationDemoTests" runstate="Runnable" seed="1681731060" result="Passed" start-time="2026-11-16 04:25:40Z" end-time="2026-11-16 04:25:40Z" duration="0.682141" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="BackgroundCancellationAndFailureKeepTheCurrentLevelAndNewerRequestsWin" fullname="ArrowCube.Tests.GenerationDemoTests.BackgroundCancellationAndFailureKeepTheCurrentLevelAndNewerRequestsWin" methodname="BackgroundCancellationAndFailureKeepTheCurrentLevelAndNewerRequestsWin" classname="ArrowCube.Tests.GenerationDemoTests" runstate="Runnable" seed="206891820" result="Passed" start-time="2026-11-16 04:25:40Z" end-time="2026-11-16 04:25:40Z" duration="0.232251" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="FailedStartupNeverLoadsTheManualCubeAndCanRecoverWithALargeCustomProfile" fullname="ArrowCube.Tests.GenerationDemoTests.FailedStartupNeverLoadsTheManualCubeAndCanRecoverWithALargeCustomProfile" methodname="FailedStartupNeverLoadsTheManualCubeAndCanRecoverWithALargeCustomProfile" classname="ArrowCube.Tests.GenerationDemoTests" runstate="Runnable" seed="1189819923" result="Passed" start-time="2026-11-16 04:25:40Z" end-time="2026-11-16 04:26:09Z" duration="28.766573" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="RegenerationCancelsAnOldAttemptAndRejectedRulesKeepTheCurrentLevel" fullname="ArrowCube.Tests.GenerationDemoTests.RegenerationCancelsAnOldAttemptAndRejectedRulesKeepTheCurrentLevel" methodname="RegenerationCancelsAnOldAttemptAndRejectedRulesKeepTheCurrentLevel" classname="ArrowCube.Tests.GenerationDemoTests" runstate="Runnable" seed="226637466" result="Passed" start-time="2026-11-16 04:26:09Z" end-time="2026-11-16 04:26:09Z" duration="0.202473" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="RuntimeBlockerControlsWorkWithMeasuredSearchDisabledAndKeepTheLevelOnFailure" fullname="ArrowCube.Tests.GenerationDemoTests.RuntimeBlockerControlsWorkWithMeasuredSearchDisabledAndKeepTheLevelOnFailure" methodname="RuntimeBlockerControlsWorkWithMeasuredSearchDisabledAndKeepTheLevelOnFailure" classname="ArrowCube.Tests.GenerationDemoTests" runstate="Runnable" seed="93262318" result="Passed" start-time="2026-11-16 04:26:09Z" end-time="2026-11-16 04:26:11Z" duration="1.630196" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1036" name="MovementDemoTests" fullname="ArrowCube.Tests.MovementDemoTests" classname="ArrowCube.Tests.MovementDemoTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-16 04:26:11Z" end-time="2026-11-16 04:26:25Z" duration="13.934004" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1039" name="EveryManualPuzzleBuildsItsVisualsAndNoGateAttemptRemainsPlayable" fullname="ArrowCube.Tests.MovementDemoTests.EveryManualPuzzleBuildsItsVisualsAndNoGateAttemptRemainsPlayable" methodname="EveryManualPuzzleBuildsItsVisualsAndNoGateAttemptRemainsPlayable" classname="ArrowCube.Tests.MovementDemoTests" runstate="Runnable" seed="2073288433" result="Passed" start-time="2026-11-16 04:26:11Z" end-time="2026-11-16 04:26:12Z" duration="0.810962" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="FailedAttemptRestoresVisualsAndBlockerRemovalThenClearsThePuzzle" fullname="ArrowCube.Tests.MovementDemoTests.FailedAttemptRestoresVisualsAndBlockerRemovalThenClearsThePuzzle" methodname="FailedAttemptRestoresVisualsAndBlockerRemovalThenClearsThePuzzle" classname="ArrowCube.Tests.MovementDemoTests" runstate="Runnable" seed="1279092323" result="Passed" start-time="2026-11-16 04:26:12Z" end-time="2026-11-16 04:26:15Z" duration="3.404301" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1040" name="HybridDemoAnimatesGateAndEdgeRemovalsInTheSameLevel" fullname="ArrowCube.Tests.MovementDemoTests.HybridDemoAnimatesGateAndEdgeRemovalsInTheSameLevel" methodname="HybridDemoAnimatesGateAndEdgeRemovalsInTheSameLevel" classname="ArrowCube.Tests.MovementDemoTests" runstate="Runnable" seed="973757558" result="Passed" start-time="2026-11-16 04:26:15Z" end-time="2026-11-16 04:26:21Z" duration="6.070888" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="IndependentExitSwitchesCancelOldMovesAndSurviveRestart" fullname="ArrowCube.Tests.MovementDemoTests.IndependentExitSwitchesCancelOldMovesAndSurviveRestart" methodname="IndependentExitSwitchesCancelOldMovesAndSurviveRestart" classname="ArrowCube.Tests.MovementDemoTests" runstate="Runnable" seed="1998466" result="Passed" start-time="2026-11-16 04:26:21Z" end-time="2026-11-16 04:26:24Z" duration="2.840224" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="RestartCancelsTheAnimationAndRestoresTheExactPuzzle" fullname="ArrowCube.Tests.MovementDemoTests.RestartCancelsTheAnimationAndRestoresTheExactPuzzle" methodname="RestartCancelsTheAnimationAndRestoresTheExactPuzzle" classname="ArrowCube.Tests.MovementDemoTests" runstate="Runnable" seed="2039325698" result="Passed" start-time="2026-11-16 04:26:24Z" end-time="2026-11-16 04:26:25Z" duration="0.806103" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1042" name="WebGenerationIntegrationTests" fullname="ArrowCube.Tests.WebGenerationIntegrationTests" classname="ArrowCube.Tests.WebGenerationIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 04:26:25Z" end-time="2026-11-16 04:26:26Z" duration="0.632559" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="GameLeavesCreatingPuzzleWithTheSingleThreadBackendAndCancellationKeepsThePreviousLevel" fullname="ArrowCube.Tests.WebGenerationIntegrationTests.GameLeavesCreatingPuzzleWithTheSingleThreadBackendAndCancellationKeepsThePreviousLevel" methodname="GameLeavesCreatingPuzzleWithTheSingleThreadBackendAndCancellationKeepsThePreviousLevel" classname="ArrowCube.Tests.WebGenerationIntegrationTests" runstate="Runnable" seed="1333360339" result="Passed" start-time="2026-11-16 04:26:25Z" end-time="2026-11-16 04:26:25Z" duration="0.342873" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="LabUsesTheSingleThreadBackendAndOnlyTheNewestRequestCanReplaceThePuzzle" fullname="ArrowCube.Tests.WebGenerationIntegrationTests.LabUsesTheSingleThreadBackendAndOnlyTheNewestRequestCanReplaceThePuzzle" methodname="LabUsesTheSingleThreadBackendAndOnlyTheNewestRequestCanReplaceThePuzzle" classname="ArrowCube.Tests.WebGenerationIntegrationTests" runstate="Runnable" seed="1378774979" result="Passed" start-time="2026-11-16 04:26:25Z" end-time="2026-11-16 04:26:26Z" duration="0.288740" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\WGF\Project-7e2b8d5bb8d1\results-PlayMode.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

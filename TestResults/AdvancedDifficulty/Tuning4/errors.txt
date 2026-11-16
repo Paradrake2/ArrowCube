@@ -1,0 +1,7 @@
+Normal/2/2: System.ArgumentException: Duplicate directional exit gate. (Parameter 'gates')
+   at ArrowCube.Movement.ExitMap..ctor(CubeTopology topology, IEnumerable`1 gates) in C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Assets\Scripts\Movement\ExitGate.cs:line 33
+   at ArrowCube.Generation.DifficultyAwareGeneration.Mutate(GeneratedPuzzle puzzle, StableRandom random) in C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Assets\Scripts\Generation\DifficultyAwareGeneration.cs:line 98
+   at ArrowCube.Generation.DifficultyAwareGeneration.Generate(PuzzleGenerator generator, PuzzleRecipe recipe, IProgress`1 progress, CancellationToken token) in C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Assets\Scripts\Generation\DifficultyAwareGeneration.cs:line 40
+   at ArrowCube.Generation.PuzzleGenerator.Generate(PuzzleRecipe recipe, IProgress`1 progress, CancellationToken cancellationToken) in C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Assets\Scripts\Generation\PuzzleGenerator.cs:line 23
+   at ArrowCube.Generation.PuzzleGenerator.Generate(PuzzleRecipe recipe, CancellationToken cancellationToken) in C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Assets\Scripts\Generation\PuzzleGenerator.cs:line 18
+   at DifficultyBenchmark.Advanced(String[] args) in C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Tools\GenerationProbe\DifficultyBenchmark.cs:line 30

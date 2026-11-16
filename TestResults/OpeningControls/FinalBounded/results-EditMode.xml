@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:35Z" duration="14.2966521">
+  <test-suite type="TestSuite" id="1000" name="Project-9f17d10f5c61" fullname="Project-9f17d10f5c61" runstate="Runnable" testcasecount="246" result="Passed" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:35Z" duration="14.296652" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1295" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/OC3/Project-9f17d10f5c61/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="246" result="Passed" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:35Z" duration="14.284306" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="53852" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1296" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="246" result="Passed" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:35Z" duration="14.281939" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1297" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="246" result="Passed" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:35Z" duration="14.280724" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1084" name="DependencyControlTests" fullname="ArrowCube.Tests.DependencyControlTests" classname="ArrowCube.Tests.DependencyControlTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:35Z" duration="14.272279" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1104" name="IncreasingDependencyAmountRaisesActualDistinctBlockersWithoutChangingSizeOrQualityBounds" fullname="ArrowCube.Tests.DependencyControlTests.IncreasingDependencyAmountRaisesActualDistinctBlockersWithoutChangingSizeOrQualityBounds" methodname="IncreasingDependencyAmountRaisesActualDistinctBlockersWithoutChangingSizeOrQualityBounds" classname="ArrowCube.Tests.DependencyControlTests" runstate="Runnable" seed="656034574" result="Passed" start-time="2026-11-16 02:14:21Z" end-time="2026-11-16 02:14:33Z" duration="11.997857" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1108" name="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic" fullname="ArrowCube.Tests.DependencyControlTests.OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic" classname="ArrowCube.Tests.DependencyControlTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 02:14:33Z" end-time="2026-11-16 02:14:35Z" duration="2.258112" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1105" name="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic(1)" fullname="ArrowCube.Tests.DependencyControlTests.OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic(1)" methodname="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic" classname="ArrowCube.Tests.DependencyControlTests" runstate="Runnable" seed="317152328" result="Passed" start-time="2026-11-16 02:14:33Z" end-time="2026-11-16 02:14:34Z" duration="0.640930" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1106" name="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic(3)" fullname="ArrowCube.Tests.DependencyControlTests.OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic(3)" methodname="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic" classname="ArrowCube.Tests.DependencyControlTests" runstate="Runnable" seed="198223038" result="Passed" start-time="2026-11-16 02:14:34Z" end-time="2026-11-16 02:14:35Z" duration="1.038817" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1107" name="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic(5)" fullname="ArrowCube.Tests.DependencyControlTests.OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic(5)" methodname="OpeningCountIsAnExplicitMaximumAndRecipeSnapshotsAreDeterministic" classname="ArrowCube.Tests.DependencyControlTests" runstate="Runnable" seed="1603853321" result="Passed" start-time="2026-11-16 02:14:35Z" end-time="2026-11-16 02:14:35Z" duration="0.575921" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\OC3\Project-9f17d10f5c61\results-EditMode.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

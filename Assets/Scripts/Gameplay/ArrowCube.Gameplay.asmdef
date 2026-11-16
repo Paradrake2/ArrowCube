@@ -1,0 +1,6 @@
+{
+  "name": "ArrowCube.Gameplay",
+  "rootNamespace": "ArrowCube.Gameplay",
+  "references": ["ArrowCube.Topology", "ArrowCube.Movement", "ArrowCube.Generation"],
+  "noEngineReferences": true
+}

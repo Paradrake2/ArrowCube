@@ -1,0 +1,7 @@
+pipeline,material,angle,front_r,front_g,front_b
+builtin,sprite-fallback,0,0.831,0.922,1.000
+builtin,sprite-fallback,1,0.000,0.000,0.000
+builtin,sprite-fallback,2,0.831,0.922,1.000
+builtin,opaque,0,0.000,0.000,0.000
+builtin,opaque,1,0.000,0.000,0.000
+builtin,opaque,2,0.000,0.000,0.000

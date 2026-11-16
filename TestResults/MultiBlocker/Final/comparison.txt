@@ -1,0 +1,1 @@
+Version 3 original preset defaults versus version 4 multi-blocker presets; identical seed, geometry bounds, density targets and exit rules.

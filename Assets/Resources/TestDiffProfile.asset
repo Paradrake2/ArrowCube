@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683d57ee77dc40f9bc52a605e190ee6e, type: 3}
+  m_Name: TestDiffProfile
+  m_EditorClassIdentifier: ArrowCube.Presentation::ArrowCube.Presentation.DifficultyProfileAsset
+  profileName: Custom
+  gridSize: 12
+  minPathLength: 3
+  maxPathLength: 15
+  minPathCount: 8
+  maxPathCount: 192
+  minCrossFacePaths: 8
+  minimumCoverage: 0.7
+  targetCoverage: 0.95
+  minimumBlockedFraction: 0.3
+  minimumAverageTurns: 0.99
+  turnProbability: 0.65
+  maxGates: 24
+  scaleGateBudgetWithGridSize: 0
+  controlDependencies: 1
+  dependencyAmount: 0.877
+  maximumStartingFreeArrows: 3
+  advancedDifficulty: 1
+  difficultySettings:
+    TargetScore: 80
+    ScoreTolerance: 10
+    DesiredSafeFraction: 0.08
+    DesiredDependencyDepth: 18
+    EdgeResistance: 0.9500000000000001
+    SpatialUnpredictability: 0.8
+    CrossFaceFrequency: 0.316
+    DependencyStrength: 0.8900000000000001
+    Placement: 4
+    Quality: 1
+    MaxCandidates: 16
+    MaxConstructionAttempts: 12000
+    MaxRestarts: 8
+    OptimizationIterations: 12
+    CandidatePoolSize: 11
+    AlternativeOrderSamples: 2
+    Weights:
+      EdgeResistance: 30
+      Dependencies: 25
+      SafeMoveScarcity: 15
+      SpatialUnpredictability: 15
+      CrossFace: 10
+      VisualComplexity: 5
+    MultiBlocker:
+      Enabled: 1
+      EnableTargetedPlacement: 1
+      ReplaceExistingPaths: 1
+      TargetAverageBlockers: 4.5
+      MultiBlockerPathFraction: 0.8
+      CrossFacePreference: 0.72
+      BranchingPreference: 0.69
+      MaxBlockerConcentration: 0.25
+      MaxTargetBlockers: 8
+      TargetedBlockerAttempts: 10
+      BlockerDistribution:
+      - 0.1
+      - 0.1
+      - 0.15
+      - 0.2
+      - 0.2
+      - 0.15
+      - 0.1

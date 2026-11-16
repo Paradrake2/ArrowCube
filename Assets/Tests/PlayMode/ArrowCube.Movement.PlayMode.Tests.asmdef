@@ -1,0 +1,6 @@
+{
+  "name": "ArrowCube.Movement.PlayMode.Tests",
+  "rootNamespace": "ArrowCube.Tests",
+  "references": ["ArrowCube.Topology", "ArrowCube.Movement", "ArrowCube.Generation", "ArrowCube.Presentation", "ArrowCube.Controls", "ArrowCube.Gameplay", "ArrowCube.Game", "Unity.InputSystem", "Unity.InputSystem.TestFramework", "Unity.ugui"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

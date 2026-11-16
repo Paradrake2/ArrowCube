@@ -1,0 +1,6 @@
+{
+  "name": "ArrowCube.Generation",
+  "rootNamespace": "ArrowCube.Generation",
+  "references": ["ArrowCube.Topology", "ArrowCube.Movement"],
+  "noEngineReferences": true
+}

@@ -1,0 +1,7 @@
+{
+  "name": "ArrowCube.Topology.Tests",
+  "rootNamespace": "ArrowCube.Tests",
+  "references": ["ArrowCube.Topology", "ArrowCube.Movement", "ArrowCube.Generation", "ArrowCube.Presentation", "ArrowCube.Controls", "ArrowCube.Gameplay", "ArrowCube.Game"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}
