@@ -1,5 +1,13 @@
 # Shape-independent logical surface topology
 
+[Phase 3](ArbitrarySurface-Phase3.md) now adds generic quad geometry, rendering,
+selection and two playable non-cube demo scenes on top of this logical foundation.
+
+Phase 2 now also generalizes puzzle data, occupancy, gates, movement and save
+snapshots. See [Phase 2](ArbitrarySurface-Phase2.md) for the canonical APIs, authored
+non-cube puzzle, executable demo and compatibility details. The sections below
+describe the original traversal foundation.
+
 The traversal foundation now uses cell IDs and explicit boundary connections.
 `SurfaceCell` and `CellBoundary` are immutable published objects. They do not use
 `CubeFace`, `SurfaceCoordinate`, Unity types, geometry meshes, or directional gates.
@@ -136,14 +144,12 @@ fingerprints also match the existing `TestResults/Stage5/Final` regression datas
 ## Remaining cube-specific systems
 
 The generic logical traversal core is ready to consume other authored cell graphs.
-The current game still uses cube coordinates in `ArrowPath`, `SurfaceSegment`,
-`SurfaceGrid`, `PathPosition`, `PuzzleDefinition`, and the existing gate/save types.
-Generation helpers, difficulty tools, camera/picking, seam animation geometry, and
-the colored surface renderer also retain their cube assumptions. Migrating those
-systems, caching trajectories by topology identity for different shapes, constructing
-L/T surfaces, importing meshes, and generic surface serialization belong to later
-phases. No non-cube production puzzle can be generated or rendered by this change
-alone.
+The current renderer, camera/picking, seam animation and shape-generation helpers
+retain their cube assumptions. Phase 2 has migrated the underlying puzzle model,
+occupancy, gates, simulator, trajectories/cache identity, solution validation and
+save snapshots to IDs with cube compatibility views. See the Phase 2 guide for
+the remaining work in geometry/rendering (Phase 3), shape-independent generation
+(Phase 4) and procedural mesh conversion (Phase 5).
 
 ## Files
 

@@ -7,9 +7,13 @@ using ArrowCube.Topology;
 namespace ArrowCube.Gameplay
 {
     [Serializable]
-    public sealed class PathSave { public int Id,Heading; public int[] Cells; }
+    public sealed class PathSave { public int Id,Heading; public int[] Cells; public int[] Directions; }
     [Serializable]
     public sealed class GateSave { public int Cell,Direction; }
+    [Serializable]
+    public sealed class CellBoundarySave { public int Neighbor,Direction; public bool GeometricEdge,EdgeExit; }
+    [Serializable]
+    public sealed class SurfaceCellSave { public int Id; public List<CellBoundarySave> Boundaries=new List<CellBoundarySave>(); }
     [Serializable]
     public sealed class PuzzleSave
     {
@@ -18,35 +22,83 @@ namespace ArrowCube.Gameplay
         public bool EdgeExits,DirectionalGates;
         public List<PathSave> Paths=new List<PathSave>();
         public List<GateSave> Gates=new List<GateSave>();
+        // Zero/missing retains the existing cube schema. One stores an explicit closed graph.
+        public int SurfaceFormat;
+        public List<SurfaceCellSave> SurfaceCells;
         public static PuzzleSave Capture(PuzzleDefinition puzzle)
         {
-            var result=new PuzzleSave { Name=puzzle.Name,GridSize=puzzle.Topology.GridSize,EdgeExits=puzzle.Rules.EnableCubeEdgeExits,DirectionalGates=puzzle.Rules.EnableDirectionalGates };
+            if(puzzle==null) throw new ArgumentNullException(nameof(puzzle));
+            var cube=puzzle.Surface as CubeTopology;
+            var result=new PuzzleSave { Name=puzzle.Name,GridSize=cube?.GridSize??0,SurfaceFormat=cube==null ? 1 : 0,
+                EdgeExits=puzzle.Rules.EnableCubeEdgeExits,DirectionalGates=puzzle.Rules.EnableDirectionalGates };
+            if(cube==null)
+            {
+                result.SurfaceCells=new List<SurfaceCellSave>();
+                foreach(int id in puzzle.Surface.EnumerateCellIds())
+                {
+                    var cell=new SurfaceCellSave { Id=id };
+                    for(int d=0;d<4;d++)
+                    {
+                        var boundary=puzzle.Surface.GetBoundary(id,(SurfaceDirection)d);
+                        if(boundary.Kind!=BoundaryConnectionKind.Connected) throw new NotSupportedException("Open-surface saves are not implemented.");
+                        cell.Boundaries.Add(new CellBoundarySave { Neighbor=boundary.NeighborCellId.Value,Direction=(int)boundary.NewDirection,
+                            GeometricEdge=boundary.IsGeometricEdge,EdgeExit=boundary.AllowsEdgeExit });
+                    }
+                    result.SurfaceCells.Add(cell);
+                }
+            }
             foreach(var path in puzzle.Paths)
             {
-                var cells=new int[path.Cells.Count]; for(int i=0;i<cells.Length;i++) cells[i]=puzzle.Topology.GetCellIndex(path.Cells[i]);
-                result.Paths.Add(new PathSave { Id=path.Id,Heading=(int)path.HeadDirection,Cells=cells });
+                var cells=new List<int>(path.CellIds).ToArray();
+                int[] directions=null;
+                if(cube==null) { directions=new int[path.BodyDirections.Count]; for(int i=0;i<directions.Length;i++) directions[i]=(int)path.BodyDirections[i]; }
+                result.Paths.Add(new PathSave { Id=path.Id,Heading=(int)path.HeadDirection,Cells=cells,Directions=directions });
             }
-            foreach(var gate in puzzle.Exits.Gates) result.Gates.Add(new GateSave { Cell=puzzle.Topology.GetCellIndex(gate.Cell),Direction=(int)gate.Direction });
+            foreach(var gate in puzzle.Exits.CellGates) result.Gates.Add(new GateSave { Cell=gate.CellId,Direction=(int)gate.Direction });
             return result;
         }
         public PuzzleDefinition Restore()
         {
-            if(GridSize<1 || GridSize>64 || Paths==null || Paths.Count<1 || Paths.Count>30000 || Gates==null || Gates.Count>6*GridSize*GridSize*4
+            if(SurfaceFormat<0 || SurfaceFormat>1 || SurfaceFormat==0 && (GridSize<1 || GridSize>64)
+                || Paths==null || Paths.Count<1 || Paths.Count>30000 || Gates==null
                 || string.IsNullOrWhiteSpace(Name) || !EdgeExits && !DirectionalGates) throw new ArgumentException("Invalid saved puzzle bounds.");
-            var t=new CubeTopology(GridSize); var paths=new List<ArrowPath>(); var gates=new List<ExitGate>();
+            ISurfaceTopology t;
+            if(SurfaceFormat==0) t=new CubeTopology(GridSize);
+            else
+            {
+                if(SurfaceCells==null || SurfaceCells.Count<1 || SurfaceCells.Count>100000) throw new ArgumentException("Invalid saved surface bounds.");
+                var builder=new SurfaceTopologyBuilder();
+                foreach(var cell in SurfaceCells)
+                { if(cell==null) throw new ArgumentException("Missing saved cell."); builder.AddCell(cell.Id); }
+                foreach(var cell in SurfaceCells)
+                {
+                    if(cell.Boundaries==null || cell.Boundaries.Count!=4) throw new ArgumentException("Invalid saved boundaries.");
+                    for(int d=0;d<4;d++)
+                    {
+                        var boundary=cell.Boundaries[d]; if(boundary==null) throw new ArgumentException("Missing saved boundary.");
+                        if(boundary.Direction<0 || boundary.Direction>3) throw new ArgumentException("Invalid saved boundary heading.");
+                        builder.SetBoundary(cell.Id,(SurfaceDirection)d,new CellBoundary(boundary.Neighbor,(SurfaceDirection)boundary.Direction,boundary.GeometricEdge,boundary.EdgeExit));
+                    }
+                }
+                try { t=builder.Build(); } catch(InvalidOperationException error) { throw new ArgumentException("Invalid saved topology: "+error.Message,error); }
+            }
+            if(Gates.Count>t.CellCount*4) throw new ArgumentException("Too many saved gates.");
+            var paths=new List<ArrowPath>(); var gates=new List<CellGate>();
             int total=0;
             foreach(var item in Paths)
             {
-                if(item==null || item.Cells==null || item.Cells.Length<2 || item.Cells.Length>t.CellCount || item.Heading<0 || item.Heading>3)
+                if(item==null || item.Cells==null || item.Cells.Length<(SurfaceFormat==0 ? 2 : 1) || item.Cells.Length>t.CellCount || item.Heading<0 || item.Heading>3)
                     throw new ArgumentException("Invalid saved path.");
                 total+=item.Cells.Length; if(total>t.CellCount) throw new ArgumentException("Saved puzzle exceeds the surface.");
-                var cells=new SurfaceCoordinate[item.Cells.Length]; for(int i=0;i<cells.Length;i++) cells[i]=t.GetCoordinate(item.Cells[i]);
-                paths.Add(new ArrowPath(item.Id,t,cells,(SurfaceDirection)item.Heading));
+                List<SurfaceDirection> directions=null;
+                if(SurfaceFormat==1 && item.Directions!=null)
+                { directions=new List<SurfaceDirection>(); foreach(int direction in item.Directions) { if(direction<0 || direction>3) throw new ArgumentException("Invalid saved body direction."); directions.Add((SurfaceDirection)direction); } }
+                paths.Add(new ArrowPath(item.Id,t,item.Cells,(SurfaceDirection)item.Heading,directions));
             }
             foreach(var item in Gates)
             {
-                if(item==null || item.Direction<0 || item.Direction>3) throw new ArgumentException("Invalid saved gate.");
-                gates.Add(new ExitGate(t.GetCoordinate(item.Cell),(SurfaceDirection)item.Direction));
+                if(item==null || item.Direction<0 || item.Direction>3 || !t.ContainsCell(item.Cell)) throw new ArgumentException("Invalid saved gate.");
+                gates.Add(new CellGate(item.Cell,(SurfaceDirection)item.Direction));
             }
             var result=new PuzzleDefinition(Name,t,paths,new ExitMap(t,gates),new ExitRules(EdgeExits,DirectionalGates));
             var validation=new PuzzleValidator().Validate(result);
@@ -104,6 +156,7 @@ namespace ArrowCube.Gameplay
             // objects. Version zero is the explicit absence marker for manual fixtures.
             if(Recipe!=null && Recipe.Version!=0)
             {
+                if(!(definition.Surface is CubeTopology)) throw new ArgumentException("Procedural recipes currently require a cube surface.");
                 var recipe=Recipe.Restore();
                 if(recipe.Profile.GridSize!=definition.Topology.GridSize || recipe.Rules.EnableCubeEdgeExits!=definition.Rules.EnableCubeEdgeExits
                     || recipe.Rules.EnableDirectionalGates!=definition.Rules.EnableDirectionalGates) throw new ArgumentException("Saved recipe does not match the puzzle.");

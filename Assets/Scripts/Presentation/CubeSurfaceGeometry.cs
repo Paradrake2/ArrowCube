@@ -6,8 +6,13 @@ using UnityEngine;
 namespace ArrowCube.Presentation
 {
     /// <summary>Unity adapter. Logical topology remains independent of rendering and transforms.</summary>
-    public sealed class CubeSurfaceGeometry
+    public sealed class CubeSurfaceGeometry : ISurfaceGeometry
     {
+        private readonly Dictionary<int,SurfaceQuad> cells=new Dictionary<int,SurfaceQuad>();
+        public ISurfaceTopology Surface => Topology;
+        public Bounds Bounds => new Bounds(Vector3.zero,Vector3.one*SideLength);
+        public float ReferenceCellSize => CellSize;
+        public IReadOnlyList<SurfaceQuad> RenderQuads { get; }
         public CubeTopology Topology { get; }
         public float SideLength { get; }
         public float CellSize => SideLength / Topology.GridSize;
@@ -19,6 +24,25 @@ namespace ArrowCube.Presentation
                 throw new ArgumentOutOfRangeException(nameof(sideLength));
             Topology = topology;
             SideLength = sideLength;
+            var faces=new List<SurfaceQuad>();
+            for(int f=0;f<6;f++)
+            {
+                var frame=topology.GetOrientation((CubeFace)f); var center=ToVector(frame.Normal)*(sideLength*.5f);
+                var right=ToVector(frame.Right)*(sideLength*.5f); var up=ToVector(frame.Up)*(sideLength*.5f);
+                faces.Add(new SurfaceQuad(center-right-up,center+right-up,center+right+up,center-right+up,ColoredCubeSurface.FaceColor((CubeFace)f)));
+            }
+            RenderQuads=faces.AsReadOnly();
+        }
+
+        public SurfaceQuad GetCell(int cellId)
+        {
+            if(!cells.TryGetValue(cellId,out var q))
+            {
+                var coordinate=Topology.GetCoordinate(cellId); var frame=Topology.GetOrientation(coordinate.Face);
+                var center=GetLocalPosition(coordinate); var right=ToVector(frame.Right)*(CellSize*.5f); var up=ToVector(frame.Up)*(CellSize*.5f);
+                q=new SurfaceQuad(center-right-up,center+right-up,center+right+up,center-right+up,ColoredCubeSurface.FaceColor(coordinate.Face)); cells.Add(cellId,q);
+            }
+            return q;
         }
 
         public Vector3 GetLocalPosition(SurfaceCoordinate cell, float lift = 0) =>

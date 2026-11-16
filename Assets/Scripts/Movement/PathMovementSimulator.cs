@@ -17,28 +17,44 @@ namespace ArrowCube.Movement
         public ExitRules Rules { get; }
         public ExitType? ExitType { get; }
         // Chronological tail-to-head route. Shared rail keeps plan storage O(body length + steps).
-        public IReadOnlyList<PathPosition> Rail { get; }
-        public int StepCount => Rail.Count - Path.Cells.Count;
+        private IReadOnlyList<PathPosition> cubeRail;
+        public IReadOnlyList<CellPathPosition> CellRail { get; }
+        public IReadOnlyList<CellSegment> TraversedSegments { get; }
+        public IReadOnlyList<PathPosition> Rail
+        {
+            get
+            {
+                if(cubeRail==null)
+                { var cube=CubeTopologyAdapter.Require(Grid.Surface); var copy=new List<PathPosition>(CellRail.Count); foreach(var point in CellRail) copy.Add(point.ToCube(cube)); cubeRail=copy.AsReadOnly(); }
+                return cubeRail;
+            }
+        }
+        public int StepCount => CellRail.Count - Path.CellIds.Count;
         public int? BlockingPathId { get; }
-        public SurfaceCoordinate? BlockedCell { get; }
-        public PathPosition AttemptedHead { get; }
+        public int? BlockedCellId { get; }
+        public SurfaceCoordinate? BlockedCell => BlockedCellId.HasValue ? CubeTopologyAdapter.Require(Grid.Surface).GetCoordinate(BlockedCellId.Value) : (SurfaceCoordinate?)null;
+        public CellPathPosition AttemptedCellHead { get; }
+        public PathPosition AttemptedHead => AttemptedCellHead.ToCube(CubeTopologyAdapter.Require(Grid.Surface));
 
         internal MovementPlan(SurfaceGrid grid, ArrowPath path, MovementOutcome outcome,
-            List<PathPosition> rail, PathPosition attemptedHead, int? blockingPathId = null,
-            SurfaceCoordinate? blockedCell = null, ExitRules rules = null, ExitType? exitType = null)
+            List<CellPathPosition> rail,CellPathPosition attemptedHead,List<CellSegment> traversedSegments,int? blockingPathId = null,
+            int? blockedCell = null, ExitRules rules = null, ExitType? exitType = null)
         {
             Grid = grid; Revision = grid.Revision; Path = path; Outcome = outcome;
-            Rail = rail.AsReadOnly(); AttemptedHead = attemptedHead;
-            BlockingPathId = blockingPathId; BlockedCell = blockedCell;
+            CellRail = rail.AsReadOnly(); AttemptedCellHead = attemptedHead; TraversedSegments=traversedSegments.AsReadOnly();
+            BlockingPathId = blockingPathId; BlockedCellId = blockedCell;
             Rules = rules ?? ExitRules.Hybrid; ExitType = exitType;
         }
 
         public PathPosition GetPosition(int step, int headToTailIndex)
+            => GetCellPosition(step,headToTailIndex).ToCube(CubeTopologyAdapter.Require(Grid.Surface));
+
+        public CellPathPosition GetCellPosition(int step,int headToTailIndex)
         {
             if (step < 0 || step > StepCount) throw new ArgumentOutOfRangeException(nameof(step));
-            if (headToTailIndex < 0 || headToTailIndex >= Path.Cells.Count)
+            if (headToTailIndex < 0 || headToTailIndex >= Path.CellIds.Count)
                 throw new ArgumentOutOfRangeException(nameof(headToTailIndex));
-            return Rail[Path.Cells.Count - 1 + step - headToTailIndex];
+            return CellRail[Path.CellIds.Count - 1 + step - headToTailIndex];
         }
     }
 
@@ -49,65 +65,67 @@ namespace ArrowCube.Movement
         {
             if (grid == null) throw new ArgumentNullException(nameof(grid));
             if (exits == null) throw new ArgumentNullException(nameof(exits));
-            if (exits.GridSize != grid.Topology.GridSize) throw new ArgumentException("Exit map uses a different grid size.", nameof(exits));
+            CubeTopologyAdapter.RequireCompatible(grid.Surface,exits.Surface);
             if (!grid.Paths.TryGetValue(pathId, out var path)) throw new ArgumentException("Path is not active.", nameof(pathId));
             rules = rules ?? ExitRules.Hybrid;
             ExitType? selectedExit = null;
-            var rail = new List<PathPosition>(path.Cells.Count + grid.Topology.GridSize * 4);
-            var body = new Queue<PathPosition>(path.Cells.Count);
-            var bodyCells = new HashSet<SurfaceCoordinate>();
-            for (int i = path.Cells.Count - 1; i >= 0; i--)
+            var rail = new List<CellPathPosition>(path.CellIds.Count + Math.Min(grid.Surface.CellCount,256));
+            var traversed=new List<CellSegment>();
+            var body = new Queue<CellPathPosition>(path.CellIds.Count);
+            var bodyCells = new HashSet<int>();
+            for (int i = path.CellIds.Count - 1; i >= 0; i--)
             {
-                var position = new PathPosition(path.Cells[i]);
-                rail.Add(position); body.Enqueue(position); bodyCells.Add(position.Cell);
+                var position = new CellPathPosition(path.CellIds[i]);
+                rail.Add(position); body.Enqueue(position); bodyCells.Add(position.CellId);
             }
             var head = rail[rail.Count - 1];
             var direction = path.HeadDirection;
-            var visitedHeadStates = new HashSet<ExitGate>();
+            var visitedHeadStates = new HashSet<CellGate>();
             while (true)
             {
-                PathPosition next;
+                CellPathPosition next; CellSegment? crossed=null;
                 if (!head.IsOnSurface)
-                    next = new PathPosition(head.Cell, head.ExitDistance + 1, head.ExitType.Value, head.ExitDirection);
+                    next = new CellPathPosition(head.CellId, head.ExitDistance + 1, head.ExitType.Value, head.ExitDirection);
                 else
                 {
-                    var step = grid.Topology.Step(head.Cell, direction);
+                    var step = grid.Surface.Step(head.CellId, direction);
                     // Both mechanics are checked at this same logical step. An edge wins a tie
                     // with a gate on its boundary cell; an earlier compatible gate still wins normally.
-                    selectedExit=rules.SelectExit(step.AllowsEdgeExit,rules.EnableDirectionalGates && exits.CanExit(head.Cell,direction));
+                    selectedExit=rules.SelectExit(step.AllowsEdgeExit,rules.EnableDirectionalGates && exits.CanExit(head.CellId,direction));
                     if (selectedExit.HasValue)
                     {
-                        next = new PathPosition(head.Cell, 1, selectedExit.Value, direction);
+                        next = new CellPathPosition(head.CellId, 1, selectedExit.Value, direction);
                     }
                     else
                     {
                         // A repeated directed head state cannot discover a new exit on a static surface.
-                        if (!visitedHeadStates.Add(new ExitGate(head.Cell, direction)))
+                        if (!visitedHeadStates.Add(new CellGate(head.CellId, direction)))
                             return Result(MovementOutcome.NoExit, head);
-                        next = new PathPosition(step.Coordinate);
+                        crossed=new CellSegment(grid.Surface,head.CellId,direction);
+                        next = new CellPathPosition(step.CellId);
                         direction = step.Direction;
                     }
                 }
 
                 // Tail vacates simultaneously: entering its just-vacated cell is legal.
                 var tail = body.Dequeue();
-                if (tail.IsOnSurface) bodyCells.Remove(tail.Cell);
+                if (tail.IsOnSurface) bodyCells.Remove(tail.CellId);
                 if (next.IsOnSurface)
                 {
-                    if (grid.TryGetCellOwner(next.Cell, out int owner) && owner != pathId)
-                        return Result(MovementOutcome.BlockedByPath, next, owner, next.Cell);
-                    var segment = new SurfaceSegment(grid.Topology, head.Cell, next.Cell);
-                    if (grid.TryGetSegmentOwner(segment, out owner) && owner != pathId)
-                        return Result(MovementOutcome.BlockedByPath, next, owner, next.Cell);
-                    if (!bodyCells.Add(next.Cell))
-                        return Result(MovementOutcome.SelfCollision, next, pathId, next.Cell);
+                    if (grid.TryGetCellOwner(next.CellId, out int owner) && owner != pathId)
+                        return Result(MovementOutcome.BlockedByPath, next, owner, next.CellId);
+                    if (grid.TryGetSegmentOwner(crossed.Value, out owner) && owner != pathId)
+                        return Result(MovementOutcome.BlockedByPath, next, owner, next.CellId);
+                    if (!bodyCells.Add(next.CellId))
+                        return Result(MovementOutcome.SelfCollision, next, pathId, next.CellId);
                 }
+                if(crossed.HasValue) traversed.Add(crossed.Value);
                 body.Enqueue(next); rail.Add(next); head = next;
                 if (bodyCells.Count == 0) return Result(MovementOutcome.Removed, head);
             }
 
-            MovementPlan Result(MovementOutcome outcome, PathPosition attempted, int? blocker = null,
-                SurfaceCoordinate? blockedCell = null) => new MovementPlan(grid, path, outcome, rail, attempted,
+            MovementPlan Result(MovementOutcome outcome, CellPathPosition attempted, int? blocker = null,
+                int? blockedCell = null) => new MovementPlan(grid, path, outcome, rail, attempted,traversed,
                     blocker, blockedCell, rules, selectedExit);
         }
     }

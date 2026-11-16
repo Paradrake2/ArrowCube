@@ -96,7 +96,7 @@ namespace ArrowCube.Generation
         private void Measure(PuzzleDefinition puzzle,SurfaceGrid grid,PuzzleStatistics stats,CancellationToken token,bool requireClearInitialExit)
         {
             stats.PathCount=grid.Paths.Count; stats.OccupiedCells=grid.OccupiedCellCount;
-            stats.Coverage=stats.OccupiedCells/(double)puzzle.Topology.CellCount;
+            stats.Coverage=stats.OccupiedCells/(double)puzzle.Surface.CellCount;
             var faceLinks=new bool[6,6];
             var dependencies=new Dictionary<int,List<int>>();
             foreach(var path in puzzle.Paths)
@@ -104,26 +104,27 @@ namespace ArrowCube.Generation
                 token.ThrowIfCancellationRequested();
                 if(path.FaceTransitionCount>0) stats.CrossFacePaths++;
                 stats.FaceTransitions+=path.FaceTransitionCount;
-                stats.TotalTurns+=CountTurns(puzzle.Topology,path);
-                foreach(var segment in path.Segments)
-                    if(segment.CrossesFace) faceLinks[(int)segment.A.Face,(int)segment.B.Face]=faceLinks[(int)segment.B.Face,(int)segment.A.Face]=true;
+                stats.TotalTurns+=CountTurns(puzzle.Surface,path);
+                if(puzzle.Surface is CubeTopology)
+                    foreach(var segment in path.Segments)
+                        if(segment.CrossesFace) faceLinks[(int)segment.A.Face,(int)segment.B.Face]=faceLinks[(int)segment.B.Face,(int)segment.A.Face]=true;
                 if(simulator.Simulate(grid,path.Id,puzzle.Exits,puzzle.Rules).Succeeded) stats.ImmediatelyRemovablePaths++;
                 // The unobstructed route supplies ALL blockers, not just the first collision.
-                var alone=new SurfaceGrid(puzzle.Topology,new[] { path });
+                var alone=new SurfaceGrid(puzzle.Surface,new[] { path });
                 var rail=simulator.Simulate(alone,path.Id,puzzle.Exits,puzzle.Rules);
                 if(requireClearInitialExit && !InitialExitClearance.IsClear(rail))
                     throw new ArgumentException($"Arrow {path.Id} points into its own starting body or has no unobstructed exit.");
                 var blockers=new List<int>();
                 if(rail.Succeeded)
-                    for(int i=path.Cells.Count;i<rail.Rail.Count;i++)
+                    for(int i=path.CellIds.Count;i<rail.CellRail.Count;i++)
                     {
-                        var position=rail.Rail[i];
-                        if(position.IsOnSurface && grid.TryGetCellOwner(position.Cell,out int owner)
+                        var position=rail.CellRail[i];
+                        if(position.IsOnSurface && grid.TryGetCellOwner(position.CellId,out int owner)
                             && owner!=path.Id && !blockers.Contains(owner)) blockers.Add(owner);
                     }
                 dependencies.Add(path.Id,blockers); stats.DependencyCount+=blockers.Count;
             }
-            var seen=new bool[6]; var queue=new Queue<int>(); seen[0]=true; queue.Enqueue(0);
+            var seen=new bool[6]; var queue=new Queue<int>(); seen[0]=true; if(puzzle.Surface is CubeTopology) queue.Enqueue(0);
             while(queue.Count>0)
             {
                 int face=queue.Dequeue(); stats.ConnectedFaces++;
@@ -147,14 +148,13 @@ namespace ArrowCube.Generation
             }
         }
 
-        public static int CountTurns(CubeTopology topology,ArrowPath path)
+        public static int CountTurns(ISurfaceTopology topology,ArrowPath path)
         {
             int turns=0;
-            for(int i=1;i<path.Cells.Count-1;i++)
+            for(int i=1;i<path.CellIds.Count-1;i++)
             {
-                topology.TryGetDirection(path.Cells[i-1],path.Cells[i],out var incoming);
-                topology.TryGetDirection(path.Cells[i],path.Cells[i+1],out var outgoing);
-                if(topology.Step(path.Cells[i-1],incoming).Direction!=outgoing) turns++;
+                var incoming=path.BodyDirections[i-1]; var outgoing=path.BodyDirections[i];
+                if(topology.Step(path.CellIds[i-1],incoming).Direction!=outgoing) turns++;
             }
             return turns;
         }

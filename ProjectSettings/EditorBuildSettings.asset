@@ -11,5 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/SurfaceL.unity
+    guid: ed359ced6f561774aa4e9de87018a6ce
+  - enabled: 1
+    path: Assets/Scenes/SurfacePrism.unity
+    guid: bc1e96339d38fcb4c9cdeca2cad5b340
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

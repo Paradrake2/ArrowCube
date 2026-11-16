@@ -1,0 +1,11 @@
+Folded loop: remove 30, then 20, then 10
+Topology: SurfaceTopology, 16 cells; cube coordinates are not used.
+Initial attempts (no occupancy changes):
+Arrow 10: BlockedByPath; blocker=20; blocked cell=115; safe steps=0
+Arrow 20: BlockedByPath; blocker=30; blocked cell=317; safe steps=0
+Arrow 30: Removed; blocker=; blocked cell=; safe steps=2
+Verified dependencies: 2; depth: 3; initially free: 1
+Remove 30: DirectionalGate; steps=2; head route: 418 418+exit1 418+exit2
+Remove 20: DirectionalGate; steps=3; head route: 216 317 317+exit1 317+exit2
+Remove 10: DirectionalGate; steps=4; head route: 101 115 129 129+exit1 129+exit2
+Complete: paths=0, occupied cells=0, occupied segments=0

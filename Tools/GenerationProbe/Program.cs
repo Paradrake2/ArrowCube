@@ -10,6 +10,7 @@ internal static class Program
 {
     private static int Main(string[] args)
     {
+        if(args.Length>0 && args[0]=="--surface-demo") return SurfaceDemo(args);
         if(args.Length>0 && args[0]=="--dependency-controls") return OpeningControlProbe.Run(args);
         if(args.Length>0 && args[0]=="--difficulty-baseline") return DifficultyBenchmark.Baseline(args);
         if(args.Length>0 && args[0]=="--multi-blocker-benchmark") return MultiBlockerBenchmark.Run(args);
@@ -57,5 +58,37 @@ internal static class Program
         File.WriteAllText(output,csv.ToString());
         Console.WriteLine($"Validated {total} puzzles; failures={failures}; CSV={Path.GetFullPath(output)}");
         return failures==0 ? 0 : 1;
+    }
+
+    private static int SurfaceDemo(string[] args)
+    {
+        var puzzle=ManualSurfacePuzzle.Create(); var grid=puzzle.CreateGrid(); var simulator=new PathMovementSimulator();
+        var report=new StringBuilder(); report.AppendLine(puzzle.Name);
+        report.AppendLine($"Topology: {puzzle.Surface.GetType().Name}, {puzzle.Surface.CellCount} cells; cube coordinates are not used.");
+        report.AppendLine("Initial attempts (no occupancy changes):");
+        foreach(var path in puzzle.Paths)
+        {
+            var plan=simulator.Simulate(grid,path.Id,puzzle.Exits,puzzle.Rules);
+            report.AppendLine($"Arrow {path.Id}: {plan.Outcome}; blocker={plan.BlockingPathId}; blocked cell={plan.BlockedCellId}; safe steps={plan.StepCount}");
+        }
+        var verified=new PuzzleValidator().Validate(puzzle,ManualSurfacePuzzle.RemovalOrder);
+        if(!verified.Succeeded) throw new InvalidOperationException(verified.Error);
+        report.AppendLine($"Verified dependencies: {verified.Statistics.DependencyCount}; depth: {verified.Statistics.DependencyDepth}; initially free: {verified.Statistics.ImmediatelyRemovablePaths}");
+        foreach(int id in verified.Solution)
+        {
+            var plan=simulator.Simulate(grid,id,puzzle.Exits,puzzle.Rules);
+            if(!grid.TryCommit(plan)) throw new InvalidOperationException("Verified removal failed: "+id);
+            report.Append($"Remove {id}: {plan.ExitType}; steps={plan.StepCount}; head route:");
+            for(int step=0;step<=plan.StepCount;step++)
+            {
+                var point=plan.GetCellPosition(step,0);
+                report.Append(" "+point.CellId+(point.IsOnSurface ? "" : "+exit"+point.ExitDistance));
+            }
+            report.AppendLine();
+        }
+        report.AppendLine($"Complete: paths={grid.Paths.Count}, occupied cells={grid.OccupiedCellCount}, occupied segments={grid.OccupiedSegmentCount}");
+        string output=args.Length>1 ? args[1] : "TestResults/SurfacePuzzle/demo.txt";
+        Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(output))); File.WriteAllText(output,report.ToString()); Console.Write(report);
+        return grid.Paths.Count==0 && grid.OccupiedCellCount==0 && grid.OccupiedSegmentCount==0 ? 0 : 1;
     }
 }

@@ -11,9 +11,9 @@ namespace ArrowCube.Generation
         public static bool IsClear(MovementPlan unobstructed)
         {
             if(!unobstructed.Succeeded) return false;
-            var body=new HashSet<SurfaceCoordinate>(unobstructed.Path.Cells);
-            for(int i=unobstructed.Path.Cells.Count;i<unobstructed.Rail.Count;i++)
-                if(unobstructed.Rail[i].IsOnSurface && body.Contains(unobstructed.Rail[i].Cell)) return false;
+            var body=new HashSet<int>(unobstructed.Path.CellIds);
+            for(int i=unobstructed.Path.CellIds.Count;i<unobstructed.CellRail.Count;i++)
+                if(unobstructed.CellRail[i].IsOnSurface && body.Contains(unobstructed.CellRail[i].CellId)) return false;
             return true;
         }
     }

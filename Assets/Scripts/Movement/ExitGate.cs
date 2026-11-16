@@ -18,26 +18,47 @@ namespace ArrowCube.Movement
 
     public sealed class ExitMap
     {
-        private readonly HashSet<ExitGate> lookup = new HashSet<ExitGate>();
-        public IReadOnlyList<ExitGate> Gates { get; }
-        public int GridSize { get; }
+        private readonly HashSet<CellGate> lookup = new HashSet<CellGate>();
+        private IReadOnlyList<ExitGate> cubeGates;
+        public ISurfaceTopology Surface { get; }
+        public IReadOnlyList<CellGate> CellGates { get; }
+        public int GridSize => CubeTopologyAdapter.Require(Surface).GridSize;
+        public IReadOnlyList<ExitGate> Gates
+        {
+            get
+            {
+                if(cubeGates==null)
+                { var cube=CubeTopologyAdapter.Require(Surface); var copy=new List<ExitGate>(); foreach(var gate in CellGates) copy.Add(new ExitGate(cube.GetCoordinate(gate.CellId),gate.Direction)); cubeGates=copy.AsReadOnly(); }
+                return cubeGates;
+            }
+        }
 
         public ExitMap(CubeTopology topology, IEnumerable<ExitGate> gates)
+            : this((ISurfaceTopology)topology,ConvertGates(topology,gates)) { }
+
+        public ExitMap(ISurfaceTopology topology,IEnumerable<CellGate> gates)
         {
             if (topology == null) throw new ArgumentNullException(nameof(topology));
             if (gates == null) throw new ArgumentNullException(nameof(gates));
-            var copy = new List<ExitGate>();
+            Surface=topology;
+            var copy = new List<CellGate>();
             foreach (var gate in gates)
             {
-                topology.Validate(gate.Cell);
+                if(!topology.ContainsCell(gate.CellId)) throw new ArgumentOutOfRangeException(nameof(gates),"Gate cell is outside this surface.");
                 if (!lookup.Add(gate)) throw new ArgumentException("Duplicate directional exit gate.", nameof(gates));
                 copy.Add(gate);
             }
-            GridSize = topology.GridSize;
-            Gates = copy.AsReadOnly();
+            CellGates = copy.AsReadOnly();
         }
 
-        public bool CanExit(SurfaceCoordinate cell, SurfaceDirection direction) => lookup.Contains(new ExitGate(cell, direction));
+        private static IEnumerable<CellGate> ConvertGates(CubeTopology cube,IEnumerable<ExitGate> gates)
+        {
+            if(cube==null) throw new ArgumentNullException(nameof(cube));
+            if(gates==null) throw new ArgumentNullException(nameof(gates));
+            foreach(var gate in gates) yield return new CellGate(cube.GetCellIndex(gate.Cell),gate.Direction);
+        }
+        public bool CanExit(int cellId,SurfaceDirection direction) => lookup.Contains(new CellGate(cellId,direction));
+        public bool CanExit(SurfaceCoordinate cell, SurfaceDirection direction) => CanExit(CubeTopologyAdapter.Require(Surface).GetCellIndex(cell),direction);
     }
 
     /// <summary>A route sample on the surface, outside a gate along its normal, or beyond an edge along its tangent.</summary>

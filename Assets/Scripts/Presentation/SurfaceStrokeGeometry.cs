@@ -15,8 +15,15 @@ namespace ArrowCube.Presentation
             var outgoing=Side(points,segmentNormals,index);
             var join=(incoming+outgoing).normalized;
             if(join.sqrMagnitude<.1f) return outgoing*halfWidth;
-            // A fold shares the cube-edge tangent; it needs no in-plane corner enlargement.
-            if(Vector3.Dot(segmentNormals[index-1],segmentNormals[index])<.999f) return join*halfWidth;
+            // A fold's shared vertices lie on the intersection of BOTH patch planes.
+            // Using the average side vector would lift one edge off a non-right-angle seam.
+            if(Vector3.Dot(segmentNormals[index-1],segmentNormals[index])<.999f)
+            {
+                var edge=Vector3.Cross(segmentNormals[index-1],segmentNormals[index]).normalized;
+                if(Vector3.Dot(edge,incoming+outgoing)<0) edge=-edge;
+                float projection=Mathf.Min(Vector3.Dot(edge,incoming),Vector3.Dot(edge,outgoing));
+                return edge*(halfWidth/Mathf.Max(.5f,projection));
+            }
             float denominator=Vector3.Dot(join,outgoing);
             return join*(halfWidth/Mathf.Max(.5f,denominator)); // Maximum miter length is 2 * halfWidth.
         }

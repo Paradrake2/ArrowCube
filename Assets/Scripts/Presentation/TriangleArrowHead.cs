@@ -13,6 +13,7 @@ namespace ArrowCube.Presentation
         private readonly List<Vector3> vertices=new List<Vector3>(8);
         private readonly List<int> triangles=new List<int>(24);
         private readonly List<Vector3> normals=new List<Vector3>(4);
+        private readonly List<Vector3> vertexNormals=new List<Vector3>(8);
 
         public static float Length(float cellSize,float bodyWidth) => Mathf.Max(cellSize*.35f,bodyWidth*.95f);
         public static float Width(float cellSize,float bodyWidth) => Mathf.Max(cellSize*.4f,bodyWidth*1.8f);
@@ -53,18 +54,20 @@ namespace ArrowCube.Presentation
             }
             // At rest this is just three vertices. Extra rows preserve the filled
             // triangle's shape when its leading portion folds around a cube edge.
-            vertices.Clear(); triangles.Clear(); vertices.Add(centers[0]); float travelled=0;
+            vertices.Clear(); triangles.Clear(); vertexNormals.Clear(); vertices.Add(centers[0]); vertexNormals.Add(normals.Count>0 ? normals[0] : fallbackNormal); float travelled=0;
             for(int row=1;row<centers.Count;row++)
             {
                 travelled+=Vector3.Distance(centers[row-1],centers[row]);
                 float width=halfWidth*Mathf.Clamp01(travelled/length);
                 var offset=SurfaceStrokeGeometry.Offset(centers,normals,row,width);
                 vertices.Add(centers[row]-offset); vertices.Add(centers[row]+offset);
+                var normal=row==centers.Count-1 ? normals[row-1] : (normals[row-1]+normals[row]).normalized;
+                vertexNormals.Add(normal); vertexNormals.Add(normal);
                 int left=vertices.Count-2,right=vertices.Count-1;
                 if(row==1) AddTriangle(0,left,right);
                 else { AddTriangle(left-2,left,right-2); AddTriangle(right-2,left,right); }
             }
-            mesh.Clear(); mesh.SetVertices(vertices); mesh.SetTriangles(triangles,0); mesh.RecalculateNormals(); mesh.RecalculateBounds();
+            mesh.Clear(); mesh.SetVertices(vertices); mesh.SetTriangles(triangles,0); mesh.SetNormals(vertexNormals); mesh.RecalculateBounds();
         }
 
         private void AddTriangle(int a,int b,int c)

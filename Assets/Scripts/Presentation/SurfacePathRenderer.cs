@@ -13,6 +13,7 @@ namespace ArrowCube.Presentation
         private readonly List<Vector3> positions=new List<Vector3>();
         private readonly List<Vector3> vertices=new List<Vector3>();
         private readonly List<int> triangles=new List<int>();
+        private readonly List<Vector3> vertexNormals=new List<Vector3>();
         public Material SharedMaterial => GetComponent<MeshRenderer>().sharedMaterial;
         public float Width { get; private set; }
         public int PositionCount => positions.Count;
@@ -28,19 +29,21 @@ namespace ArrowCube.Presentation
         public void Draw(IReadOnlyList<Vector3> points,IReadOnlyList<Vector3> segmentNormals,float width)
         {
             if(segmentNormals.Count!=Mathf.Max(0,points.Count-1)) throw new ArgumentException("A surface normal is required for every ribbon segment.");
-            Width=width; positions.Clear(); vertices.Clear(); triangles.Clear();
+            Width=width; positions.Clear(); vertices.Clear(); triangles.Clear(); vertexNormals.Clear();
             for(int i=0;i<points.Count;i++) positions.Add(points[i]);
             if(points.Count>=2)
                 for(int i=0;i<points.Count;i++)
                 {
                     var offset=SurfaceStrokeGeometry.Offset(points,segmentNormals,i,width*.5f);
                     vertices.Add(points[i]-offset); vertices.Add(points[i]+offset);
+                    var normal=i==0 ? segmentNormals[0] : i==points.Count-1 ? segmentNormals[i-1] : (segmentNormals[i-1]+segmentNormals[i]).normalized;
+                    vertexNormals.Add(normal); vertexNormals.Add(normal);
                     if(i==0) continue;
                     int a=(i-1)*2,b=i*2;
                     AddTriangle(a,b,a+1); AddTriangle(a+1,b,b+1);
                 }
             mesh.Clear(); mesh.SetVertices(vertices); mesh.SetTriangles(triangles,0);
-            mesh.RecalculateNormals(); mesh.RecalculateBounds();
+            mesh.SetNormals(vertexNormals); mesh.RecalculateBounds();
         }
         private void AddTriangle(int a,int b,int c)
         {

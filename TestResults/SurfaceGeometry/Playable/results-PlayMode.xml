@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:35Z" duration="1.1409753">
+  <test-suite type="TestSuite" id="1071" name="Project-5a1382eb6e50" fullname="Project-5a1382eb6e50" runstate="Runnable" testcasecount="54" result="Passed" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:35Z" duration="1.140975" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1060" name="ArrowCube.Movement.PlayMode.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/GP/Project-5a1382eb6e50/Library/ScriptAssemblies/ArrowCube.Movement.PlayMode.Tests.dll" runstate="Runnable" testcasecount="50" result="Passed" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:35Z" duration="1.132687" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35760" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1061" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="50" result="Passed" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:35Z" duration="1.132009" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1062" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="50" result="Passed" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:35Z" duration="1.131485" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1039" name="GenericSurfaceInteractionTests" fullname="ArrowCube.Tests.GenericSurfaceInteractionTests" classname="ArrowCube.Tests.GenericSurfaceInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:34Z" duration="0.957574" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1041" name="GenericSaveRestoresAuthoredGeometryAndHintsWithoutCubeCoordinates" fullname="ArrowCube.Tests.GenericSurfaceInteractionTests.GenericSaveRestoresAuthoredGeometryAndHintsWithoutCubeCoordinates" methodname="GenericSaveRestoresAuthoredGeometryAndHintsWithoutCubeCoordinates" classname="ArrowCube.Tests.GenericSurfaceInteractionTests" runstate="Runnable" seed="1198084572" result="Passed" start-time="2026-11-16 19:53:33Z" end-time="2026-11-16 19:53:34Z" duration="0.518597" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1040" name="RealMouseAndTouchClearTheNonCubePuzzleThroughTheGameplayController" fullname="ArrowCube.Tests.GenericSurfaceInteractionTests.RealMouseAndTouchClearTheNonCubePuzzleThroughTheGameplayController" methodname="RealMouseAndTouchClearTheNonCubePuzzleThroughTheGameplayController" classname="ArrowCube.Tests.GenericSurfaceInteractionTests" runstate="Runnable" seed="1540425958" result="Passed" start-time="2026-11-16 19:53:34Z" end-time="2026-11-16 19:53:34Z" duration="0.427949" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1042" name="GenericSurfacePlayTests" fullname="ArrowCube.Tests.GenericSurfacePlayTests" classname="ArrowCube.Tests.GenericSurfacePlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 19:53:34Z" end-time="2026-11-16 19:53:35Z" duration="0.172243" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="BothAuthoredPuzzlesAnimateBlockedAttemptsAndVerifiedRemovals" fullname="ArrowCube.Tests.GenericSurfacePlayTests.BothAuthoredPuzzlesAnimateBlockedAttemptsAndVerifiedRemovals" methodname="BothAuthoredPuzzlesAnimateBlockedAttemptsAndVerifiedRemovals" classname="ArrowCube.Tests.GenericSurfacePlayTests" runstate="Runnable" seed="610699185" result="Passed" start-time="2026-11-16 19:53:34Z" end-time="2026-11-16 19:53:34Z" duration="0.055674" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="HybridDeparturesAndPauseUseTheSameRenderer" fullname="ArrowCube.Tests.GenericSurfacePlayTests.HybridDeparturesAndPauseUseTheSameRenderer" methodname="HybridDeparturesAndPauseUseTheSameRenderer" classname="ArrowCube.Tests.GenericSurfacePlayTests" runstate="Runnable" seed="1583021674" result="Passed" start-time="2026-11-16 19:53:34Z" end-time="2026-11-16 19:53:35Z" duration="0.106578" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="PickingUsesActualSurfaceOcclusionAndWorksAfterOrbitAndRootTransforms" fullname="ArrowCube.Tests.GenericSurfacePlayTests.PickingUsesActualSurfaceOcclusionAndWorksAfterOrbitAndRootTransforms" methodname="PickingUsesActualSurfaceOcclusionAndWorksAfterOrbitAndRootTransforms" classname="ArrowCube.Tests.GenericSurfacePlayTests" runstate="Runnable" seed="1248876080" result="Passed" start-time="2026-11-16 19:53:35Z" end-time="2026-11-16 19:53:35Z" duration="0.008471" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\GP\Project-5a1382eb6e50\results-PlayMode.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -3,7 +3,9 @@ param(
     [string]$OutputDirectory,
     [ValidateSet('EditMode', 'PlayMode', 'All')][string]$TestPlatform = 'EditMode',
     [string]$ArtifactDirectory,
-    [string]$TestFilter
+    [string]$TestFilter,
+    [switch]$Graphics,
+    [switch]$MobileURP
 )
 
 $ErrorActionPreference = 'Stop'
@@ -26,9 +28,10 @@ New-Item -ItemType Directory -Path (Join-Path $validationRoot 'Assets'), (Join-P
 foreach ($folder in @('Scripts', 'Editor', 'Tests', 'Scenes', 'Resources')) {
     Copy-Item -LiteralPath (Join-Path $projectRoot "Assets\$folder") -Destination (Join-Path $validationRoot 'Assets') -Recurse
 }
+if($MobileURP) { Copy-Item -LiteralPath (Join-Path $projectRoot 'Assets/Settings') -Destination (Join-Path $validationRoot 'Assets') -Recurse }
 Copy-Item -LiteralPath (Join-Path $projectRoot 'ProjectSettings\ProjectVersion.txt') -Destination (Join-Path $validationRoot 'ProjectSettings')
 Copy-Item -LiteralPath (Join-Path $projectRoot 'ProjectSettings\EditorBuildSettings.asset') -Destination (Join-Path $validationRoot 'ProjectSettings')
-$manifest = @{
+$manifestData = @{
     dependencies = @{
         'com.unity.test-framework' = '1.8.0'
         'com.unity.modules.imgui' = '1.0.0'
@@ -39,15 +42,18 @@ $manifest = @{
         'com.unity.ugui' = '2.6.0'
     }
     testables = @('com.unity.inputsystem')
-} | ConvertTo-Json -Depth 5
+}
+if($MobileURP) { $manifestData.dependencies['com.unity.render-pipelines.universal']='17.6.0' }
+$manifest=$manifestData | ConvertTo-Json -Depth 5
 [IO.File]::WriteAllText((Join-Path $validationRoot 'Packages\manifest.json'), $manifest, (New-Object Text.UTF8Encoding($false)))
 $platforms = if ($TestPlatform -eq 'All') { @('EditMode', 'PlayMode') } else { @($TestPlatform) }
 foreach ($platform in $platforms) {
     $resultsPath = Join-Path $validationRoot "results-$platform.xml"
     $logPath = Join-Path $validationRoot "editor-$platform.log"
-    $arguments = @('-batchmode', '-nographics', '-projectPath', ('"' + $validationRoot + '"'),
+    $arguments = @('-batchmode', '-projectPath', ('"' + $validationRoot + '"'),
         '-runTests', '-testPlatform', $platform, '-testResults', ('"' + $resultsPath + '"'),
         '-logFile', ('"' + $logPath + '"'))
+    if(-not $Graphics) { $arguments += '-nographics' }
     # Package test fixtures are enabled for simulated devices; run only the game's assemblies.
     $assemblyName = if ($platform -eq 'EditMode') { 'ArrowCube.Topology.Tests' } else { 'ArrowCube.Movement.PlayMode.Tests' }
     $arguments += @('-assemblyNames', $assemblyName)

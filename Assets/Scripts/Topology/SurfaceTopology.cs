@@ -28,6 +28,21 @@ namespace ArrowCube.Topology
 
     public static class SurfaceTraversal
     {
+        public static bool TryGetDirection(this ISurfaceTopology topology,int from,int to,out SurfaceDirection direction)
+        {
+            if(topology==null) throw new ArgumentNullException(nameof(topology));
+            if(!topology.ContainsCell(from) || !topology.ContainsCell(to)) throw new ArgumentOutOfRangeException(nameof(from));
+            bool found=false; direction=default;
+            for(int d=0;d<4;d++)
+            {
+                var boundary=topology.GetBoundary(from,(SurfaceDirection)d);
+                if(boundary.Kind!=BoundaryConnectionKind.Connected || boundary.NeighborCellId!=to) continue;
+                if(found) throw new ArgumentException("Cell IDs alone do not identify an ambiguous parallel connection. Supply an explicit boundary direction.");
+                found=true; direction=(SurfaceDirection)d;
+            }
+            return found;
+        }
+
         /// <summary>Follows the connection even at a concave or convex fold. Exit policy is separate.</summary>
         public static SurfaceCellStep Step(this ISurfaceTopology topology,int cellId,SurfaceDirection direction)
         {

@@ -28,6 +28,7 @@ namespace ArrowCube.Game
         private bool settingsDirty;
         private float settingsSaveAt;
         private GamePage settingsReturn;
+        private ISurfaceGeometry activeGeometry;
         public string SavePathOverride { get; set; }
         public GameplaySettingsAsset Settings { get => settings; set => settings=value; }
         public PlayerSave Player { get; private set; }
@@ -131,8 +132,9 @@ namespace ArrowCube.Game
             }
             catch(ArgumentException error) { Message=error.Message; SetPage(GamePage.Error); return false; }
         }
-        public void LoadPuzzle(PuzzleDefinition puzzle,int level=1,bool sandbox=true)
+        public void LoadPuzzle(PuzzleDefinition puzzle,int level=1,bool sandbox=true,ISurfaceGeometry geometry=null)
         {
+            activeGeometry=geometry??AuthoredSurfaceDemos.Resolve(puzzle);
             CancelGeneration(false);
             var generated=puzzle as GeneratedPuzzle;
             active=new ActiveLevelSave { Level=level,Sandbox=sandbox,Puzzle=PuzzleSave.Capture(puzzle),Recipe=generated==null ? null : RecipeSave.Capture(generated.Recipe),
@@ -186,7 +188,7 @@ namespace ArrowCube.Game
             if(!CanAct) return false;
             var id=Session.Hint();
             if(!id.HasValue) { Message="No hints available."; return false; }
-            HammerArmed=false; Movement.HighlightPath(id.Value); Movement.FocusFace(Session.Grid.Paths[id.Value].Head.Face);
+            HammerArmed=false; Movement.HighlightPath(id.Value); Movement.FocusCell(Session.Grid.Paths[id.Value].HeadCellId);
             Message="The green arrow has a clear exit."; Save(); return true;
         }
         public bool ArmHammer()
@@ -245,9 +247,10 @@ namespace ArrowCube.Game
         private void RefreshPuzzle(bool keepView)
         {
             var rotation=Input.Orbit.Rotation; float zoom=Input.Orbit.Zoom;
-            Movement.LoadSession(Session.Puzzle,Session.Grid);
+            if(activeGeometry==null || !ReferenceEquals(activeGeometry.Surface,Session.Puzzle.Surface)) activeGeometry=AuthoredSurfaceDemos.Resolve(Session.Puzzle);
+            Movement.LoadSession(Session.Puzzle,Session.Grid,activeGeometry);
             // PuzzleLoaded configures the orbit when enabled. Also configure while in menus.
-            Input.Orbit.Configure(Movement.InspectionCamera,transform,Movement.SurfaceSideLength);
+            Input.Orbit.Configure(Movement.InspectionCamera,transform,Movement.SurfaceBounds);
             if(keepView) Input.Orbit.RestoreView(rotation,zoom);
         }
         private void SessionChanged()

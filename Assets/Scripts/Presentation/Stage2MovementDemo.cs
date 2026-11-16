@@ -28,7 +28,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
     private bool manualPuzzle = true;
     private SurfaceGrid grid;
     private ExitRules rules;
-    private CubeSurfaceGeometry geometry;
+    private ISurfaceGeometry geometry;
     private PathAnimationGeometry animationGeometry;
     private Transform content;
     private Camera demoCamera;
@@ -76,8 +76,10 @@ public sealed class Stage2MovementDemo : MonoBehaviour
     public ExitRules Rules => rules;
     public PuzzleDefinition Puzzle => puzzle;
     public Camera InspectionCamera => demoCamera;
-    public float SurfaceSideLength => geometry==null ? 4 : geometry.SideLength;
-    public float ArrowBodyWidth => geometry==null ? 0 : geometry.CellSize * arrowThickness;
+    public ISurfaceGeometry SurfaceGeometry => geometry;
+    public Bounds SurfaceBounds => geometry?.Bounds??new Bounds(Vector3.zero,Vector3.one*4);
+    public float SurfaceSideLength => Mathf.Max(SurfaceBounds.size.x,SurfaceBounds.size.y,SurfaceBounds.size.z);
+    public float ArrowBodyWidth => geometry==null ? 0 : geometry.ReferenceCellSize * arrowThickness;
     public float ArrowThickness
     {
         get => arrowThickness;
@@ -91,6 +93,8 @@ public sealed class Stage2MovementDemo : MonoBehaviour
     public string StatusMessage => status;
     public event System.Action<PuzzleDefinition> PuzzleLoaded;
     public event System.Action<CubeFace> FaceFocusRequested;
+    public event System.Action<int> CellFocusRequested;
+    public Transform GetArrowVisual(int id) => visuals.TryGetValue(id,out var visual) ? visual.Root.transform : null;
     public System.Func<int,MovementPlan> PlanProvider { get; set; }
     public event System.Action<MovementPlan,bool> AttemptCompleted;
     public bool StartupOwnedExternally { get; set; }
@@ -112,9 +116,9 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         public GameObject Root;
         public SurfacePathRenderer Body;
         public TriangleArrowHead Arrow;
-        public List<PathPosition> Rail;
+        public SurfaceRail Rail;
         public ArrowPath Path;
-        public IReadOnlyList<PathPosition> CurrentRail;
+        public SurfaceRail CurrentRail;
         public float Progress;
     }
 
@@ -170,26 +174,28 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         LoadContent(definition, overrideRules);
     }
 
-    public void LoadDefinition(PuzzleDefinition definition)
+    public void LoadDefinition(PuzzleDefinition definition,ISurfaceGeometry surfaceGeometry=null)
     {
         if (definition == null) throw new System.ArgumentNullException(nameof(definition));
         manualPuzzle = false;
-        LoadContent(definition, null);
+        LoadContent(definition, null,null,surfaceGeometry);
     }
-    public void LoadSession(PuzzleDefinition definition,SurfaceGrid activeGrid)
+    public void LoadSession(PuzzleDefinition definition,SurfaceGrid activeGrid,ISurfaceGeometry surfaceGeometry=null)
     {
-        if(definition==null || activeGrid==null || !ReferenceEquals(definition.Topology,activeGrid.Topology))
+        if(definition==null || activeGrid==null || !ReferenceEquals(definition.Surface,activeGrid.Surface))
             throw new System.ArgumentException("Session and renderer must share the same topology and grid.");
         foreach(var pair in activeGrid.Paths)
         {
             bool found=false; foreach(var path in definition.Paths) if(ReferenceEquals(path,pair.Value)) { found=true; break; }
             if(!found) throw new System.ArgumentException("Session contains a foreign path.");
         }
-        manualPuzzle=false; LoadContent(definition,null,activeGrid);
+        manualPuzzle=false; LoadContent(definition,null,activeGrid,surfaceGeometry);
     }
 
-    private void LoadContent(PuzzleDefinition definition, ExitRules overrideRules,SurfaceGrid activeGrid=null)
+    private void LoadContent(PuzzleDefinition definition, ExitRules overrideRules,SurfaceGrid activeGrid=null,ISurfaceGeometry surfaceGeometry=null)
     {
+        var nextGeometry=surfaceGeometry ?? (geometry!=null && ReferenceEquals(geometry.Surface,definition.Surface) ? geometry : AuthoredSurfaceDemos.Resolve(definition));
+        if(!ReferenceEquals(nextGeometry.Surface,definition.Surface)) throw new System.ArgumentException("Geometry and puzzle must share the same topology.");
         StopAllCoroutines();
         busy = false;
         LastPlan = null;
@@ -206,33 +212,33 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         grid = activeGrid ?? puzzle.CreateGrid();
         debugSelected=-1;
         debugRevision=-1;
-        geometry = new CubeSurfaceGeometry(puzzle.Topology, 4);
+        geometry = nextGeometry;
         animationGeometry = new PathAnimationGeometry(geometry);
         content = new GameObject("Stage 2 runtime objects").transform;
         content.SetParent(transform, false);
         var cube = new GameObject("Puzzle surface");
         cube.transform.SetParent(content, false);
-        var faceMaterials=new Material[6];
-        for(int face=0;face<6;face++) faceMaterials[face]=Material(ColoredCubeSurface.FaceColor((CubeFace)face));
-        cube.AddComponent<ColoredCubeSurface>().Initialize(puzzle.Topology,geometry.SideLength,faceMaterials);
+        var faceMaterials=new Material[geometry.RenderQuads.Count];
+        for(int face=0;face<faceMaterials.Length;face++) faceMaterials[face]=Material(geometry.RenderQuads[face].Color);
+        if(geometry is CubeSurfaceGeometry cubeGeometry) cube.AddComponent<ColoredCubeSurface>().Initialize(puzzle.Topology,cubeGeometry.SideLength,faceMaterials);
+        else cube.AddComponent<SurfaceMeshRenderer>().Initialize(geometry,faceMaterials);
 
         foreach (var path in puzzle.Paths)
         {
             if(!grid.Paths.ContainsKey(path.Id)) continue;
-            var visual = new PathVisual { Root = new GameObject($"Arrow {path.Id}"), Rail = new List<PathPosition>(), Path=path };
+            var visual = new PathVisual { Root = new GameObject($"Arrow {path.Id}"), Rail = SurfaceRail.FromPath(path), Path=path };
             visual.Root.transform.SetParent(content, false);
             var material = Material(PathColor(path.Id));
             var bodyObject=new GameObject("Body"); bodyObject.transform.SetParent(visual.Root.transform,false);
             visual.Body=bodyObject.AddComponent<SurfacePathRenderer>(); visual.Body.Initialize(material);
             var headObject=new GameObject("Arrowhead"); headObject.transform.SetParent(visual.Root.transform,false);
             visual.Arrow=headObject.AddComponent<TriangleArrowHead>(); visual.Arrow.Initialize(material);
-            for (int i = path.Cells.Count - 1; i >= 0; i--) visual.Rail.Add(new PathPosition(path.Cells[i]));
             visuals.Add(path.Id, visual);
             Draw(visual, path, visual.Rail, 0);
         }
         appliedArrowThickness = arrowThickness;
         if (rules.EnableDirectionalGates)
-            foreach (var gate in puzzle.Exits.Gates) DrawGate(gate);
+            foreach (var gate in puzzle.Exits.CellGates) DrawGate(gate);
         if (demoCamera == null)
         {
             var cameraObject = new GameObject("Stage 2 inspection camera");
@@ -279,6 +285,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
     {
         bool committed=false;
         var visual = visuals[plan.Path.Id];
+        var movementRail=SurfaceRail.FromPlan(plan);
         if (plan.Succeeded)
         {
             status = $"{PathLabel(plan.Path.Id)}: clear trajectory; "
@@ -287,7 +294,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
             while (progress < plan.StepCount)
             {
                 if(!AnimationPaused) progress = Mathf.Min(plan.StepCount, progress + Time.deltaTime * Mathf.Max(0.1f, cellsPerSecond));
-                Draw(visual, plan.Path, plan.Rail, progress);
+                Draw(visual, plan.Path, movementRail, progress);
                 yield return null;
             }
             if (grid.TryCommit(plan))
@@ -304,13 +311,12 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         {
             // The simulator retains every safe step. Extend just the final step to
             // approach the visible obstruction, without ever committing this plan.
-            var attemptRail=new List<PathPosition>(plan.Rail);
-            bool obstructed=plan.BlockedCell.HasValue;
-            if(obstructed) attemptRail.Add(plan.AttemptedHead);
+            var attemptRail=SurfaceRail.FromPlan(plan,true);
+            bool obstructed=plan.BlockedCellId.HasValue;
             float travel=obstructed ? ContactProgress(plan,attemptRail) : Mathf.Min(.15f,plan.StepCount);
             status = plan.Outcome == MovementOutcome.BlockedByPath
-                ? $"Path {plan.Path.Id} blocked by {plan.BlockingPathId} at {plan.BlockedCell}."
-                : plan.Outcome == MovementOutcome.NoExit ? "No enabled exit is reachable: the cube wraps forever."
+                ? $"Path {plan.Path.Id} blocked by {plan.BlockingPathId} at cell {plan.BlockedCellId}."
+                : plan.Outcome == MovementOutcome.NoExit ? "No enabled exit is reachable: the surface route loops."
                 : "The moving head would hit its own body.";
             float progress=0;
             while(progress<travel)
@@ -323,9 +329,9 @@ public sealed class Stage2MovementDemo : MonoBehaviour
             PathVisual blocker=null; Color blockerColor=default;
             if(obstructed)
             {
-                collisionPoint=animationGeometry.Evaluate(attemptRail,plan.Path.Cells.Count-1+travel,geometry.CellSize*.04f);
+                collisionPoint=animationGeometry.Evaluate(attemptRail,plan.Path.CellIds.Count-1+travel,geometry.ReferenceCellSize*.04f);
                 collisionUntil=Time.unscaledTime+.8f;
-                ShowContact(plan.BlockedCell.Value.Face);
+                ShowContact(plan.BlockedCellId.Value);
                 if(plan.BlockingPathId.HasValue && plan.BlockingPathId.Value!=plan.Path.Id && visuals.TryGetValue(plan.BlockingPathId.Value,out blocker))
                 { blockerColor=blocker.Body.SharedMaterial.color; blocker.Body.SharedMaterial.color=new Color(1,.4f,.02f); }
             }
@@ -350,21 +356,22 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         AttemptCompleted?.Invoke(plan,committed);
     }
 
-    private float ContactProgress(MovementPlan plan,IReadOnlyList<PathPosition> rail)
+    private float ContactProgress(MovementPlan plan,SurfaceRail rail)
     {
         float fraction=.75f; // Conservative clearance for the moving body's self-collision.
         if(plan.Outcome==MovementOutcome.BlockedByPath && plan.BlockingPathId.HasValue && visuals.TryGetValue(plan.BlockingPathId.Value,out var blocker))
         {
             fraction=1;
             int last=rail.Count-2;
-            bool seam=rail[last].Cell.Face!=rail[last+1].Cell.Face;
+            bool seam=animationGeometry.HasBoundaryKnot(rail,last);
+            float split=animationGeometry.BoundaryFraction(rail,last);
             var body=blocker.Body.GetComponent<MeshFilter>().sharedMesh;
             var head=blocker.Arrow.GetComponent<MeshFilter>().sharedMesh;
             for(int leg=0;leg<(seam ? 2 : 1);leg++)
             {
-                float start=seam ? leg*.5f : 0,length=seam ? .5f : 1;
-                var from=animationGeometry.Evaluate(rail,last+start,geometry.CellSize*.04f);
-                var to=animationGeometry.Evaluate(rail,last+start+length,geometry.CellSize*.04f);
+                float start=seam && leg==1 ? split : 0,length=seam ? leg==0 ? split : 1-split : 1;
+                var from=animationGeometry.Evaluate(rail,last+start,geometry.ReferenceCellSize*.04f);
+                var to=animationGeometry.Evaluate(rail,last+start+length,geometry.ReferenceCellSize*.04f);
                 float hit=Mathf.Min(ArrowContactGeometry.FirstContact(from,to,body),ArrowContactGeometry.FirstContact(from,to,head));
                 if(!float.IsPositiveInfinity(hit)) fraction=Mathf.Min(fraction,start+length*hit);
             }
@@ -372,24 +379,23 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         return plan.StepCount+Mathf.Max(0,fraction-.02f);
     }
 
-    private void ShowContact(CubeFace face)
+    private void ShowContact(int cellId)
     {
         if(contactMarker==null)
         {
             var marker=new GameObject("Block contact"); marker.transform.SetParent(content,false);
             contactMarker=marker.AddComponent<SurfacePathRenderer>(); contactMarker.Initialize(Material(new Color(1,.3f,.02f)));
         }
-        var frame=puzzle.Topology.GetOrientation(face);
-        var right=CubeSurfaceGeometry.ToVector(frame.Right); var up=CubeSurfaceGeometry.ToVector(frame.Up);
-        var normal=CubeSurfaceGeometry.ToVector(frame.Normal);
+        var right=geometry.GetDirection(cellId,SurfaceDirection.Right);
+        var normal=geometry.GetCellNormal(cellId); var up=Vector3.Cross(normal,right).normalized;
         var ring=new List<Vector3>(); var normals=new List<Vector3>();
         for(int i=0;i<=20;i++)
         {
             float angle=i*Mathf.PI*.1f;
-            ring.Add(collisionPoint+normal*(geometry.CellSize*.03f)+(right*Mathf.Cos(angle)+up*Mathf.Sin(angle))*(geometry.CellSize*.20f));
+            ring.Add(collisionPoint+normal*(geometry.ReferenceCellSize*.03f)+(right*Mathf.Cos(angle)+up*Mathf.Sin(angle))*(geometry.ReferenceCellSize*.20f));
             if(i>0) normals.Add(normal);
         }
-        contactMarker.Draw(ring,normals,geometry.CellSize*.045f); contactMarker.gameObject.SetActive(true);
+        contactMarker.Draw(ring,normals,geometry.ReferenceCellSize*.045f); contactMarker.gameObject.SetActive(true);
     }
 
     public bool HighlightPath(int id)
@@ -427,48 +433,48 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         return $"{color} ({id})";
     }
 
-    private void Draw(PathVisual visual, ArrowPath path, IReadOnlyList<PathPosition> rail, float progress)
+    private void Draw(PathVisual visual, ArrowPath path, SurfaceRail rail, float progress)
     {
         visual.CurrentRail=rail; visual.Progress=progress;
-        animationGeometry.WritePolyline(rail, path.Cells.Count, progress, points, geometry.CellSize * 0.04f,segmentNormals,path.HeadDirection);
-        float distance = path.Cells.Count - 1 + progress;
+        animationGeometry.WritePolyline(rail, path.CellIds.Count, progress, points, geometry.ReferenceCellSize * 0.04f,segmentNormals);
+        float distance = path.CellIds.Count - 1 + progress;
         var head = points[0];
         Vector3 forward;
         if (distance < rail.Count - 1)
-            forward = animationGeometry.Evaluate(rail, Mathf.Min(rail.Count - 1, distance + 0.001f), geometry.CellSize * 0.04f) - head;
+            forward = animationGeometry.Evaluate(rail, Mathf.Min(rail.Count - 1, distance + 0.001f), geometry.ReferenceCellSize * 0.04f) - head;
         else if (distance > 0)
-            forward = head - animationGeometry.Evaluate(rail, Mathf.Max(0, distance - 0.001f), geometry.CellSize * 0.04f);
-        else forward = geometry.GetLocalDirection(path.Head.Face, path.HeadDirection);
+            forward = head - animationGeometry.Evaluate(rail, Mathf.Max(0, distance - 0.001f), geometry.ReferenceCellSize * 0.04f);
+        else forward = geometry.GetDirection(path.HeadCellId,path.HeadDirection);
         forward.Normalize();
-        var normal=distance>0 ? animationGeometry.GetSegmentNormal(rail,Mathf.Max(0,distance-.00001f),path.HeadDirection)
-            : CubeSurfaceGeometry.ToVector(puzzle.Topology.GetOrientation(path.Head.Face).Normal);
-        visual.Arrow.DrawAndTrimBody(points,segmentNormals,forward,normal,geometry.CellSize,ArrowBodyWidth);
+        var normal=distance>0 ? animationGeometry.GetSegmentNormal(rail,Mathf.Max(0,distance-.00001f))
+            : geometry.GetCellNormal(path.HeadCellId);
+        visual.Arrow.DrawAndTrimBody(points,segmentNormals,forward,normal,geometry.ReferenceCellSize,ArrowBodyWidth);
         visual.Body.Draw(points,segmentNormals,ArrowBodyWidth);
     }
 
-    private void DrawGate(ExitGate gate)
+    private void DrawGate(CellGate gate)
     {
-        var center = geometry.GetLocalPosition(gate.Cell, geometry.CellSize * 0.015f);
-        var forward = geometry.GetLocalDirection(gate.Cell.Face, gate.Direction);
-        var normal = CubeSurfaceGeometry.ToVector(puzzle.Topology.GetOrientation(gate.Cell.Face).Normal);
+        var center = geometry.GetCellCenter(gate.CellId, geometry.ReferenceCellSize * 0.015f);
+        var forward = geometry.GetDirection(gate.CellId,gate.Direction);
+        var normal = geometry.GetCellNormal(gate.CellId);
         var side = Vector3.Cross(normal, forward);
         var material = Material(new Color(0, 0.7f, 0.8f));
-        var line = Line(content, $"Exit {gate.Cell} {gate.Direction}", material, geometry.CellSize * 0.04f);
+        var line = Line(content, $"Exit {gate.CellId} {gate.Direction}", material, geometry.ReferenceCellSize * 0.04f);
         line.positionCount = 5;
-        line.SetPosition(0, center - side * geometry.CellSize * 0.35f);
-        line.SetPosition(1, center + forward * geometry.CellSize * 0.35f);
-        line.SetPosition(2, center + side * geometry.CellSize * 0.35f);
-        line.SetPosition(3, center - forward * geometry.CellSize * 0.35f);
-        line.SetPosition(4, center - side * geometry.CellSize * 0.35f);
-        var heading = Line(content, $"Exit heading {gate.Direction}", material, geometry.CellSize * 0.055f);
+        line.SetPosition(0, center - side * geometry.ReferenceCellSize * 0.35f);
+        line.SetPosition(1, center + forward * geometry.ReferenceCellSize * 0.35f);
+        line.SetPosition(2, center + side * geometry.ReferenceCellSize * 0.35f);
+        line.SetPosition(3, center - forward * geometry.ReferenceCellSize * 0.35f);
+        line.SetPosition(4, center - side * geometry.ReferenceCellSize * 0.35f);
+        var heading = Line(content, $"Exit heading {gate.Direction}", material, geometry.ReferenceCellSize * 0.055f);
         heading.positionCount = 3;
-        heading.SetPosition(0, center - forward * geometry.CellSize * 0.15f + side * geometry.CellSize * 0.17f);
-        heading.SetPosition(1, center + forward * geometry.CellSize * 0.25f);
-        heading.SetPosition(2, center - forward * geometry.CellSize * 0.15f - side * geometry.CellSize * 0.17f);
-        var stem = Line(content, "Outward departure", material, geometry.CellSize * 0.04f);
+        heading.SetPosition(0, center - forward * geometry.ReferenceCellSize * 0.15f + side * geometry.ReferenceCellSize * 0.17f);
+        heading.SetPosition(1, center + forward * geometry.ReferenceCellSize * 0.25f);
+        heading.SetPosition(2, center - forward * geometry.ReferenceCellSize * 0.15f - side * geometry.ReferenceCellSize * 0.17f);
+        var stem = Line(content, "Outward departure", material, geometry.ReferenceCellSize * 0.04f);
         stem.positionCount = 2;
         stem.SetPosition(0, center);
-        stem.SetPosition(1, center + normal * geometry.CellSize * 0.5f);
+        stem.SetPosition(1, center + normal * geometry.ReferenceCellSize * 0.5f);
     }
 
     private LineRenderer Line(Transform parent, string objectName, Material material, float width)
@@ -492,7 +498,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
 
     private void OnGUI()
     {
-        if (puzzle == null || !ShowControls) return;
+        if (puzzle == null || !ShowControls || !(puzzle.Surface is CubeTopology)) return;
         float scale = Mathf.Clamp(Screen.width / 1000f, 0.7f, 1.5f);
         var oldMatrix = GUI.matrix;
         GUI.matrix = Matrix4x4.Scale(Vector3.one * scale);
@@ -542,12 +548,22 @@ public sealed class Stage2MovementDemo : MonoBehaviour
 
     public void FocusFace(CubeFace face)
     {
-        if (puzzle == null || demoCamera == null) return;
+        if (puzzle == null || demoCamera == null || !(puzzle.Surface is CubeTopology)) return;
         if (FaceFocusRequested != null) { FaceFocusRequested.Invoke(face); return; }
         var frame = puzzle.Topology.GetOrientation(face);
         demoCamera.transform.position = transform.TransformPoint(CubeSurfaceGeometry.ToVector(frame.Normal) * 10);
         demoCamera.transform.LookAt(transform.position, transform.TransformDirection(CubeSurfaceGeometry.ToVector(frame.Up)));
     }
+
+    public void FocusCell(int cellId)
+    {
+        if(geometry==null || demoCamera==null) return;
+        if(CellFocusRequested!=null) { CellFocusRequested.Invoke(cellId); return; }
+        var normal=transform.localToWorldMatrix.inverse.transpose.MultiplyVector(geometry.GetCellNormal(cellId)).normalized;
+        demoCamera.transform.position=transform.TransformPoint(geometry.Bounds.center)+normal*SurfaceSideLength*3;
+        demoCamera.transform.LookAt(transform.TransformPoint(geometry.Bounds.center),transform.TransformDirection(geometry.GetDirection(cellId,SurfaceDirection.Up)));
+    }
+    private Vector3 WorldCell(SurfaceCoordinate cell,float lift) => transform.TransformPoint(geometry.GetCellCenter(puzzle.Topology.GetCellIndex(cell),lift));
 
     private void OnDrawGizmos()
     {
@@ -556,7 +572,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         var matrix = Gizmos.matrix;
         Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(collisionPoint, geometry.CellSize * 0.4f);
+        Gizmos.DrawWireSphere(collisionPoint, geometry.ReferenceCellSize * 0.4f);
         Gizmos.matrix = matrix;
     }
 
@@ -570,7 +586,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
             {
                 var sweep=debugTrajectories.Get(puzzle.Topology,selected,puzzle.Exits,puzzle.Rules);
                 Gizmos.color=Color.yellow;
-                foreach(var cell in sweep.SweptCells) Gizmos.DrawWireSphere(geometry.GetWorldPosition(cell,transform,.05f),geometry.CellSize*.18f);
+                foreach(var cell in sweep.SweptCells) Gizmos.DrawWireSphere(WorldCell(cell,.05f),geometry.ReferenceCellSize*.18f);
             }
         }
         if(DebugDependencies)
@@ -578,13 +594,13 @@ public sealed class Stage2MovementDemo : MonoBehaviour
             Gizmos.color=new Color(1,.5f,.1f,.65f);
             foreach(var link in generated.Difficulty.Dependencies)
                 if(grid.Paths.TryGetValue(link.Path,out var from) && grid.Paths.TryGetValue(link.Blocker,out var to))
-                    Gizmos.DrawLine(geometry.GetWorldPosition(from.Head,transform,.04f),geometry.GetWorldPosition(to.Head,transform,.04f));
+                    Gizmos.DrawLine(WorldCell(from.Head,.04f),WorldCell(to.Head,.04f));
         }
         if(DebugSolverSelections)
         {
             Gizmos.color=Color.yellow; var attempts=generated.Difficulty.Solvers[0].AttemptedPaths;
             for(int i=0;i<Mathf.Min(20,attempts.Length);i++)
-                if(grid.Paths.TryGetValue(attempts[i],out var path)) Gizmos.DrawWireSphere(geometry.GetWorldPosition(path.Head,transform,.04f),geometry.CellSize*.35f);
+                if(grid.Paths.TryGetValue(attempts[i],out var path)) Gizmos.DrawWireSphere(WorldCell(path.Head,.04f),geometry.ReferenceCellSize*.35f);
         }
     }
 

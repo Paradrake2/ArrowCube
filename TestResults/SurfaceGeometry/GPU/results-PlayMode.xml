@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.2086364">
+  <test-suite type="TestSuite" id="1072" name="Project-3c1c2f0074a0" fullname="Project-3c1c2f0074a0" runstate="Runnable" testcasecount="54" result="Passed" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.208636" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1060" name="ArrowCube.Movement.PlayMode.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/GV/Project-3c1c2f0074a0/Library/ScriptAssemblies/ArrowCube.Movement.PlayMode.Tests.dll" runstate="Runnable" testcasecount="50" result="Passed" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.185326" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37620" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1061" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="50" result="Passed" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.182636" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1062" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="50" result="Passed" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.181243" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1042" name="GenericSurfacePlayTests" fullname="ArrowCube.Tests.GenericSurfacePlayTests" classname="ArrowCube.Tests.GenericSurfacePlayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.178137" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="BothAuthoredPuzzlesAnimateBlockedAttemptsAndVerifiedRemovals" fullname="ArrowCube.Tests.GenericSurfacePlayTests.BothAuthoredPuzzlesAnimateBlockedAttemptsAndVerifiedRemovals" methodname="BothAuthoredPuzzlesAnimateBlockedAttemptsAndVerifiedRemovals" classname="ArrowCube.Tests.GenericSurfacePlayTests" runstate="Runnable" seed="753191769" result="Passed" start-time="2026-11-16 20:03:51Z" end-time="2026-11-16 20:04:03Z" duration="12.142193" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Leo/AppData/LocalLow/DefaultCompany/Project-3c1c2f0074a0\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

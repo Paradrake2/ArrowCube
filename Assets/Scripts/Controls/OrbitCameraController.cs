@@ -20,6 +20,7 @@ namespace ArrowCube.Controls
         private float currentZoom,targetZoom,defaultZoom,minZoom,maxZoom,distance;
         private Vector2 velocity;
         private bool dragging;
+        private Vector3 localCenter;
         public Camera View => view;
         public float Sensitivity { get => sensitivity; set => sensitivity=Mathf.Clamp(value,.1f,3); }
         public float ZoomSpeed
@@ -43,14 +44,19 @@ namespace ArrowCube.Controls
         }
 
         public void Configure(Camera camera,Transform center,float cubeSideLength)
+            => Configure(camera,center,new Bounds(Vector3.zero,Vector3.one*cubeSideLength));
+
+        public void Configure(Camera camera,Transform center,Bounds bounds)
         {
             view=camera!=null ? camera : throw new ArgumentNullException(nameof(camera));
             target=center!=null ? center : throw new ArgumentNullException(nameof(center));
             float scale=Mathf.Max(Mathf.Abs(center.lossyScale.x),Mathf.Abs(center.lossyScale.y),Mathf.Abs(center.lossyScale.z));
-            float side=Mathf.Max(.1f,cubeSideLength*scale);
+            localCenter=bounds.center;
+            float side=Mathf.Max(.1f,Mathf.Max(bounds.size.x,bounds.size.y,bounds.size.z)*scale);
             var offset=center.TransformDirection(new Vector3(7,6,9).normalized);
             defaultRotation=Quaternion.LookRotation(-offset,center.up);
             distance=side*3.25f;
+            view.farClipPlane=Mathf.Max(view.farClipPlane,distance+side*2);
             defaultZoom=view.orthographic ? side*1.1f : distance;
             minZoom=view.orthographic ? side*.25f : side*.95f;
             maxZoom=view.orthographic ? side*3 : side*12;
@@ -88,6 +94,13 @@ namespace ArrowCube.Controls
                 target.TransformDirection(CubeSurfaceGeometry.ToVector(frame.Up)));
             velocity=Vector2.zero; dragging=false;
         }
+        public void FocusCell(ISurfaceGeometry geometry,int cellId)
+        {
+            if(view==null || target==null) return;
+            var normal=target.localToWorldMatrix.inverse.transpose.MultiplyVector(geometry.GetCellNormal(cellId)).normalized;
+            targetRotation=Quaternion.LookRotation(-normal,target.TransformVector(geometry.GetDirection(cellId,SurfaceDirection.Up)));
+            velocity=Vector2.zero; dragging=false;
+        }
         private void Rotate(Vector2 degrees) => targetRotation=(targetRotation*Quaternion.Euler(degrees.y,-degrees.x,0)).normalized;
         private void LateUpdate() => Tick(Time.unscaledDeltaTime);
         public void Tick(float unscaledDeltaTime)
@@ -103,7 +116,7 @@ namespace ArrowCube.Controls
         private void ApplyPose()
         {
             if(view==null || target==null) return;
-            view.transform.SetPositionAndRotation(target.position-currentRotation*Vector3.forward*(view.orthographic ? distance : currentZoom),currentRotation);
+            view.transform.SetPositionAndRotation(target.TransformPoint(localCenter)-currentRotation*Vector3.forward*(view.orthographic ? distance : currentZoom),currentRotation);
             if(view.orthographic) view.orthographicSize=currentZoom;
         }
     }

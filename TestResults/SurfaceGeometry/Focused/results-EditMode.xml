@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="48" result="Passed" total="48" passed="48" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.5194364">
+  <test-suite type="TestSuite" id="1000" name="Project-03f5a3956e20" fullname="Project-03f5a3956e20" runstate="Runnable" testcasecount="329" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.519436" total="48" passed="48" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1399" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/G3/Project-03f5a3956e20/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="329" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.510061" total="48" passed="48" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="2820" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1400" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="329" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.509142" total="48" passed="48" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1401" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="329" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.508382" total="48" passed="48" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1028" name="ControlsGeometryTests" fullname="ArrowCube.Tests.ControlsGeometryTests" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" testcasecount="17" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.053366" total="17" passed="17" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1029" name="CleanPressAndReleaseRequiresTheSamePathAndShortDuration" fullname="ArrowCube.Tests.ControlsGeometryTests.CleanPressAndReleaseRequiresTheSamePathAndShortDuration" methodname="CleanPressAndReleaseRequiresTheSamePathAndShortDuration" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1805067567" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.013543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="DraggingOutAndBackOrMovingOnlyOnReleaseCannotBecomeATap" fullname="ArrowCube.Tests.ControlsGeometryTests.DraggingOutAndBackOrMovingOnlyOnReleaseCannotBecomeATap" methodname="DraggingOutAndBackOrMovingOnlyOnReleaseCannotBecomeATap" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1778683380" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000904" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="HighDpiPortraitKeepsControlsReadableWithoutCoveringThePuzzle" fullname="ArrowCube.Tests.ControlsGeometryTests.HighDpiPortraitKeepsControlsReadableWithoutCoveringThePuzzle" methodname="HighDpiPortraitKeepsControlsReadableWithoutCoveringThePuzzle" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="203346751" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.003486" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1046" name="OrbitCanInspectAllSixFaces" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.014705" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1040" name="OrbitCanInspectAllSixFaces(Front)" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces(Front)" methodname="OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="68248192" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.008337" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1041" name="OrbitCanInspectAllSixFaces(Right)" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces(Right)" methodname="OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1975050529" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1042" name="OrbitCanInspectAllSixFaces(Back)" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces(Back)" methodname="OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="2006256641" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000160" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1043" name="OrbitCanInspectAllSixFaces(Left)" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces(Left)" methodname="OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1251345079" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000146" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1044" name="OrbitCanInspectAllSixFaces(Top)" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces(Top)" methodname="OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1211802167" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000142" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1045" name="OrbitCanInspectAllSixFaces(Bottom)" fullname="ArrowCube.Tests.ControlsGeometryTests.OrbitCanInspectAllSixFaces(Bottom)" methodname="OrbitCanInspectAllSixFaces" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="2085686203" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000138" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1038" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.002699" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1032" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(1280,720)" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(1280,720)" methodname="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="826236118" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000887" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1033" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(720,1280)" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(720,1280)" methodname="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1120786033" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000071" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1034" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(640,360)" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(640,360)" methodname="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1610868827" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1035" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(360,640)" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(360,640)" methodname="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1475028471" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000050" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1036" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(2560,1440)" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(2560,1440)" methodname="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1079945630" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000047" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1037" name="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(320,240)" fullname="ArrowCube.Tests.ControlsGeometryTests.ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea(320,240)" methodname="ResponsiveViewportAndPanelNeverOverlapOrEscapeTheSafeArea" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="397494546" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000044" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1031" name="UiOriginCancellationAndSuppressionCannotLeakIntoAnotherClick" fullname="ArrowCube.Tests.ControlsGeometryTests.UiOriginCancellationAndSuppressionCannotLeakIntoAnotherClick" methodname="UiOriginCancellationAndSuppressionCannotLeakIntoAnotherClick" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1231570649" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1047" name="VerticalDragPassesBothPolesAndZoomResetRemainsBounded" fullname="ArrowCube.Tests.ControlsGeometryTests.VerticalDragPassesBothPolesAndZoomResetRemainsBounded" methodname="VerticalDragPassesBothPolesAndZoomResetRemainsBounded" classname="ArrowCube.Tests.ControlsGeometryTests" runstate="Runnable" seed="1835919713" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001933" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1048" name="CubeSurfaceGeometryTests" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.034697" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1053" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.028421" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1049" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(1)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(1)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="742166067" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.010511" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1050" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(3)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(3)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1893304154" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001431" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1051" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(6)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(6)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="488193248" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001850" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1052" name="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(20)" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord(20)" methodname="EverySeamHasTwoSurfaceSegmentsAndNoGapOrInteriorChord" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1056041583" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.013927" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1056" name="InvalidGeometryArgumentsAreRejected" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.InvalidGeometryArgumentsAreRejected" methodname="InvalidGeometryArgumentsAreRejected" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1601220336" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.002061" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="MultiFacePolylineIncludesEveryBendAndSeam" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.MultiFacePolylineIncludesEveryBendAndSeam" methodname="MultiFacePolylineIncludesEveryBendAndSeam" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1079539979" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000934" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="WorldPositionRespectsTranslationRotationAndScale" fullname="ArrowCube.Tests.CubeSurfaceGeometryTests.WorldPositionRespectsTranslationRotationAndScale" methodname="WorldPositionRespectsTranslationRotationAndScale" classname="ArrowCube.Tests.CubeSurfaceGeometryTests" runstate="Runnable" seed="1835465121" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1190" name="GenericSurfaceGeometryTests" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.049103" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1200" name="ActualSurfaceOcclusionLeavesTheLNotchEmpty" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.ActualSurfaceOcclusionLeavesTheLNotchEmpty" methodname="ActualSurfaceOcclusionLeavesTheLNotchEmpty" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="37820594" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.014093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1193" name="AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.018396" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1191" name="AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles(False)" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles(False)" methodname="AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="620130902" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.016360" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1192" name="AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles(True)" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles(True)" methodname="AuthoredSolidsHaveValidSharedBoundariesNormalsAndVerifiedPuzzles" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="461434493" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000919" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1199" name="GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.004730" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1197" name="GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame(False)" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame(False)" methodname="GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="1001658158" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.003549" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1198" name="GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame(True)" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame(True)" methodname="GateAndEligibleEdgeDeparturesUseTheDepartureCellsLocalFrame" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="1732390676" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000279" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1201" name="QuadValidationRejectsNonPlanarityAndGeometryTopologyMismatch" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.QuadValidationRejectsNonPlanarityAndGeometryTopologyMismatch" methodname="QuadValidationRejectsNonPlanarityAndGeometryTopologyMismatch" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="1757630584" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001989" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1196" name="RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.005696" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1194" name="RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold(False)" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold(False)" methodname="RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="156500379" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.004379" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1195" name="RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold(True)" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold(True)" methodname="RailSamplesStayOnEachOffsetPlaneAndAreContinuousAcrossEveryFold" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="1043377743" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000653" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1202" name="UnequalCellSizesAndSkewPlanarQuadsHaveLocalDimensionsAndOppositeDirections" fullname="ArrowCube.Tests.GenericSurfaceGeometryTests.UnequalCellSizesAndSkewPlanarQuadsHaveLocalDimensionsAndOppositeDirections" methodname="UnequalCellSizesAndSkewPlanarQuadsHaveLocalDimensionsAndOppositeDirections" classname="ArrowCube.Tests.GenericSurfaceGeometryTests" runstate="Runnable" seed="1626705690" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.002058" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1230" name="PathAnimationGeometryTests" fullname="ArrowCube.Tests.PathAnimationGeometryTests" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.016016" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1232" name="ASeamUsesItsExactSharedMidpointAndKeepsMotionContinuous" fullname="ArrowCube.Tests.PathAnimationGeometryTests.ASeamUsesItsExactSharedMidpointAndKeepsMotionContinuous" methodname="ASeamUsesItsExactSharedMidpointAndKeepsMotionContinuous" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="2002821309" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.002008" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1233" name="DepartureFollowsTheNormalAndDoesNotJumpOrShrinkTheBody" fullname="ArrowCube.Tests.PathAnimationGeometryTests.DepartureFollowsTheNormalAndDoesNotJumpOrShrinkTheBody" methodname="DepartureFollowsTheNormalAndDoesNotJumpOrShrinkTheBody" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="1080146018" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000541" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1231" name="FractionalMotionPreservesEveryBendAndEveryCubeSeam" fullname="ArrowCube.Tests.PathAnimationGeometryTests.FractionalMotionPreservesEveryBendAndEveryCubeSeam" methodname="FractionalMotionPreservesEveryBendAndEveryCubeSeam" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="1874954236" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.011156" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1234" name="FractionalSlideReversalReturnsTheExactOriginalPolyline" fullname="ArrowCube.Tests.PathAnimationGeometryTests.FractionalSlideReversalReturnsTheExactOriginalPolyline" methodname="FractionalSlideReversalReturnsTheExactOriginalPolyline" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="995629471" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1235" name="InvalidProgressIsRejectedAndOneCellPathsHaveOneBodySample" fullname="ArrowCube.Tests.PathAnimationGeometryTests.InvalidProgressIsRejectedAndOneCellPathsHaveOneBodySample" methodname="InvalidProgressIsRejectedAndOneCellPathsHaveOneBodySample" classname="ArrowCube.Tests.PathAnimationGeometryTests" runstate="Runnable" seed="1798561812" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000456" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1361" name="SurfaceStrokeTests" fullname="ArrowCube.Tests.SurfaceStrokeTests" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.339359" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1373" name="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle" fullname="ArrowCube.Tests.SurfaceStrokeTests.AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.330478" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1370" name="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle(0)" fullname="ArrowCube.Tests.SurfaceStrokeTests.AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle(0)" methodname="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="1524348116" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.143382" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1371" name="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle(1)" fullname="ArrowCube.Tests.SurfaceStrokeTests.AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle(1)" methodname="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="931816602" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.095413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1372" name="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle(2)" fullname="ArrowCube.Tests.SurfaceStrokeTests.AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle(2)" methodname="AnimatedGeneratedRibbonsStayFiniteAndTheirMeshesDoNotDependOnCameraAngle" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="1764223257" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.090904" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1369" name="EveryCubeSeamSharesAFlatFixedWidthCrossSection" fullname="ArrowCube.Tests.SurfaceStrokeTests.EveryCubeSeamSharesAFlatFixedWidthCrossSection" methodname="EveryCubeSeamSharesAFlatFixedWidthCrossSection" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="1253697185" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.002548" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1368" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.005309" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1362" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Front)" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Front)" methodname="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="1881544367" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.001054" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1363" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Right)" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Right)" methodname="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="416057310" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1364" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Back)" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Back)" methodname="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="104995022" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000069" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1365" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Left)" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Left)" methodname="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="456139340" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1366" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Top)" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Top)" methodname="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="474501934" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000067" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1367" name="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Bottom)" fullname="ArrowCube.Tests.SurfaceStrokeTests.SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace(Bottom)" methodname="SquareCornerHasConstantPerpendicularWidthAndStaysOnItsFace" classname="ArrowCube.Tests.SurfaceStrokeTests" runstate="Runnable" seed="1154728327" result="Passed" start-time="2026-11-16 19:46:17Z" end-time="2026-11-16 19:46:17Z" duration="0.000066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\G3\Project-03f5a3956e20\results-EditMode.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

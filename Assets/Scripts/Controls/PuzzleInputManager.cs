@@ -67,6 +67,7 @@ namespace ArrowCube.Controls
             EnhancedTouchSupport.Enable();
             Touch.onFingerDown+=FingerDown; Touch.onFingerMove+=FingerMove; Touch.onFingerUp+=FingerUp;
             movement.PuzzleLoaded+=PuzzleLoaded; movement.FaceFocusRequested+=FocusFace;
+            movement.CellFocusRequested+=FocusCell;
             InputSystem.onDeviceChange+=DeviceChanged;
             foreach(var finger in Touch.activeFingers)
                 contacts[finger]=new Contact { Position=finger.screenPosition,Blocked=true };
@@ -78,6 +79,7 @@ namespace ArrowCube.Controls
         private void OnDisable()
         {
             movement.PuzzleLoaded-=PuzzleLoaded; movement.FaceFocusRequested-=FocusFace;
+            movement.CellFocusRequested-=FocusCell;
             InputSystem.onDeviceChange-=DeviceChanged;
             Touch.onFingerDown-=FingerDown; Touch.onFingerMove-=FingerMove; Touch.onFingerUp-=FingerUp;
             CancelActiveGestures(); contacts.Clear();
@@ -88,10 +90,12 @@ namespace ArrowCube.Controls
         private void PuzzleLoaded(PuzzleDefinition _)
         {
             CancelActiveGestures();
-            orbit.Configure(movement.InspectionCamera,movement.transform,movement.SurfaceSideLength);
+            orbit.Configure(movement.InspectionCamera,movement.transform,movement.SurfaceBounds);
         }
         private void FocusFace(CubeFace face)
         { CancelActiveGestures(); orbit.FocusFace(movement.Puzzle.Topology,face); }
+        private void FocusCell(int cellId)
+        { CancelActiveGestures(); orbit.FocusCell(movement.SurfaceGeometry,cellId); }
         public void CancelActiveGestures()
         {
             left.Cancel(); right.Cancel(); singleTouch.Cancel(); if(orbit!=null) orbit.StopMotion();
