@@ -17,5 +17,14 @@ namespace ArrowCube.Movement
             EnableCubeEdgeExits = enableCubeEdgeExits;
             EnableDirectionalGates = enableDirectionalGates;
         }
+
+        /// <summary>Shared exit policy. Geometry supplies eligibility; the puzzle supplies gates.
+        /// A geometric edge wins a tie with a compatible gate, preserving existing cube behavior.</summary>
+        public ExitType? SelectExit(bool allowsEdgeExit,bool hasDirectionalGate)
+        {
+            if(EnableCubeEdgeExits && allowsEdgeExit) return ExitType.CubeEdge;
+            if(EnableDirectionalGates && hasDirectionalGate) return ExitType.DirectionalGate;
+            return null;
+        }
     }
 }

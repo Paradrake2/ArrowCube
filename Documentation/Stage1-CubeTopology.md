@@ -1,5 +1,9 @@
 # Stage 1: connected cube surface
 
+The current topology also exposes an immutable cell-based traversal core. See
+[Shape-independent surface topology](SurfaceTopology.md) for construction, concave
+and convex traversal, exit eligibility, compatibility, and remaining cube assumptions.
+
 Stage 1 implements the cube topology and path data foundation. It includes a Scene-view
 preview and EditMode tests. It does not implement activation, movement, occupancy,
 collision, procedural generation, or removal animation.

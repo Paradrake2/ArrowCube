@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace ArrowCube.Topology
 {
@@ -19,14 +20,19 @@ namespace ArrowCube.Topology
         public SurfaceCoordinate Coordinate { get; }
         public SurfaceDirection Direction { get; }
         public bool CrossedEdge { get; }
+        public bool AllowsEdgeExit { get; }
 
-        internal SurfaceStep(SurfaceCoordinate coordinate, SurfaceDirection direction, bool crossedEdge)
-        { Coordinate = coordinate; Direction = direction; CrossedEdge = crossedEdge; }
+        internal SurfaceStep(SurfaceCoordinate coordinate, SurfaceDirection direction, bool crossedEdge,bool allowsEdgeExit)
+        { Coordinate = coordinate; Direction = direction; CrossedEdge = crossedEdge; AllowsEdgeExit=allowsEdgeExit; }
     }
 
     /// <summary>A closed, four-neighbor surface with exact bidirectional edge mappings.</summary>
-    public sealed class CubeTopology
+    public sealed class CubeTopology : ISurfaceTopology
     {
+        // Connections never change; only their immutable views are memoized. Lazy
+        // construction retains the existing large-grid constructor's bounded cost.
+        private readonly ConcurrentDictionary<int,SurfaceCell> cells=new ConcurrentDictionary<int,SurfaceCell>();
+        private readonly Func<int,SurfaceCell> cellFactory;
         // Rows: Front, Right, Back, Left, Top, Bottom. Columns: Right, Up, Left, Down.
         // Offset is Y on vertical edges and X on horizontal edges, always increasing locally.
         private static readonly EdgeTransition[,] Edges =
@@ -65,6 +71,7 @@ namespace ArrowCube.Topology
                 throw new ArgumentOutOfRangeException(nameof(gridSize), "Grid size must be 1..18918.");
             GridSize = gridSize;
             CellCount = checked(6 * gridSize * gridSize);
+            cellFactory=CreateCell;
         }
 
         public bool Contains(SurfaceCoordinate coordinate) =>
@@ -88,6 +95,30 @@ namespace ArrowCube.Topology
         public SurfaceStep Step(SurfaceCoordinate from, SurfaceDirection direction)
         {
             Validate(from);
+            var step=SurfaceTraversal.Step(this,GetCellIndex(from),direction);
+            return new SurfaceStep(GetCoordinate(step.CellId),step.Direction,step.IsGeometricEdge,step.AllowsEdgeExit);
+        }
+
+        public bool ContainsCell(int cellId) => (uint)cellId<CellCount;
+        public SurfaceCell GetCell(int cellId)
+        {
+            if(!ContainsCell(cellId)) throw new ArgumentOutOfRangeException(nameof(cellId));
+            return cells.GetOrAdd(cellId,cellFactory);
+        }
+        public CellBoundary GetBoundary(int cellId,SurfaceDirection direction) => GetCell(cellId).GetBoundary(direction);
+        public IEnumerable<int> EnumerateCellIds()
+        { for(int id=0;id<CellCount;id++) yield return id; }
+
+        private SurfaceCell CreateCell(int cellId)
+        {
+            var from=GetCoordinate(cellId); var boundaries=new CellBoundary[4];
+            for(int d=0;d<4;d++) boundaries[d]=CreateBoundary(from,(SurfaceDirection)d);
+            return new SurfaceCell(cellId,boundaries);
+        }
+
+        // Cube-specific construction is confined here; all walkers consume the same boundary model.
+        private CellBoundary CreateBoundary(SurfaceCoordinate from,SurfaceDirection direction)
+        {
             SurfaceDirections.Validate(direction);
             int x = from.X, y = from.Y;
             switch (direction)
@@ -99,7 +130,7 @@ namespace ArrowCube.Topology
             }
 
             if ((uint)x < GridSize && (uint)y < GridSize)
-                return new SurfaceStep(new SurfaceCoordinate(from.Face, x, y), direction, false);
+                return new CellBoundary(GetCellIndex(new SurfaceCoordinate(from.Face,x,y)),direction);
 
             var edge = GetEdgeTransition(from.Face, direction);
             int offset = direction == SurfaceDirection.Right || direction == SurfaceDirection.Left ? from.Y : from.X;
@@ -111,7 +142,7 @@ namespace ArrowCube.Topology
                 case SurfaceDirection.Left: x = 0; y = offset; break;
                 default: x = offset; y = 0; break;
             }
-            return new SurfaceStep(new SurfaceCoordinate(edge.DestinationFace, x, y), edge.ForwardDirection, true);
+            return new CellBoundary(GetCellIndex(new SurfaceCoordinate(edge.DestinationFace,x,y)),edge.ForwardDirection,true,true);
         }
 
         public bool TryGetDirection(SurfaceCoordinate from, SurfaceCoordinate to, out SurfaceDirection direction)

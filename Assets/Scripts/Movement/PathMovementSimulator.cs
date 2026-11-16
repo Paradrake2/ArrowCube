@@ -74,15 +74,10 @@ namespace ArrowCube.Movement
                     var step = grid.Topology.Step(head.Cell, direction);
                     // Both mechanics are checked at this same logical step. An edge wins a tie
                     // with a gate on its boundary cell; an earlier compatible gate still wins normally.
-                    if (rules.EnableCubeEdgeExits && step.CrossedEdge)
+                    selectedExit=rules.SelectExit(step.AllowsEdgeExit,rules.EnableDirectionalGates && exits.CanExit(head.Cell,direction));
+                    if (selectedExit.HasValue)
                     {
-                        selectedExit = Movement.ExitType.CubeEdge;
                         next = new PathPosition(head.Cell, 1, selectedExit.Value, direction);
-                    }
-                    else if (rules.EnableDirectionalGates && exits.CanExit(head.Cell, direction))
-                    {
-                        selectedExit = Movement.ExitType.DirectionalGate;
-                        next = new PathPosition(head.Cell, 1);
                     }
                     else
                     {
