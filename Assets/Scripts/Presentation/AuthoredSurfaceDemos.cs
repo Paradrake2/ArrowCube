@@ -24,6 +24,7 @@ namespace ArrowCube.Presentation
         public static ISurfaceGeometry Resolve(PuzzleDefinition puzzle)
         {
             if(puzzle.Surface is CubeTopology cube) return new CubeSurfaceGeometry(cube,4);
+            if(!string.IsNullOrEmpty(puzzle.SurfaceAssetId)) return AuthoredGenerationSurfaces.Resolve(puzzle);
             bool folded=puzzle.Name==FoldName;
             if(!folded && puzzle.Name!=LName) throw new ArgumentException("Supply physical geometry for this authored surface.");
             return new QuadSurfaceGeometry(puzzle.Surface,Quads(folded));

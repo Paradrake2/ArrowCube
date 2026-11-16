@@ -43,6 +43,9 @@ namespace ArrowCube.Generation
     public sealed class PuzzleDifficultyReport
     {
         public int AnalysisVersion=2;
+        public int SurfaceRegionCount,OccupiedSurfaceRegions,GeometricFolds;
+        public double[] RegionCoverage;
+        public double RegionCoverageDeviation;
         public int Seed, GenerationVersion, PathCount, InitialSafe, InitialBlocked, DependencyLayers, LongestDependencyChain, CrossFacePaths;
         public double RequestedScore, ConfigurationEstimate, MeasuredScore, InitialSafeFraction, AverageDependencyDepth, AverageUnlockedPerRemoval, MaxUnlockedPerRemoval;
         public string ProfileName;
@@ -85,15 +88,16 @@ namespace ArrowCube.Generation
             weights=weights??new DifficultyWeights(); weights.Validate();
             var graph=analysisVersion>=3 ? PuzzleDependencyGraph.Analyze(puzzle,cancellationToken,trajectoryCache) : null;
             if(graph!=null && !graph.IsValid) throw new ArgumentException("Dependency verification failed or contains a cycle.");
+            var regions=puzzle.Surface.Generation(); int regionCount=regions.RegionCount;
             int count=puzzle.Paths.Count; var grid=puzzle.CreateGrid(); var sim=new PathMovementSimulator();
-            var report=new PuzzleDifficultyReport { Seed=seed,PathCount=count,SafeByFace=new int[6],BlockedByFace=new int[6],DependencyFaceMatrix=new int[36],Weights=weights.Copy(),
+            var report=new PuzzleDifficultyReport { Seed=seed,PathCount=count,SafeByFace=new int[regionCount],BlockedByFace=new int[regionCount],DependencyFaceMatrix=new int[regionCount<=256 ? regionCount*regionCount : 0],Weights=weights.Copy(),
                 ProfileName=puzzle.Name,EnableCubeEdgeExits=puzzle.Rules.EnableCubeEdgeExits,EnableDirectionalGates=puzzle.Rules.EnableDirectionalGates };
             report.AnalysisVersion=analysisVersion;
             if(graph!=null) { report.Graph=graph; report.MultiBlocker=graph.Metrics; report.DependencyNodes=graph.Nodes; report.ConfirmedDependencyEdges=graph.Edges; }
             var blockers=new Dictionary<int,HashSet<int>>(); var dependants=new Dictionary<int,List<int>>();
             var depths=new Dictionary<int,int>(); var safe=new List<int>(); var blocked=new List<int>(); var links=new List<DependencyLink>();
             var paths=new Dictionary<int,ArrowPath>(); int maxLength=0,maxTurns=0,occupied=0,turns=0;
-            foreach(var path in puzzle.Paths) { paths.Add(path.Id,path); dependants.Add(path.Id,new List<int>()); maxLength=Math.Max(maxLength,path.Cells.Count); }
+            foreach(var path in puzzle.Paths) { paths.Add(path.Id,path); dependants.Add(path.Id,new List<int>()); maxLength=Math.Max(maxLength,path.CellIds.Count); }
             report.LengthHistogram=new int[maxLength+1]; var pathTurns=new Dictionary<int,int>();
             double sumDistance=0,sumDistanceSquared=0,sumSafeDistance=0;
             foreach(var path in puzzle.Paths)
@@ -103,26 +107,26 @@ namespace ArrowCube.Generation
                 if(graph!=null) owners.UnionWith(graph.GetNode(path.Id).ConfirmedBlockers);
                 else
                 {
-                    var alone=new SurfaceGrid(puzzle.Topology,new[] { path }); var route=sim.Simulate(alone,path.Id,puzzle.Exits,puzzle.Rules);
+                    var alone=new SurfaceGrid(puzzle.Surface,new[] { path }); var route=sim.Simulate(alone,path.Id,puzzle.Exits,puzzle.Rules);
                     if(!route.Succeeded) throw new ArgumentException("A path has no unobstructed exit: "+path.Id);
-                    for(int i=path.Cells.Count;i<route.Rail.Count;i++)
-                        if(route.Rail[i].IsOnSurface && grid.TryGetCellOwner(route.Rail[i].Cell,out int owner) && owner!=path.Id) owners.Add(owner);
+                    for(int i=path.CellIds.Count;i<route.CellRail.Count;i++)
+                        if(route.CellRail[i].IsOnSurface && grid.TryGetCellOwner(route.CellRail[i].CellId,out int owner) && owner!=path.Id) owners.Add(owner);
                 }
                 blockers.Add(path.Id,owners);
                 foreach(int owner in owners)
                 {
                     dependants[owner].Add(path.Id);
-                    links.Add(new DependencyLink { Path=path.Id,Blocker=owner,CrossFace=path.Head.Face!=paths[owner].Head.Face });
-                    report.DependencyFaceMatrix[(int)path.Head.Face*6+(int)paths[owner].Head.Face]++;
+                    links.Add(new DependencyLink { Path=path.Id,Blocker=owner,CrossFace=regions.RegionOf(path.HeadCellId)!=regions.RegionOf(paths[owner].HeadCellId) });
+                    if(report.DependencyFaceMatrix.Length>0) report.DependencyFaceMatrix[regions.RegionOf(path.HeadCellId)*regionCount+regions.RegionOf(paths[owner].HeadCellId)]++;
                 }
                 bool removable=graph!=null ? graph.GetNode(path.Id).InitiallyRemovable : sim.Simulate(grid,path.Id,puzzle.Exits,puzzle.Rules).Succeeded;
                 if(removable!=(owners.Count==0)) throw new ArgumentException("Route blockers disagree with gameplay simulation.");
-                if(removable) { safe.Add(path.Id); report.SafeByFace[(int)path.Head.Face]++; }
-                else { blocked.Add(path.Id); report.BlockedByFace[(int)path.Head.Face]++; }
-                double distance=HeuristicPuzzleSolver.EdgeDistance(path.Head,puzzle.Topology.GridSize);
+                if(removable) { safe.Add(path.Id); report.SafeByFace[(int)regions.RegionOf(path.HeadCellId)]++; }
+                else { blocked.Add(path.Id); report.BlockedByFace[(int)regions.RegionOf(path.HeadCellId)]++; }
+                double distance=regions.ExitDistance(path.HeadCellId);
                 sumDistance+=distance; sumDistanceSquared+=distance*distance; if(removable) sumSafeDistance+=distance;
-                int bends=PuzzleValidator.CountTurns(puzzle.Topology,path); pathTurns.Add(path.Id,bends); maxTurns=Math.Max(maxTurns,bends);
-                turns+=bends; occupied+=path.Cells.Count; report.LengthHistogram[path.Cells.Count]++;
+                int bends=PuzzleValidator.CountTurns(puzzle.Surface,path); pathTurns.Add(path.Id,bends); maxTurns=Math.Max(maxTurns,bends);
+                turns+=bends; occupied+=path.CellIds.Count; report.LengthHistogram[path.CellIds.Count]++;
                 if(path.FaceTransitionCount>0) report.CrossFacePaths++;
             }
             links.Sort((a,b)=>a.Path!=b.Path ? a.Path.CompareTo(b.Path) : a.Blocker.CompareTo(b.Blocker));
@@ -143,7 +147,7 @@ namespace ArrowCube.Generation
             report.DependencyLayers=report.LongestDependencyChain; report.AverageDependencyDepth=sumDepth/count;
             report.SafePaths=safe.ToArray(); report.BlockedPaths=blocked.ToArray(); report.Dependencies=links.ToArray();
             report.InitialSafe=safe.Count; report.InitialBlocked=blocked.Count; report.InitialSafeFraction=safe.Count/(double)count;
-            report.AverageLength=occupied/(double)count; report.AverageTurns=turns/(double)count; report.Coverage=occupied/(double)puzzle.Topology.CellCount;
+            report.AverageLength=occupied/(double)count; report.AverageTurns=turns/(double)count; report.Coverage=occupied/(double)puzzle.Surface.CellCount;
             report.TurnHistogram=new int[maxTurns+1]; foreach(int bends in pathTurns.Values) report.TurnHistogram[bends]++;
             int crossLinks=0; foreach(var link in links) if(link.CrossFace) crossLinks++;
             report.CrossFaceDependencyFraction=crossLinks/(double)Math.Max(1,links.Count);
@@ -152,6 +156,11 @@ namespace ArrowCube.Generation
             report.EdgeRemovabilityCorrelation=variance>1e-12 && yMean>0 && yMean<1
                 ? (sumSafeDistance/count-xMean*yMean)/Math.Sqrt(variance*yMean*(1-yMean)) : 0;
             MeasureDensity(puzzle,grid,report,cancellationToken);
+            report.SurfaceRegionCount=regionCount; report.RegionCoverage=new double[regionCount];
+            var totals=new int[regionCount]; foreach(int cell in puzzle.Surface.EnumerateCellIds()) { int r=regions.RegionOf(cell); totals[r]++; if(grid.TryGetCellOwner(cell,out _)) report.RegionCoverage[r]++; }
+            double mean=0; for(int r=0;r<regionCount;r++) { if(report.RegionCoverage[r]>0) report.OccupiedSurfaceRegions++; report.RegionCoverage[r]/=Math.Max(1,totals[r]); mean+=report.RegionCoverage[r]/regionCount; }
+            foreach(double coverage in report.RegionCoverage) report.RegionCoverageDeviation+=(coverage-mean)*(coverage-mean)/regionCount;
+            report.RegionCoverageDeviation=Math.Sqrt(report.RegionCoverageDeviation); foreach(var path in puzzle.Paths) report.GeometricFolds+=path.GeometricTransitionCount;
             report.Solvers=new HeuristicSolverReport[4]; var solver=new HeuristicPuzzleSolver();
             for(int i=0;i<4;i++) report.Solvers[i]=solver.Solve(puzzle,(HeuristicStrategy)i,seed,cancellationToken);
             report.AlternativeRandomOrders=new HeuristicSolverReport[alternativeOrderSamples];
@@ -170,15 +179,15 @@ namespace ArrowCube.Generation
         private static void MeasureDensity(PuzzleDefinition puzzle,SurfaceGrid grid,PuzzleDifficultyReport report,CancellationToken token)
         {
             double sum=0,squares=0;
-            for(int i=0;i<puzzle.Topology.CellCount;i++)
+            for(int i=0;i<puzzle.Surface.CellCount;i++)
             {
                 if((i&255)==0) token.ThrowIfCancellationRequested();
-                var cell=puzzle.Topology.GetCoordinate(i); int occupied=0;
-                for(int d=0;d<4;d++) if(grid.TryGetCellOwner(puzzle.Topology.Step(cell,(ArrowCube.Topology.SurfaceDirection)d).Coordinate,out _)) occupied++;
+                var cell=puzzle.Surface.GetCoordinate(i); int occupied=0;
+                for(int d=0;d<4;d++) if(grid.TryGetCellOwner(puzzle.Surface.Step(cell,(ArrowCube.Topology.SurfaceDirection)d).CellId,out _)) occupied++;
                 double density=occupied/4.0; sum+=density; squares+=density*density;
             }
-            report.MeanLocalDensity=sum/puzzle.Topology.CellCount;
-            report.LocalDensityDeviation=Math.Sqrt(Math.Max(0,squares/puzzle.Topology.CellCount-report.MeanLocalDensity*report.MeanLocalDensity));
+            report.MeanLocalDensity=sum/puzzle.Surface.CellCount;
+            report.LocalDensityDeviation=Math.Sqrt(Math.Max(0,squares/puzzle.Surface.CellCount-report.MeanLocalDensity*report.MeanLocalDensity));
         }
 
         private static void MeasureChoices(PuzzleDefinition puzzle,int[] order,Dictionary<int,HashSet<int>> blockers,
@@ -206,7 +215,7 @@ namespace ArrowCube.Generation
             // regions or increasing the path count must not automatically raise the score.
             r.EdgeFirstNormalizedMistakeRate=2*failures/Math.Max(1,r.PathCount-1);
             double dependencyScale=Math.Max(1,Math.Log(r.PathCount+1,2));
-            double entropy=0; foreach(int faceSafe in r.SafeByFace) if(faceSafe>0) { double p=faceSafe/(double)Math.Max(1,r.InitialSafe); entropy-=p*Math.Log(p)/Math.Log(6); }
+            double entropy=0; foreach(int faceSafe in r.SafeByFace) if(faceSafe>0) { double p=faceSafe/(double)Math.Max(1,r.InitialSafe); entropy-=p*Math.Log(p)/Math.Log(Math.Max(2,r.SafeByFace.Length)); }
             var c=new DifficultyComponentScores {
                 EdgeResistance=100*Clamp(2*r.EdgeFirstNormalizedMistakeRate),
                 Dependencies=100*Clamp(.55*(r.AverageDependencyDepth-1)/dependencyScale+.25*(r.LongestDependencyChain-1)/(2*dependencyScale)+.20*r.Dependencies.Length/(double)Math.Max(1,r.PathCount*3)),

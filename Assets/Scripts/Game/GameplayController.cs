@@ -24,6 +24,8 @@ namespace ArrowCube.Game
         private ActiveLevelSave active;
         private GenerationOperation generation;
         private int pendingLevel;
+        private bool pendingSandbox;
+        private ISurfaceGeometry pendingGeometry;
         private string expectedFingerprint;
         private bool settingsDirty;
         private float settingsSaveAt;
@@ -93,7 +95,7 @@ namespace ArrowCube.Game
                 else if(job.Error!=null) { Message=job.Error.Message; SetPage(GamePage.Error); }
                 else if(!string.IsNullOrEmpty(expectedFingerprint) && job.Result.Fingerprint!=expectedFingerprint)
                 { Message="This saved level could not be reproduced exactly. Its saved recipe has been kept."; SetPage(GamePage.Error); }
-                else LoadPuzzle(job.Result,pendingLevel,false);
+                else LoadPuzzle(job.Result,pendingLevel,pendingSandbox,pendingGeometry);
             }
             else if(generation?.Progress!=null)
             {
@@ -125,12 +127,20 @@ namespace ArrowCube.Game
                 var archive=Player.Progress.Find(level);
                 bool archived=archive?.Recipe!=null && archive.Recipe.Version>0;
                 var recipe=archived ? archive.Recipe.Restore() : settings.RecipeFor(level,Player.BaseSeed);
-                Save(); CancelGeneration(false); pendingLevel=level;
+                Save(); CancelGeneration(false); pendingLevel=level; pendingSandbox=false; pendingGeometry=null;
                 expectedFingerprint=archived ? archive.Fingerprint : null;
                 generation=new GenerationOperation(recipe,GenerateOnMainThread);
                 Message="Building a verified puzzle..."; SetPage(GamePage.Generating); return true;
             }
             catch(ArgumentException error) { Message=error.Message; SetPage(GamePage.Error); return false; }
+        }
+        public void StartSandboxGeneration(PuzzleRecipe recipe,ISurfaceGeometry geometry=null)
+        {
+            if(recipe==null) throw new ArgumentNullException(nameof(recipe));
+            if(geometry!=null) ArrowCube.Topology.CubeTopologyAdapter.RequireCompatible(recipe.Surface,geometry.Surface);
+            Save(); CancelGeneration(false); pendingLevel=1; pendingSandbox=true; pendingGeometry=geometry; expectedFingerprint=null;
+            generation=new GenerationOperation(recipe,GenerateOnMainThread);
+            Message="Building a verified surface puzzle..."; SetPage(GamePage.Generating);
         }
         public void LoadPuzzle(PuzzleDefinition puzzle,int level=1,bool sandbox=true,ISurfaceGeometry geometry=null)
         {

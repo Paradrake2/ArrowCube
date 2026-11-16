@@ -8,6 +8,8 @@ namespace ArrowCube.Generation
     {
         public string Name { get; }
         public int GridSize { get; }
+        public int SurfaceCellCount { get; }
+        public int MinCrossRegionPaths => MinCrossFacePaths;
         public int MinPathLength { get; }
         public int MaxPathLength { get; }
         public int MinPathCount { get; }
@@ -22,13 +24,15 @@ namespace ArrowCube.Generation
 
         public DifficultyProfile(string name, int gridSize, int minPathLength, int maxPathLength,
             int minPathCount, int minCrossFacePaths, double minimumCoverage, double targetCoverage,
-            double minimumBlockedFraction, double minimumAverageTurns, double turnProbability, int maxGates,int maxPathCount=int.MaxValue)
+            double minimumBlockedFraction, double minimumAverageTurns, double turnProbability, int maxGates,int maxPathCount=int.MaxValue,int surfaceCellCount=0)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Profile needs a name.", nameof(name));
+            if(surfaceCellCount<0 || surfaceCellCount>65536) throw new ArgumentOutOfRangeException(nameof(surfaceCellCount));
+            int capacity=surfaceCellCount>0 ? surfaceCellCount : 6*gridSize*gridSize;
             if (gridSize < 4 || gridSize > 64) throw new ArgumentOutOfRangeException(nameof(gridSize), "Generation supports 4..64 cells per face side.");
-            if (minPathLength < 2 || maxPathLength < minPathLength || maxPathLength > 6*gridSize*gridSize)
+            if (minPathLength < 2 || maxPathLength < minPathLength || maxPathLength > capacity)
                 throw new ArgumentOutOfRangeException(nameof(minPathLength));
-            if (minPathCount < 1 || minCrossFacePaths < 1 || minCrossFacePaths > 6*gridSize*gridSize/minPathLength)
+            if (minPathCount < 1 || minCrossFacePaths < (surfaceCellCount>0 ? 0 : 1) || minCrossFacePaths > capacity/minPathLength)
                 throw new ArgumentOutOfRangeException(nameof(minCrossFacePaths));
             if(maxPathCount<minPathCount) throw new ArgumentOutOfRangeException(nameof(maxPathCount));
             Fraction(minimumCoverage,nameof(minimumCoverage)); Fraction(targetCoverage,nameof(targetCoverage));
@@ -36,7 +40,7 @@ namespace ArrowCube.Generation
             if (minimumCoverage <= 0 || minimumCoverage > targetCoverage || minimumBlockedFraction >= 1
                 || double.IsNaN(minimumAverageTurns) || double.IsInfinity(minimumAverageTurns)
                 || minimumAverageTurns < 0 || maxGates < 1) throw new ArgumentOutOfRangeException(nameof(minimumCoverage));
-            Name=name; GridSize=gridSize; MinPathLength=minPathLength; MaxPathLength=maxPathLength;
+            SurfaceCellCount=surfaceCellCount; Name=name; GridSize=gridSize; MinPathLength=minPathLength; MaxPathLength=maxPathLength;
             MinPathCount=minPathCount; MinCrossFacePaths=minCrossFacePaths; MinimumCoverage=minimumCoverage;
             TargetCoverage=targetCoverage; MinimumBlockedFraction=minimumBlockedFraction;
             MinimumAverageTurns=minimumAverageTurns; TurnProbability=turnProbability; MaxGates=maxGates;

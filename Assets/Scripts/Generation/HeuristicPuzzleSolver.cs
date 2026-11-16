@@ -72,20 +72,20 @@ namespace ArrowCube.Generation
 
         private static double Rank(PuzzleDefinition puzzle,ArrowPath path,HeuristicStrategy strategy)
         {
-            if(strategy==HeuristicStrategy.NearestEdge) return EdgeDistance(path.Head,puzzle.Topology.GridSize);
+            if(strategy==HeuristicStrategy.NearestEdge) return puzzle.Surface.Generation().ExitDistance(path.HeadCellId);
             if(strategy==HeuristicStrategy.OutermostLayer)
             {
                 int min=int.MaxValue; double average=0;
-                foreach(var cell in path.Cells) { int d=EdgeDistance(cell,puzzle.Topology.GridSize); min=Math.Min(min,d); average+=d; }
-                return min+average/path.Cells.Count/(puzzle.Topology.GridSize+1);
+                foreach(var cell in path.CellIds) { int d=puzzle.Surface.Generation().ExitDistance(cell); min=Math.Min(min,d); average+=d; }
+                return min+average/path.CellIds.Count/(puzzle.Surface.Generation().Scale+1);
             }
             // Geometric projection ignores occupancy and does not ask whether this move is safe.
-            var head=path.Head; var heading=path.HeadDirection;
-            for(int distance=0;distance<=4*puzzle.Topology.GridSize;distance++)
+            var head=path.HeadCellId; var heading=path.HeadDirection;
+            for(int distance=0;distance<=puzzle.Surface.Generation().RouteLimit;distance++)
             {
-                var step=puzzle.Topology.Step(head,heading);
-                if(puzzle.Rules.EnableCubeEdgeExits && step.CrossedEdge || puzzle.Rules.EnableDirectionalGates && puzzle.Exits.CanExit(head,heading)) return distance;
-                head=step.Coordinate; heading=step.Direction;
+                var step=puzzle.Surface.Step(head,heading);
+                if(puzzle.Rules.EnableCubeEdgeExits && step.AllowsEdgeExit || puzzle.Rules.EnableDirectionalGates && puzzle.Exits.CanExit(head,heading)) return distance;
+                head=step.CellId; heading=step.Direction;
             }
             return double.MaxValue;
         }

@@ -10,6 +10,9 @@ public static class SurfaceGeometryDemoMenu
     public static void OpenL() => Open(false);
     [MenuItem("Arrow Cube/Phase 3/Open Oblique Prism Demo")]
     public static void OpenPrism() => Open(true);
+    [MenuItem("Arrow Cube/Phase 4/Open Procedural Surface Lab")]
+    public static void OpenGeneration()
+    { if(EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) EditorSceneManager.OpenScene("Assets/Scenes/SurfaceGeneration.unity"); }
     private static void Open(bool folded)
     {
         if(!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;

@@ -8,6 +8,8 @@ namespace ArrowCube.Movement
     public class PuzzleDefinition
     {
         public string Name { get; }
+        public string SurfaceAssetId { get; }
+        public int SurfaceAssetVersion { get; }
         public ISurfaceTopology Surface { get; }
         public CubeTopology Topology => CubeTopologyAdapter.Require(Surface);
         public IReadOnlyList<ArrowPath> Paths { get; }
@@ -15,8 +17,9 @@ namespace ArrowCube.Movement
         public ExitRules Rules { get; }
 
         public PuzzleDefinition(string name, ISurfaceTopology topology, IEnumerable<ArrowPath> paths,
-            ExitMap exits, ExitRules rules = null)
+            ExitMap exits, ExitRules rules = null,string surfaceAssetId=null,int surfaceAssetVersion=0)
         {
+            SurfaceAssetId=surfaceAssetId; SurfaceAssetVersion=surfaceAssetVersion;
             Name = name ?? throw new ArgumentNullException(nameof(name));
             Surface = topology ?? throw new ArgumentNullException(nameof(topology));
             if (paths == null) throw new ArgumentNullException(nameof(paths));

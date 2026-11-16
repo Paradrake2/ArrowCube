@@ -66,9 +66,11 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         if(debugSelected<0) return "Enable inspection, then tap an arrow or choose Next arrow. Inspection taps do not move arrows.";
         var node=generated.DependencyGraph.GetNode(debugSelected);
         int faceMask=node.FaceMask; foreach(int id in node.ConfirmedBlockers) faceMask|=generated.DependencyGraph.GetNode(id).FaceMask;
-        var names=new List<string>(); for(int face=0;face<6;face++) if((faceMask&(1<<face))!=0) names.Add(((CubeFace)face).ToString());
+        var names=new List<string>();
+        if(puzzle.Surface is CubeTopology) { for(int face=0;face<6;face++) if((faceMask&(1<<face))!=0) names.Add(((CubeFace)face).ToString()); }
+        else { var regions=new SortedSet<int>(node.Regions); foreach(int id in node.ConfirmedBlockers) regions.UnionWith(generated.DependencyGraph.GetNode(id).Regions); foreach(int region in regions) names.Add(region.ToString()); }
         int remaining=0; foreach(int id in node.ConfirmedBlockers) if(grid.Paths.ContainsKey(id)) remaining++;
-        return $"Arrow {node.PathId}: depth {node.Depth}\nPotential: {string.Join(", ",node.PotentialBlockers)}\nConfirmed: {string.Join(", ",node.ConfirmedBlockers)}\nIndependent group: {string.Join(", ",node.IndependentBlockers)}\nBlocks: {string.Join(", ",node.PathsBlocked)}\nRemaining blockers: {remaining}\nFaces involved: {string.Join(", ",names)}\nSubset checks: {node.SubsetChecks}; exhaustive: {node.ExhaustiveSubsetsVerified}\nIndependence width exact: {node.IndependentWidthExact}\nGraph is for the original fixed geometry. Colored spheres show the full body sweep.";
+        return $"Arrow {node.PathId}: depth {node.Depth}\nPotential: {string.Join(", ",node.PotentialBlockers)}\nConfirmed: {string.Join(", ",node.ConfirmedBlockers)}\nIndependent group: {string.Join(", ",node.IndependentBlockers)}\nBlocks: {string.Join(", ",node.PathsBlocked)}\nRemaining blockers: {remaining}\n{(puzzle.Surface is CubeTopology ? "Faces" : "Regions")} involved: {string.Join(", ",names)}\nSubset checks: {node.SubsetChecks}; exhaustive: {node.ExhaustiveSubsetsVerified}\nIndependence width exact: {node.IndependentWidthExact}\nGraph is for the original fixed geometry. Colored spheres show the full body sweep.";
     }
     public SurfaceGrid Grid => grid;
     public MovementPlan LastPlan { get; private set; }
@@ -563,7 +565,7 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         demoCamera.transform.position=transform.TransformPoint(geometry.Bounds.center)+normal*SurfaceSideLength*3;
         demoCamera.transform.LookAt(transform.TransformPoint(geometry.Bounds.center),transform.TransformDirection(geometry.GetDirection(cellId,SurfaceDirection.Up)));
     }
-    private Vector3 WorldCell(SurfaceCoordinate cell,float lift) => transform.TransformPoint(geometry.GetCellCenter(puzzle.Topology.GetCellIndex(cell),lift));
+    private Vector3 WorldCell(int cell,float lift) => transform.TransformPoint(geometry.GetCellCenter(cell,lift));
 
     private void OnDrawGizmos()
     {
@@ -584,9 +586,9 @@ public sealed class Stage2MovementDemo : MonoBehaviour
             ArrowPath selected=null; foreach(var path in puzzle.Paths) if(path.Id==debugSelected) { selected=path; break; }
             if(selected!=null)
             {
-                var sweep=debugTrajectories.Get(puzzle.Topology,selected,puzzle.Exits,puzzle.Rules);
+                var sweep=debugTrajectories.Get(puzzle.Surface,selected,puzzle.Exits,puzzle.Rules);
                 Gizmos.color=Color.yellow;
-                foreach(var cell in sweep.SweptCells) Gizmos.DrawWireSphere(WorldCell(cell,.05f),geometry.ReferenceCellSize*.18f);
+                foreach(var cell in sweep.SweptCellIds) Gizmos.DrawWireSphere(WorldCell(cell,.05f),geometry.ReferenceCellSize*.18f);
             }
         }
         if(DebugDependencies)
@@ -594,13 +596,13 @@ public sealed class Stage2MovementDemo : MonoBehaviour
             Gizmos.color=new Color(1,.5f,.1f,.65f);
             foreach(var link in generated.Difficulty.Dependencies)
                 if(grid.Paths.TryGetValue(link.Path,out var from) && grid.Paths.TryGetValue(link.Blocker,out var to))
-                    Gizmos.DrawLine(WorldCell(from.Head,.04f),WorldCell(to.Head,.04f));
+                    Gizmos.DrawLine(WorldCell(from.HeadCellId,.04f),WorldCell(to.HeadCellId,.04f));
         }
         if(DebugSolverSelections)
         {
             Gizmos.color=Color.yellow; var attempts=generated.Difficulty.Solvers[0].AttemptedPaths;
             for(int i=0;i<Mathf.Min(20,attempts.Length);i++)
-                if(grid.Paths.TryGetValue(attempts[i],out var path)) Gizmos.DrawWireSphere(WorldCell(path.Head,.04f),geometry.ReferenceCellSize*.35f);
+                if(grid.Paths.TryGetValue(attempts[i],out var path)) Gizmos.DrawWireSphere(WorldCell(path.HeadCellId,.04f),geometry.ReferenceCellSize*.35f);
         }
     }
 

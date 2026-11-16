@@ -55,7 +55,7 @@ namespace ArrowCube.Generation
                 if(endpointTrials>=endpointBudget) break;
                 double cost=Cost(states,settings);
                 bool changed=false;
-                var grid=new SurfaceGrid(source.Topology,paths);
+                var grid=new SurfaceGrid(source.Surface,paths);
                 for(int offset=0;offset<paths.Count && !changed && endpointTrials<endpointBudget;offset++)
                 {
                     int index=(start+offset)%paths.Count; var original=paths[index];
@@ -64,19 +64,19 @@ namespace ArrowCube.Generation
                     for(int direction=0;direction<4 && !changed && endpointTrials<endpointBudget;direction++)
                     {
                         token.ThrowIfCancellationRequested();
-                        var cells=new List<SurfaceCoordinate>(original.Cells);
+                        var cells=new List<int>(original.CellIds);
                         int endpoint=end==0 ? 0 : cells.Count-1,neighbor=end==0 ? 1 : cells.Count-2;
-                        var next=source.Topology.Step(cells[neighbor],(SurfaceDirection)direction).Coordinate;
+                        var next=source.Surface.Step(cells[neighbor],(SurfaceDirection)direction).CellId;
                         if(next==cells[endpoint] || cells.Contains(next) || grid.TryGetCellOwner(next,out _)) continue;
                         cells[endpoint]=next; endpointTrials++;
                         yield return null;
-                        source.Topology.TryGetDirection(cells[1],cells[0],out var incoming);
-                        var heading=source.Topology.Step(cells[1],incoming).Direction;
-                        var replacement=new ArrowPath(original.Id,source.Topology,cells,heading);
-                        var solo=sim.Simulate(new SurfaceGrid(source.Topology,new[] { replacement }),replacement.Id,source.Exits,source.Rules);
+                        source.Surface.TryGenerationDirection(cells[1],cells[0],out var incoming);
+                        var heading=source.Surface.Step(cells[1],incoming).Direction;
+                        var replacement=GenerationPaths.Create(original.Id,source.Surface,cells,heading);
+                        var solo=sim.Simulate(new SurfaceGrid(source.Surface,new[] { replacement }),replacement.Id,source.Exits,source.Rules);
                         if(!InitialExitClearance.IsClear(solo)) continue;
                         var proposed=new List<ArrowPath>(paths); proposed[index]=replacement;
-                        var definition=new PuzzleDefinition(source.Name,source.Topology,proposed,source.Exits,source.Rules);
+                        var definition=new PuzzleDefinition(source.Name,source.Surface,proposed,source.Exits,source.Rules);
                         var validation=validator.Validate(definition,cancellationToken:token,requireClearInitialExit:true);
                         if(!validation.Succeeded || PuzzleGenerator.QualityError(source.Recipe,validation.Statistics,false).Length!=0) continue;
                         var nextStates=Build(source,proposed,token);
@@ -86,7 +86,7 @@ namespace ArrowCube.Generation
                 }
                 if(!changed) break;
             }
-            var finalDefinition=new PuzzleDefinition(source.Name,source.Topology,paths,source.Exits,source.Rules);
+            var finalDefinition=new PuzzleDefinition(source.Name,source.Surface,paths,source.Exits,source.Rules);
             var final=validator.Validate(finalDefinition,cancellationToken:token,requireClearInitialExit:true);
             if(!final.Succeeded || PuzzleGenerator.QualityError(source.Recipe,final.Statistics,false).Length!=0) { yield return source; yield break; }
             var result=new GeneratedPuzzle(source.Recipe,finalDefinition,final,source.Report);
@@ -105,14 +105,14 @@ namespace ArrowCube.Generation
         }
         private List<State> Build(PuzzleDefinition source,List<ArrowPath> paths,CancellationToken token)
         {
-            var grid=new SurfaceGrid(source.Topology,paths); var result=new List<State>();
+            var grid=new SurfaceGrid(source.Surface,paths); var result=new List<State>();
             foreach(var path in paths)
             {
                 token.ThrowIfCancellationRequested(); var state=new State { Path=path,Blockers=Find(source,grid,path) };
-                var cells=new List<SurfaceCoordinate>(path.Cells); cells.Reverse();
-                source.Topology.TryGetDirection(cells[1],cells[0],out var incoming);
-                var reversed=new ArrowPath(path.Id,source.Topology,cells,source.Topology.Step(cells[1],incoming).Direction);
-                var alone=sim.Simulate(new SurfaceGrid(source.Topology,new[] { reversed }),reversed.Id,source.Exits,source.Rules);
+                var cells=new List<int>(path.CellIds); cells.Reverse();
+                source.Surface.TryGenerationDirection(cells[1],cells[0],out var incoming);
+                var reversed=GenerationPaths.Create(path.Id,source.Surface,cells,source.Surface.Step(cells[1],incoming).Direction);
+                var alone=sim.Simulate(new SurfaceGrid(source.Surface,new[] { reversed }),reversed.Id,source.Exits,source.Rules);
                 if(InitialExitClearance.IsClear(alone)) { state.Reverse=reversed; state.ReverseBlockers=Find(source,grid,reversed); }
                 result.Add(state);
             }
@@ -120,10 +120,10 @@ namespace ArrowCube.Generation
         }
         private HashSet<int> Find(PuzzleDefinition source,SurfaceGrid grid,ArrowPath path)
         {
-            var route=sim.Simulate(new SurfaceGrid(source.Topology,new[] { path }),path.Id,source.Exits,source.Rules);
+            var route=sim.Simulate(new SurfaceGrid(source.Surface,new[] { path }),path.Id,source.Exits,source.Rules);
             var owners=new HashSet<int>();
-            for(int i=path.Cells.Count;i<route.Rail.Count;i++)
-                if(route.Rail[i].IsOnSurface && grid.TryGetCellOwner(route.Rail[i].Cell,out int id) && id!=path.Id) owners.Add(id);
+            for(int i=path.CellIds.Count;i<route.CellRail.Count;i++)
+                if(route.CellRail[i].IsOnSurface && grid.TryGetCellOwner(route.CellRail[i].CellId,out int id) && id!=path.Id) owners.Add(id);
             return owners;
         }
         private static bool CreatesCycle(int id,HashSet<int> proposed,List<State> states,CancellationToken token)

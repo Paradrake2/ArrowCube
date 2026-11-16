@@ -33,7 +33,7 @@ namespace ArrowCube.Generation
         public PuzzleDependencyGraph DependencyGraph { get; internal set; }
         public DependencyControlReport DependencyControlReport { get; internal set; }
         internal GeneratedPuzzle(PuzzleRecipe recipe,PuzzleDefinition puzzle,PuzzleValidation validation,GenerationReport report)
-            : base(puzzle.Name,puzzle.Topology,puzzle.Paths,puzzle.Exits,puzzle.Rules)
+            : base(puzzle.Name,puzzle.Surface,puzzle.Paths,puzzle.Exits,puzzle.Rules,recipe.Shape?.Id??puzzle.SurfaceAssetId,recipe.Shape?.Version??puzzle.SurfaceAssetVersion)
         {
             Recipe=recipe; VerifiedSolution=validation.Solution; Statistics=validation.Statistics; Report=report;
             Fingerprint=ComputeFingerprint();
@@ -60,6 +60,15 @@ namespace ArrowCube.Generation
                     writer.Write(Rules.EnableCubeEdgeExits); writer.Write(Rules.EnableDirectionalGates);
                     if(Recipe.GenerationVersion>=5)
                     { writer.Write(Recipe.DependencyControlSettings!=null); Recipe.DependencyControlSettings?.Write(writer); }
+                    if(Recipe.Shape!=null)
+                    {
+                        writer.Write(Recipe.Shape.Digest); writer.Write(p.SurfaceCellCount); writer.Write(Exits.CellGates.Count);
+                        foreach(var gate in Exits.CellGates) { writer.Write(gate.CellId); writer.Write((int)gate.Direction); }
+                        writer.Write(Paths.Count);
+                        foreach(var path in Paths) { writer.Write(path.Id); writer.Write((int)path.HeadDirection); writer.Write(path.CellIds.Count); foreach(int cell in path.CellIds) writer.Write(cell); foreach(var d in path.BodyDirections) writer.Write((int)d); }
+                    }
+                    else
+                    {
                     writer.Write(Exits.Gates.Count);
                     foreach(var gate in Exits.Gates) { Cell(gate.Cell); writer.Write((int)gate.Direction); }
                     writer.Write(Paths.Count);
@@ -67,6 +76,7 @@ namespace ArrowCube.Generation
                     {
                         writer.Write(path.Id); writer.Write((int)path.HeadDirection); writer.Write(path.Cells.Count);
                         foreach(var cell in path.Cells) Cell(cell);
+                    }
                     }
                     writer.Write(VerifiedSolution.Count);
                     foreach(int id in VerifiedSolution) writer.Write(id);

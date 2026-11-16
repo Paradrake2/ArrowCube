@@ -8,6 +8,11 @@ namespace ArrowCube.Generation
 {
     public sealed class PuzzleStatistics
     {
+        public int RegionCount,OccupiedRegions;
+        public int[] RegionOccupiedCells;
+        public int CrossRegionPaths => CrossFacePaths;
+        public int GeometricFolds => FaceTransitions;
+        public int ConnectedRegions => ConnectedFaces;
         public int PathCount { get; internal set; }
         public int OccupiedCells { get; internal set; }
         public double Coverage { get; internal set; }
@@ -97,7 +102,9 @@ namespace ArrowCube.Generation
         {
             stats.PathCount=grid.Paths.Count; stats.OccupiedCells=grid.OccupiedCellCount;
             stats.Coverage=stats.OccupiedCells/(double)puzzle.Surface.CellCount;
-            var faceLinks=new bool[6,6];
+            var regions=puzzle.Surface.Generation(); int regionCount=regions.RegionCount;
+            var faceLinks=new HashSet<int>[regionCount]; for(int r=0;r<regionCount;r++) faceLinks[r]=new HashSet<int>();
+            var occupiedRegions=new HashSet<int>(); var regionCoverage=new int[regionCount];
             var dependencies=new Dictionary<int,List<int>>();
             foreach(var path in puzzle.Paths)
             {
@@ -105,9 +112,9 @@ namespace ArrowCube.Generation
                 if(path.FaceTransitionCount>0) stats.CrossFacePaths++;
                 stats.FaceTransitions+=path.FaceTransitionCount;
                 stats.TotalTurns+=CountTurns(puzzle.Surface,path);
-                if(puzzle.Surface is CubeTopology)
-                    foreach(var segment in path.Segments)
-                        if(segment.CrossesFace) faceLinks[(int)segment.A.Face,(int)segment.B.Face]=faceLinks[(int)segment.B.Face,(int)segment.A.Face]=true;
+                foreach(int cell in path.CellIds) { int r=regions.RegionOf(cell); occupiedRegions.Add(r); regionCoverage[r]++; }
+                foreach(var segment in path.CellSegments)
+                { int a=regions.RegionOf(segment.A),b=regions.RegionOf(segment.B); if(a!=b) { faceLinks[a].Add(b); faceLinks[b].Add(a); } }
                 if(simulator.Simulate(grid,path.Id,puzzle.Exits,puzzle.Rules).Succeeded) stats.ImmediatelyRemovablePaths++;
                 // The unobstructed route supplies ALL blockers, not just the first collision.
                 var alone=new SurfaceGrid(puzzle.Surface,new[] { path });
@@ -124,11 +131,18 @@ namespace ArrowCube.Generation
                     }
                 dependencies.Add(path.Id,blockers); stats.DependencyCount+=blockers.Count;
             }
-            var seen=new bool[6]; var queue=new Queue<int>(); seen[0]=true; if(puzzle.Surface is CubeTopology) queue.Enqueue(0);
-            while(queue.Count>0)
+            stats.RegionCount=regionCount; stats.OccupiedRegions=occupiedRegions.Count; stats.RegionOccupiedCells=regionCoverage;
+            var seen=new bool[regionCount]; var queue=new Queue<int>();
+            for(int start=0;start<regionCount;start++)
             {
-                int face=queue.Dequeue(); stats.ConnectedFaces++;
-                for(int other=0;other<6;other++) if(faceLinks[face,other] && !seen[other]) { seen[other]=true; queue.Enqueue(other); }
+                if(seen[start]) continue; seen[start]=true; queue.Enqueue(start); int component=0;
+                while(queue.Count>0)
+                {
+                    int region=queue.Dequeue(); if(puzzle.Surface is CubeTopology || occupiedRegions.Contains(region)) component++;
+                    foreach(int other in faceLinks[region]) if(!seen[other]) { seen[other]=true; queue.Enqueue(other); }
+                }
+                stats.ConnectedFaces=Math.Max(stats.ConnectedFaces,component);
+                if(puzzle.Surface is CubeTopology) break; // Historical root-face-zero component.
             }
             // Iterative topological depth avoids recursion on dense puzzles and detects cycles.
             var depths=new Dictionary<int,int>();

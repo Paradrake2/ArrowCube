@@ -13,12 +13,14 @@ namespace ArrowCube.Generation
     {
         public int Blocker,FaceMask;
         public DependencyCertainty Certainty;
+        public int[] CellIds,Regions;
         public int[] Faces,X,Y,FirstSteps,LastSteps;
     }
     [Serializable]
     public sealed class DependencyNode
     {
         public int PathId,FaceMask,Depth;
+        public int[] Regions;
         public int[] PotentialBlockers,ConfirmedBlockers,PathsBlocked,IndependentBlockers;
         public bool HasValidExit,InitiallyRemovable,SubsetVerificationPassed,ExhaustiveSubsetsVerified,IndependentWidthExact;
         public int SubsetChecks;
@@ -71,35 +73,38 @@ namespace ArrowCube.Generation
             bool valid=true;
             foreach(var target in puzzle.Paths)
             {
-                token.ThrowIfCancellationRequested(); var trajectory=cache.Get(puzzle.Topology,target,puzzle.Exits,puzzle.Rules,token);
-                var initial=new HashSet<SurfaceCoordinate>(target.Cells);
-                var hits=new SortedDictionary<int,List<TrajectoryVisit>>();
-                foreach(var visit in trajectory.Visits)
-                    if(!initial.Contains(visit.Cell) && grid.TryGetCellOwner(visit.Cell,out int owner) && owner!=target.Id)
-                    { if(!hits.TryGetValue(owner,out var list)) hits.Add(owner,list=new List<TrajectoryVisit>()); list.Add(visit); }
-                foreach(var segment in trajectory.SweptSegments)
-                    if(grid.TryGetSegmentOwner(segment,out int owner) && owner!=target.Id && !hits.ContainsKey(owner)) hits.Add(owner,new List<TrajectoryVisit>());
+                token.ThrowIfCancellationRequested(); var trajectory=cache.Get(puzzle.Surface,target,puzzle.Exits,puzzle.Rules,token);
+                var initial=new HashSet<int>(target.CellIds);
+                var hits=new SortedDictionary<int,List<CellTrajectoryVisit>>();
+                foreach(var visit in trajectory.CellVisits)
+                    if(!initial.Contains(visit.CellId) && grid.TryGetCellOwner(visit.CellId,out int owner) && owner!=target.Id)
+                    { if(!hits.TryGetValue(owner,out var list)) hits.Add(owner,list=new List<CellTrajectoryVisit>()); list.Add(visit); }
+                foreach(var segment in trajectory.SweptCellSegments)
+                    if(grid.TryGetSegmentOwner(segment,out int owner) && owner!=target.Id && !hits.ContainsKey(owner)) hits.Add(owner,new List<CellTrajectoryVisit>());
                 var confirmed=new List<int>(); var evidence=new List<DependencyInterference>(); var potential=new List<int>(hits.Keys);
                 foreach(var pair in hits)
                 {
                     token.ThrowIfCancellationRequested();
-                    var isolated=new SurfaceGrid(puzzle.Topology,new[] { target,paths[pair.Key] });
+                    var isolated=new SurfaceGrid(puzzle.Surface,new[] { target,paths[pair.Key] });
                     var attempt=simulator.Simulate(isolated,target.Id,puzzle.Exits,puzzle.Rules);
                     bool required=trajectory.HasValidExit && attempt.Outcome==MovementOutcome.BlockedByPath && attempt.BlockingPathId==pair.Key;
                     var proof=new DependencyInterference { Blocker=pair.Key,Certainty=required ? DependencyCertainty.ConfirmedMandatoryFixedRoute : DependencyCertainty.Potential };
-                    int n=pair.Value.Count; proof.Faces=new int[n]; proof.X=new int[n]; proof.Y=new int[n]; proof.FirstSteps=new int[n]; proof.LastSteps=new int[n];
-                    for(int i=0;i<n;i++) { var v=pair.Value[i]; proof.Faces[i]=(int)v.Cell.Face; proof.X[i]=v.Cell.X; proof.Y[i]=v.Cell.Y; proof.FirstSteps[i]=v.FirstStep; proof.LastSteps[i]=v.LastStep; proof.FaceMask|=1<<(int)v.Cell.Face; }
+                    int n=pair.Value.Count; proof.CellIds=new int[n]; proof.Regions=new int[n]; proof.Faces=new int[n]; proof.X=new int[n]; proof.Y=new int[n]; proof.FirstSteps=new int[n]; proof.LastSteps=new int[n];
+                    for(int i=0;i<n;i++) { var v=pair.Value[i]; proof.CellIds[i]=v.CellId; proof.Regions[i]=puzzle.Surface.Generation().RegionOf(v.CellId);
+                        if(puzzle.Surface is CubeTopology cube) { var c=cube.GetCoordinate(v.CellId); proof.Faces[i]=(int)c.Face; proof.X[i]=c.X; proof.Y[i]=c.Y; } proof.FirstSteps[i]=v.FirstStep; proof.LastSteps[i]=v.LastStep; if(puzzle.Surface is CubeTopology) proof.FaceMask|=1<<proof.Faces[i]; }
                     evidence.Add(proof);
                     if(!required) continue;
                     confirmed.Add(pair.Key); outgoing[pair.Key].Add(target.Id);
                     edges.Add(new DependencyGraphEdge { Blocker=pair.Key,Target=target.Id,InterferenceFaceMask=proof.FaceMask,
                         // A target's unrelated cross-face tail is not evidence of a cross-face
                         // dependency. Use actual contacts and the blocker geometry instead.
-                        CrossFaceGeometry=target.Head.Face!=paths[pair.Key].Head.Face || (proof.FaceMask&~(1<<(int)target.Head.Face))!=0
-                            || (FaceMask(paths[pair.Key])&~proof.FaceMask)!=0,Certainty=DependencyCertainty.ConfirmedMandatoryFixedRoute });
+                        CrossFaceGeometry=puzzle.Surface is CubeTopology
+                            ? puzzle.Surface.Generation().RegionOf(target.HeadCellId)!=puzzle.Surface.Generation().RegionOf(paths[pair.Key].HeadCellId)
+                                || (proof.FaceMask&~(1<<puzzle.Surface.Generation().RegionOf(target.HeadCellId)))!=0 || (FaceMask(paths[pair.Key])&~proof.FaceMask)!=0
+                            : CrossRegionContact(puzzle.Surface,target,paths[pair.Key],proof.Regions),Certainty=DependencyCertainty.ConfirmedMandatoryFixedRoute });
                 }
                 var full=simulator.Simulate(grid,target.Id,puzzle.Exits,puzzle.Rules);
-                var node=new DependencyNode { PathId=target.Id,FaceMask=FaceMask(target),HasValidExit=trajectory.HasValidExit,InitiallyRemovable=full.Succeeded,
+                var node=new DependencyNode { PathId=target.Id,Regions=puzzle.Surface.Generation().Regions(target),FaceMask=FaceMask(target),HasValidExit=trajectory.HasValidExit,InitiallyRemovable=full.Succeeded,
                     PotentialBlockers=potential.ToArray(),ConfirmedBlockers=confirmed.ToArray(),Interferences=evidence.ToArray() };
                 node.SubsetVerificationPassed=VerifySubsets(puzzle,target,confirmed,paths,exhaustiveLimit,token,out int checks,out bool exhaustive);
                 node.SubsetChecks=checks; node.ExhaustiveSubsetsVerified=exhaustive;
@@ -126,7 +131,11 @@ namespace ArrowCube.Generation
             graph.Measure(); return graph;
         }
 
-        public static int FaceMask(ArrowPath path) { int mask=0; foreach(var cell in path.Cells) mask|=1<<(int)cell.Face; return mask; }
+        public static int FaceMask(ArrowPath path) { int mask=0; if(path.Surface is CubeTopology cube) foreach(int cell in path.CellIds) mask|=1<<(int)cube.GetCoordinate(cell).Face; return mask; }
+        public static bool SpansRegions(ArrowPath a,ArrowPath b)
+        { int region=a.Surface.Generation().RegionOf(a.HeadCellId); foreach(int c in a.CellIds) if(a.Surface.Generation().RegionOf(c)!=region) return true; foreach(int c in b.CellIds) if(b.Surface.Generation().RegionOf(c)!=region) return true; return false; }
+        private static bool CrossRegionContact(ISurfaceTopology surface,ArrowPath target,ArrowPath blocker,int[] contacts)
+        { int region=surface.Generation().RegionOf(target.HeadCellId); foreach(int r in contacts) if(r!=region) return true; foreach(int c in blocker.CellIds) if(surface.Generation().RegionOf(c)!=region) return true; return false; }
         public static bool VerifyIndependentBlockers(PuzzleDefinition puzzle,int targetId,IReadOnlyCollection<int> expected,CancellationToken token=default)
         {
             var graph=Analyze(puzzle,token); var node=graph.GetNode(targetId);
@@ -142,7 +151,7 @@ namespace ArrowCube.Generation
                 token.ThrowIfCancellationRequested(); var present=new List<ArrowPath> { target };
                 if(exhaustive) { for(int i=0;i<ids.Count;i++) if((subset&(1<<i))!=0) present.Add(paths[ids[i]]); }
                 else if(subset==1) foreach(int id in ids) present.Add(paths[id]);
-                bool succeeded=sim.Simulate(new SurfaceGrid(puzzle.Topology,present),target.Id,puzzle.Exits,puzzle.Rules).Succeeded; checks++;
+                bool succeeded=sim.Simulate(new SurfaceGrid(puzzle.Surface,present),target.Id,puzzle.Exits,puzzle.Rules).Succeeded; checks++;
                 if(succeeded!=(present.Count==1)) return false;
             }
             // For large sets all singleton obstructions were separately proven above.

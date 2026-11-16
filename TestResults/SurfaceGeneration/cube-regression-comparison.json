@@ -1,0 +1,31 @@
+{
+  "baseline": "TestResults/SurfaceGeometry/Unity/stage3-generation-1008.csv",
+  "current": "TestResults/SurfaceGeneration/Unity/stage3-generation-1008.csv",
+  "rows": 1008,
+  "excluded_fields": [
+    "generation_ms"
+  ],
+  "compared_fields": [
+    "profile",
+    "mode",
+    "seed",
+    "version",
+    "paths",
+    "coverage",
+    "cross_face_paths",
+    "initial_safe",
+    "blocked_fraction",
+    "average_turns",
+    "dependencies",
+    "depth",
+    "edge_exits",
+    "gate_exits",
+    "gates",
+    "restarts",
+    "candidate_attempts",
+    "target_reached",
+    "validation_failures",
+    "fingerprint"
+  ],
+  "differences": []
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 21:24:01Z" end-time="2026-11-16 21:24:16Z" duration="14.5102879">
+  <test-suite type="TestSuite" id="1077" name="Project-044f01460dc4" fullname="Project-044f01460dc4" runstate="Runnable" testcasecount="57" result="Passed" start-time="2026-11-16 21:24:01Z" end-time="2026-11-16 21:24:16Z" duration="14.510288" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1065" name="ArrowCube.Movement.PlayMode.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/P4GPU/Project-044f01460dc4/Library/ScriptAssemblies/ArrowCube.Movement.PlayMode.Tests.dll" runstate="Runnable" testcasecount="53" result="Passed" start-time="2026-11-16 21:24:02Z" end-time="2026-11-16 21:24:16Z" duration="14.498111" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="3488" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1066" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="53" result="Passed" start-time="2026-11-16 21:24:02Z" end-time="2026-11-16 21:24:16Z" duration="14.496287" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1067" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="53" result="Passed" start-time="2026-11-16 21:24:02Z" end-time="2026-11-16 21:24:16Z" duration="14.495262" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1039" name="GenericSurfaceGenerationPlayTests" fullname="ArrowCube.Tests.GenericSurfaceGenerationPlayTests" classname="ArrowCube.Tests.GenericSurfaceGenerationPlayTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-11-16 21:24:02Z" end-time="2026-11-16 21:24:16Z" duration="14.492498" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="DeliveredLabGeneratesPicksBlocksAnimatesAndCompletesAllThreeShapes" fullname="ArrowCube.Tests.GenericSurfaceGenerationPlayTests.DeliveredLabGeneratesPicksBlocksAnimatesAndCompletesAllThreeShapes" methodname="DeliveredLabGeneratesPicksBlocksAnimatesAndCompletesAllThreeShapes" classname="ArrowCube.Tests.GenericSurfaceGenerationPlayTests" runstate="Runnable" seed="1355432046" result="Passed" start-time="2026-11-16 21:24:02Z" end-time="2026-11-16 21:24:15Z" duration="13.456472" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="RuntimeRecipeControlsAndMeasuredSearchProduceAPlayableSavedPuzzle" fullname="ArrowCube.Tests.GenericSurfaceGenerationPlayTests.RuntimeRecipeControlsAndMeasuredSearchProduceAPlayableSavedPuzzle" methodname="RuntimeRecipeControlsAndMeasuredSearchProduceAPlayableSavedPuzzle" classname="ArrowCube.Tests.GenericSurfaceGenerationPlayTests" runstate="Runnable" seed="747901793" result="Passed" start-time="2026-11-16 21:24:15Z" end-time="2026-11-16 21:24:16Z" duration="1.017625" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Leo/AppData/LocalLow/DefaultCompany/Project-044f01460dc4\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

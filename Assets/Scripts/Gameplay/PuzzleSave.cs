@@ -18,6 +18,8 @@ namespace ArrowCube.Gameplay
     public sealed class PuzzleSave
     {
         public string Name;
+        public string SurfaceAssetId;
+        public int SurfaceAssetVersion;
         public int GridSize;
         public bool EdgeExits,DirectionalGates;
         public List<PathSave> Paths=new List<PathSave>();
@@ -29,7 +31,7 @@ namespace ArrowCube.Gameplay
         {
             if(puzzle==null) throw new ArgumentNullException(nameof(puzzle));
             var cube=puzzle.Surface as CubeTopology;
-            var result=new PuzzleSave { Name=puzzle.Name,GridSize=cube?.GridSize??0,SurfaceFormat=cube==null ? 1 : 0,
+            var result=new PuzzleSave { Name=puzzle.Name,SurfaceAssetId=puzzle.SurfaceAssetId,SurfaceAssetVersion=puzzle.SurfaceAssetVersion,GridSize=cube?.GridSize??0,SurfaceFormat=cube==null ? 1 : 0,
                 EdgeExits=puzzle.Rules.EnableCubeEdgeExits,DirectionalGates=puzzle.Rules.EnableDirectionalGates };
             if(cube==null)
             {
@@ -100,7 +102,7 @@ namespace ArrowCube.Gameplay
                 if(item==null || item.Direction<0 || item.Direction>3 || !t.ContainsCell(item.Cell)) throw new ArgumentException("Invalid saved gate.");
                 gates.Add(new CellGate(item.Cell,(SurfaceDirection)item.Direction));
             }
-            var result=new PuzzleDefinition(Name,t,paths,new ExitMap(t,gates),new ExitRules(EdgeExits,DirectionalGates));
+            var result=new PuzzleDefinition(Name,t,paths,new ExitMap(t,gates),new ExitRules(EdgeExits,DirectionalGates),SurfaceAssetId,SurfaceAssetVersion);
             var validation=new PuzzleValidator().Validate(result);
             if(!validation.Succeeded) throw new ArgumentException("Saved puzzle cannot be solved: "+validation.Error);
             return result;
@@ -156,9 +158,12 @@ namespace ArrowCube.Gameplay
             // objects. Version zero is the explicit absence marker for manual fixtures.
             if(Recipe!=null && Recipe.Version!=0)
             {
-                if(!(definition.Surface is CubeTopology)) throw new ArgumentException("Procedural recipes currently require a cube surface.");
                 var recipe=Recipe.Restore();
-                if(recipe.Profile.GridSize!=definition.Topology.GridSize || recipe.Rules.EnableCubeEdgeExits!=definition.Rules.EnableCubeEdgeExits
+                bool matches=recipe.Shape!=null
+                    ? definition.SurfaceAssetId==recipe.Shape.Id && definition.SurfaceAssetVersion==recipe.Shape.Version
+                        && new SurfaceShapeDefinition(recipe.Shape.Id,recipe.Shape.Version,definition.Surface).Digest==recipe.Shape.Digest
+                    : definition.Surface is CubeTopology cube && recipe.Profile.GridSize==cube.GridSize;
+                if(!matches || recipe.Rules.EnableCubeEdgeExits!=definition.Rules.EnableCubeEdgeExits
                     || recipe.Rules.EnableDirectionalGates!=definition.Rules.EnableDirectionalGates) throw new ArgumentException("Saved recipe does not match the puzzle.");
                 if(recipe.GenerationVersion>=5 && !new PuzzleValidator().Validate(definition,requireClearInitialExit:true).Succeeded)
                     throw new ArgumentException("Saved new-version puzzle points into itself.");

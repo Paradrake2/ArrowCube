@@ -129,7 +129,7 @@ namespace ArrowCube.Generation
 
         private static PuzzleDefinition Mutate(GeneratedPuzzle puzzle,PuzzleDifficultyReport measured,StableRandom random,DifficultySettings settings)
         {
-            var paths=new List<ArrowPath>(puzzle.Paths); var gates=new List<ExitGate>(puzzle.Exits.Gates);
+            var paths=new List<ArrowPath>(puzzle.Paths); var gates=new List<CellGate>(puzzle.Exits.CellGates);
             int kind=random.Next(3),index=random.Next(paths.Count);
             if(settings.DependencyStrength>.7 && random.Chance(.6) && measured.SafePaths.Length>0)
             {
@@ -140,25 +140,25 @@ namespace ArrowCube.Generation
             var path=paths[index];
             if(kind==0)
             {
-                var cells=new List<SurfaceCoordinate>(path.Cells); cells.Reverse();
-                puzzle.Topology.TryGetDirection(cells[1],cells[0],out var incoming);
-                var heading=puzzle.Topology.Step(cells[1],incoming).Direction;
-                paths[index]=new ArrowPath(path.Id,puzzle.Topology,cells,heading);
+                var cells=new List<int>(path.CellIds); cells.Reverse();
+                puzzle.Surface.TryGenerationDirection(cells[1],cells[0],out var incoming);
+                var heading=puzzle.Surface.Step(cells[1],incoming).Direction;
+                paths[index]=GenerationPaths.Create(path.Id,puzzle.Surface,cells,heading);
             }
             else if(kind==1 && gates.Count>0)
             {
-                int g=random.Next(gates.Count); var gate=gates[g]; var next=puzzle.Topology.Step(gate.Cell,gate.Direction);
-                gates[g]=new ExitGate(next.Coordinate,next.Direction);
+                int g=random.Next(gates.Count); var gate=gates[g]; var next=puzzle.Surface.Step(gate.CellId,gate.Direction);
+                gates[g]=new CellGate(next.CellId,next.Direction);
             }
             else
             {
-                if(path.Cells.Count<3) return null;
-                var cells=new List<SurfaceCoordinate>(path.Cells); cells.RemoveAt(cells.Count-1);
-                var next=puzzle.Topology.Step(cells[cells.Count-1],(SurfaceDirection)random.Next(4)).Coordinate;
+                if(path.CellIds.Count<3) return null;
+                var cells=new List<int>(path.CellIds); cells.RemoveAt(cells.Count-1);
+                var next=puzzle.Surface.Step(cells[cells.Count-1],(SurfaceDirection)random.Next(4)).CellId;
                 var grid=puzzle.CreateGrid(); if(grid.TryGetCellOwner(next,out _)) return null;
-                cells.Add(next); paths[index]=new ArrowPath(path.Id,puzzle.Topology,cells,path.HeadDirection);
+                cells.Add(next); paths[index]=GenerationPaths.Create(path.Id,puzzle.Surface,cells,path.HeadDirection);
             }
-            return new PuzzleDefinition(puzzle.Name,puzzle.Topology,paths,new ExitMap(puzzle.Topology,gates),puzzle.Rules);
+            return new PuzzleDefinition(puzzle.Name,puzzle.Surface,paths,new ExitMap(puzzle.Surface,gates),puzzle.Rules);
         }
         private static void Add(GenerationReport target,GenerationReport source)
         {

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="9" result="Passed" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.5620111">
+  <test-suite type="TestSuite" id="1000" name="Project-14097a19df60" fullname="Project-14097a19df60" runstate="Runnable" testcasecount="340" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.562011" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1412" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/P4/Project-14097a19df60/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="340" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.551758" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="37268" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1413" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="340" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.547363" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1414" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="340" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.546105" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1190" name="GenericSurfaceGenerationTests" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.542845" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1200" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:26Z" duration="3.538446" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1191" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(L,0)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(L,0)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="1981461531" result="Passed" start-time="2026-11-16 21:02:22Z" end-time="2026-11-16 21:02:23Z" duration="0.714315" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 L/0 cells=224 paths=20 safe=2 dependencies=35 depth=12 independent=0.100 coverage=0.656 ms=227.6 fingerprint=8cc165c081e3ec80f61cd86b84d96891b3a9ad8182075bdc4e3a579ccc0f846f
+]]></output>
+              </test-case>
+              <test-case id="1192" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(L,1)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(L,1)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="1407671703" result="Passed" start-time="2026-11-16 21:02:23Z" end-time="2026-11-16 21:02:23Z" duration="0.176271" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 L/1 cells=224 paths=16 safe=1 dependencies=25 depth=9 independent=0.188 coverage=0.696 ms=55.5 fingerprint=36e63116b9bdfec5b48a7eff4668a13ab86fd9547ddf7ebdd379d0284bc4f5a3
+]]></output>
+              </test-case>
+              <test-case id="1193" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(L,2)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(L,2)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="1011253672" result="Passed" start-time="2026-11-16 21:02:23Z" end-time="2026-11-16 21:02:23Z" duration="0.216782" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 L/2 cells=224 paths=16 safe=3 dependencies=18 depth=6 independent=0.125 coverage=0.670 ms=69.5 fingerprint=686b2f3d87dcc23d8701f1b821d94a24cd16e15a07babd6624c9cac765334e75
+]]></output>
+              </test-case>
+              <test-case id="1194" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(ObliquePrism,0)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(ObliquePrism,0)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="1542216390" result="Passed" start-time="2026-11-16 21:02:23Z" end-time="2026-11-16 21:02:23Z" duration="0.349847" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 ObliquePrism/0 cells=192 paths=15 safe=2 dependencies=24 depth=9 independent=0.333 coverage=0.661 ms=114.2 fingerprint=5a826947b70611de91ab5ee98e5948ad169681f2617e73ceaea6c7f61d95b21c
+]]></output>
+              </test-case>
+              <test-case id="1195" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(ObliquePrism,1)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(ObliquePrism,1)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="1501448909" result="Passed" start-time="2026-11-16 21:02:23Z" end-time="2026-11-16 21:02:24Z" duration="0.139696" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 ObliquePrism/1 cells=192 paths=14 safe=3 dependencies=19 depth=6 independent=0.214 coverage=0.672 ms=44.4 fingerprint=125b7a475b1c49adacd93ad1b058d3ed42a02d9dcc6208a27f55d84796a70b68
+]]></output>
+              </test-case>
+              <test-case id="1196" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(ObliquePrism,2)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(ObliquePrism,2)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="963074885" result="Passed" start-time="2026-11-16 21:02:24Z" end-time="2026-11-16 21:02:24Z" duration="0.195895" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 ObliquePrism/2 cells=192 paths=16 safe=3 dependencies=23 depth=9 independent=0.250 coverage=0.672 ms=62.9 fingerprint=45a7a9ddc75fbcbf68fba348a0d9c7fa32546f49e7849e44ad1562e385f5b9f6
+]]></output>
+              </test-case>
+              <test-case id="1197" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(T,0)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(T,0)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="941507371" result="Passed" start-time="2026-11-16 21:02:24Z" end-time="2026-11-16 21:02:25Z" duration="0.746278" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 T/0 cells=288 paths=26 safe=3 dependencies=42 depth=9 independent=0.115 coverage=0.660 ms=244.4 fingerprint=57d17d26b91db9742c1e46017b76c757c1c11fa2a10ee418d9587e1f88346cab
+]]></output>
+              </test-case>
+              <test-case id="1198" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(T,1)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(T,1)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="1283994622" result="Passed" start-time="2026-11-16 21:02:25Z" end-time="2026-11-16 21:02:25Z" duration="0.355156" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 T/1 cells=288 paths=22 safe=3 dependencies=42 depth=12 independent=0.182 coverage=0.660 ms=111.3 fingerprint=d54460f624b5ca5e650b0fe8b6c9645a4d917c6504e53f9d37a338cb2c64e6b2
+]]></output>
+              </test-case>
+              <test-case id="1199" name="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(T,2)" fullname="ArrowCube.Tests.GenericSurfaceGenerationTests.GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity(T,2)" methodname="GeneratedSurfacesHaveVerifiedDependenciesAndDeterministicIdentity" classname="ArrowCube.Tests.GenericSurfaceGenerationTests" runstate="Runnable" seed="2077311823" result="Passed" start-time="2026-11-16 21:02:25Z" end-time="2026-11-16 21:02:26Z" duration="0.630140" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE4 T/2 cells=288 paths=22 safe=3 dependencies=32 depth=7 independent=0.182 coverage=0.663 ms=205.0 fingerprint=f18c29ddc68e23b20e39804a96ea0dba5e47bb28070b90887d68943d8295ec4a
+Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\P4\Project-14097a19df60\results-EditMode.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

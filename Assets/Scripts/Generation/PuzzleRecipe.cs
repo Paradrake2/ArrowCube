@@ -1,11 +1,14 @@
 using System;
 using ArrowCube.Movement;
+using ArrowCube.Topology;
 
 namespace ArrowCube.Generation
 {
     /// <summary>All deterministic inputs. Persist this rather than only a seed.</summary>
     public sealed class PuzzleRecipe
     {
+        public SurfaceShapeDefinition Shape { get; }
+        public ISurfaceTopology Surface { get; private set; }
         public int Seed { get; }
         public int GenerationVersion { get; }
         public DifficultyProfile Profile { get; }
@@ -17,7 +20,7 @@ namespace ArrowCube.Generation
         internal DependencyControlSettings DependencyControlSettings { get; }
         public DependencyControlSettings DependencyControls => DependencyControlSettings?.Copy();
         public PuzzleRecipe(int seed, DifficultyProfile profile, ExitRules rules = null,
-            int generationVersion = PuzzleGenerator.CurrentVersion, int maxRestarts = 8, int attemptsPerCell = 48,DifficultySettings difficulty=null,DependencyControlSettings dependencyControls=null)
+            int generationVersion = PuzzleGenerator.LegacyCubeVersion, int maxRestarts = 8, int attemptsPerCell = 48,DifficultySettings difficulty=null,DependencyControlSettings dependencyControls=null)
         {
             Profile = profile ?? throw new ArgumentNullException(nameof(profile));
             Rules = rules ?? ExitRules.Hybrid;
@@ -32,6 +35,7 @@ namespace ArrowCube.Generation
                 if(generationVersion<3) throw new ArgumentException("Advanced difficulty requires generation version 3.");
                 difficulty.Validate(); DifficultySettings=difficulty.Copy();
             }
+            Surface=new CubeTopology(profile.GridSize);
             Seed=seed; GenerationVersion=generationVersion; MaxRestarts=maxRestarts; AttemptsPerCell=attemptsPerCell;
             if(dependencyControls!=null)
             {
@@ -39,6 +43,13 @@ namespace ArrowCube.Generation
                 dependencyControls.Validate(); DependencyControlSettings=dependencyControls.Copy();
             }
         }
+        public PuzzleRecipe(int seed,SurfaceShapeDefinition shape,DifficultyProfile profile,ExitRules rules=null,
+            int maxRestarts=8,int attemptsPerCell=48,DifficultySettings difficulty=null,DependencyControlSettings dependencyControls=null)
+            : this(seed,profile,rules,6,maxRestarts,attemptsPerCell,difficulty,dependencyControls)
+        {
+            Shape=shape??throw new ArgumentNullException(nameof(shape)); Surface=shape.Topology;
+        }
+
     }
 
     // PCG-XSH-RR with specified integer arithmetic. No Unity random state or runtime-specific System.Random.
