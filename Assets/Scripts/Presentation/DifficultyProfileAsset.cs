@@ -8,6 +8,7 @@ namespace ArrowCube.Presentation
     public sealed class DifficultyProfileAsset : ScriptableObject
     {
         public string profileName="Custom";
+        [Tooltip("Cube face size only. The Test Scene uses its separate resolution control for authored surfaces and baked density for converted assets.")]
         [Range(4,64)] public int gridSize=8;
         [Min(2)] public int minPathLength=2;
         [Min(2)] public int maxPathLength=14;
@@ -41,6 +42,14 @@ namespace ArrowCube.Presentation
 
         public DifficultyProfile ToProfile() => new DifficultyProfile(profileName,gridSize,minPathLength,maxPathLength,
             minPathCount,minCrossFacePaths,minimumCoverage,targetCoverage,minimumBlockedFraction,minimumAverageTurns,turnProbability,EffectiveMaxGates,maxPathCount);
+        public DifficultyProfile ToSurfaceProfile(int cellCount)
+        {
+            if(maxPathLength>cellCount) throw new System.ArgumentException($"Maximum path length {maxPathLength} exceeds this surface's {cellCount} cells. Increase authored resolution or rebake the converted asset at a higher density.");
+            int gates=scaleGateBudgetWithGridSize && cellCount>384
+                ? (int)System.Math.Min(int.MaxValue,System.Math.Ceiling(maxGates*(double)cellCount/384)) : maxGates;
+            return new DifficultyProfile(profileName,gridSize,minPathLength,maxPathLength,minPathCount,minCrossFacePaths,
+                minimumCoverage,targetCoverage,minimumBlockedFraction,minimumAverageTurns,turnProbability,gates,maxPathCount,cellCount);
+        }
         public DependencyControlSettings ToDependencyControls() => controlDependencies
             ? new DependencyControlSettings { Amount=dependencyAmount,MaximumStartingFreeArrows=maximumStartingFreeArrows } : null;
 

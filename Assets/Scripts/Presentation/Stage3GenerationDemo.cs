@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using System.IO;
+using System.Collections.Generic;
 using ArrowCube.Generation;
 using ArrowCube.Movement;
 using ArrowCube.Topology;
@@ -8,6 +9,14 @@ using UnityEngine;
 
 namespace ArrowCube.Presentation
 {
+    public enum GenerationLabShape { Cube, L, T, ObliquePrism, ConvertedSurface }
+    public sealed class GenerationLabShapeOption
+    {
+        public string Label { get; }
+        public GenerationLabShape Shape { get; }
+        public ConvertedSurfaceAsset Asset { get; }
+        internal GenerationLabShapeOption(string label,GenerationLabShape shape,ConvertedSurfaceAsset asset=null) { Label=label; Shape=shape; Asset=asset; }
+    }
     /// <summary>Generation lab, reusing the verified stage 2 renderer/animation rather than a second movement implementation.</summary>
     [RequireComponent(typeof(Stage2MovementDemo))]
     public sealed class Stage3GenerationDemo : MonoBehaviour
@@ -17,6 +26,10 @@ namespace ArrowCube.Presentation
         [SerializeField] private bool enableCubeEdgeExits=true;
         [SerializeField] private bool enableDirectionalGates=true;
         [SerializeField] private DifficultyProfileAsset customProfile;
+        [Header("Surface for next generation")]
+        [SerializeField] private GenerationLabShape desiredShape;
+        [SerializeField,Range(2,12)] private int surfaceSubdivisions=4;
+        [SerializeField] private ConvertedSurfaceAsset convertedSurface;
         private Stage2MovementDemo movement;
         private Vector2 scroll;
         private string seedText;
@@ -26,6 +39,52 @@ namespace ArrowCube.Presentation
         private DifficultyProfileAsset editingProfile;
         private bool useEditedProfile;
         private int pendingProfile;
+        private ISurfaceGeometry pendingGeometry;
+        private string pendingShapeName;
+        private IReadOnlyList<GenerationLabShapeOption> shapeOptions;
+        private int focusIndex;
+        public string DisplayedShapeName { get; private set; }="Cube";
+        public GenerationLabShape DesiredShape { get=>desiredShape; set=>desiredShape=value; }
+        public int SurfaceSubdivisions { get=>surfaceSubdivisions; set { if(value<2 || value>12) throw new ArgumentOutOfRangeException(nameof(value)); surfaceSubdivisions=value; } }
+        public ConvertedSurfaceAsset ConvertedSurface { get=>convertedSurface; set { convertedSurface=value; shapeOptions=null; } }
+        public IReadOnlyList<GenerationLabShapeOption> ShapeOptions
+        {
+            get
+            {
+                if(shapeOptions==null)
+                {
+                    var options=new List<GenerationLabShapeOption> { new GenerationLabShapeOption("Cube",GenerationLabShape.Cube),new GenerationLabShapeOption("Authored L",GenerationLabShape.L),new GenerationLabShapeOption("Authored T",GenerationLabShape.T),new GenerationLabShapeOption("Authored oblique prism",GenerationLabShape.ObliquePrism) };
+                    var assets=new List<ConvertedSurfaceAsset>(Resources.LoadAll<ConvertedSurfaceAsset>("ArrowCubeSurfaces"));
+                    if(convertedSurface!=null && !assets.Contains(convertedSurface)) assets.Add(convertedSurface);
+                    assets.Sort((a,b)=>string.CompareOrdinal(a.name,b.name));
+                    foreach(var asset in assets) if(asset!=null) options.Add(new GenerationLabShapeOption("Converted: "+asset.name,GenerationLabShape.ConvertedSurface,asset));
+                    shapeOptions=options.AsReadOnly();
+                }
+                return shapeOptions;
+            }
+        }
+        public string DesiredShapeName
+        {
+            get { foreach(var option in ShapeOptions) if(option.Shape==desiredShape && (desiredShape!=GenerationLabShape.ConvertedSurface || option.Asset==convertedSurface)) return option.Label; return "Converted surface (assign an asset)"; }
+        }
+        public string DesiredSurfaceDescription
+        {
+            get
+            {
+                if(desiredShape==GenerationLabShape.Cube) return "Cube grid size is controlled in Advanced settings. All settings apply to the next generation.";
+                if(desiredShape==GenerationLabShape.ConvertedSurface)
+                {
+                    if(convertedSurface==null) return "Assign a Converted Surface asset in the Inspector or choose a converted example.";
+                    try { return $"{convertedSurface.Build().Shape.Topology.CellCount} baked cells. Reconvert/rebake the asset to change density; all puzzle settings below still apply."; }
+                    catch(ArgumentException error) { return error.Message; }
+                }
+                int parents=desiredShape==GenerationLabShape.L ? 14 : desiredShape==GenerationLabShape.T ? 18 : 12;
+                return $"{parents*surfaceSubdivisions*surfaceSubdivisions} cells at resolution {surfaceSubdivisions}. Cube grid size is unused; cross-face settings mean surface regions.";
+            }
+        }
+        public void SelectShape(int index)
+        { if(index<0 || index>=ShapeOptions.Count) throw new ArgumentOutOfRangeException(nameof(index)); var selected=ShapeOptions[index]; desiredShape=selected.Shape; convertedSurface=selected.Asset; }
+        private void OnValidate() { shapeOptions=null; }
         public GeneratedPuzzle Generated { get; private set; }
         public Stage2MovementDemo Movement => movement;
         public bool IsAutoPlaying => autoPlaying;
@@ -77,14 +136,36 @@ namespace ArrowCube.Presentation
         private void ClearEditingProfile()
         { if(editingProfile!=null) Destroy(editingProfile); editingProfile=null; useEditedProfile=false; }
 
-        private PuzzleRecipe CreateRecipe(int requestedSeed,int profileIndex,ExitRules rules)
+        private PuzzleRecipe CreateRecipe(int requestedSeed,int profileIndex,ExitRules rules,out ISurfaceGeometry geometry)
         {
             if(profileIndex<0 || profileIndex>=DifficultyProfiles.All.Count) throw new ArgumentOutOfRangeException(nameof(profileIndex));
             var asset=useEditedProfile ? EditingProfile : customProfile;
             var preset=DifficultyPresets.All[Math.Min(profileIndex,DifficultyPresets.All.Count-1)];
             var settings=asset==null ? preset.CreateSettings() : asset.advancedDifficulty ? asset.difficultySettings?.Copy()??new DifficultySettings() : null;
-            return new PuzzleRecipe(requestedSeed,asset==null ? preset.CreateProfile() : asset.ToProfile(),rules??ExitRules.Hybrid,
-                maxRestarts:settings?.MaxRestarts??8,difficulty:settings,dependencyControls:asset?.ToDependencyControls());
+            geometry=null;
+            if(desiredShape==GenerationLabShape.Cube)
+                return new PuzzleRecipe(requestedSeed,asset==null ? preset.CreateProfile() : asset.ToProfile(),rules??ExitRules.Hybrid,
+                    maxRestarts:settings?.MaxRestarts??8,difficulty:settings,dependencyControls:asset?.ToDependencyControls());
+            SurfaceShapeDefinition surface;
+            if(desiredShape==GenerationLabShape.ConvertedSurface)
+            {
+                if(convertedSurface==null) throw new ArgumentException("Choose a converted surface asset before generating.");
+                var baked=convertedSurface.Build(); ConvertedSurfaceAsset.Register(convertedSurface); surface=baked.Shape; geometry=baked.Geometry;
+            }
+            else
+            {
+                if(!Enum.IsDefined(typeof(GenerationLabShape),desiredShape)) throw new ArgumentException("Unknown surface selection.");
+                var authored=AuthoredGenerationSurfaces.Create(desiredShape==GenerationLabShape.L ? AuthoredGenerationShape.L : desiredShape==GenerationLabShape.T ? AuthoredGenerationShape.T : AuthoredGenerationShape.ObliquePrism,surfaceSubdivisions);
+                surface=authored.Shape; geometry=authored.Geometry;
+            }
+            DifficultyProfile profile;
+            if(asset!=null) profile=asset.ToSurfaceProfile(surface.Topology.CellCount);
+            else
+            {
+                var p=preset.CreateProfile(); profile=new DifficultyProfile(p.Name,p.GridSize,p.MinPathLength,p.MaxPathLength,p.MinPathCount,p.MinCrossFacePaths,
+                    p.MinimumCoverage,p.TargetCoverage,p.MinimumBlockedFraction,p.MinimumAverageTurns,p.TurnProbability,p.MaxGates,p.MaxPathCount,surface.Topology.CellCount);
+            }
+            return new PuzzleRecipe(requestedSeed,surface,profile,rules??ExitRules.Hybrid,maxRestarts:settings?.MaxRestarts??8,difficulty:settings,dependencyControls:asset?.ToDependencyControls());
         }
 
         public bool Generate(int requestedSeed,int profileIndex,ExitRules rules=null)
@@ -93,8 +174,9 @@ namespace ArrowCube.Presentation
             try
             {
                 // Build before replacing the current puzzle: a rejected recipe leaves the existing level playable.
-                var next=new PuzzleGenerator().Generate(CreateRecipe(requestedSeed,profileIndex,rules));
-                ApplyGenerated(next,profileIndex);
+                var recipe=CreateRecipe(requestedSeed,profileIndex,rules,out var geometry); var name=DesiredShapeName;
+                var next=new PuzzleGenerator().Generate(recipe);
+                ApplyGenerated(next,profileIndex,geometry,name);
                 return true;
             }
             catch(System.ArgumentException error) { GenerationFailed=true; message=error.Message; return false; }
@@ -107,7 +189,8 @@ namespace ArrowCube.Presentation
             try
             {
                 // Snapshot ScriptableObjects and UI on the main thread. The worker owns pure C# data only.
-                var recipe=CreateRecipe(requestedSeed,profileIndex,rules);
+                var recipe=CreateRecipe(requestedSeed,profileIndex,rules,out var geometry);
+                pendingGeometry=geometry; pendingShapeName=DesiredShapeName;
                 pendingProfile=profileIndex;
                 generation=new GenerationOperation(recipe,GenerateOnMainThread);
                 GenerationFailed=false; message="Generating and measuring puzzle..."; return true;
@@ -127,15 +210,15 @@ namespace ArrowCube.Presentation
             generation=null; job.Dispose();
             if(job.IsCanceled) { message="Generation cancelled. The current puzzle is unchanged."; return; }
             if(job.Error!=null) { GenerationFailed=true; message=job.Error.Message; return; }
-            ApplyGenerated(job.Result,pendingProfile);
+            ApplyGenerated(job.Result,pendingProfile,pendingGeometry,pendingShapeName);
         }
-        private void ApplyGenerated(GeneratedPuzzle next,int profileIndex)
+        private void ApplyGenerated(GeneratedPuzzle next,int profileIndex,ISurfaceGeometry geometry,string shapeName)
         {
             StopAllCoroutines(); autoPlaying=false;
             GenerationFailed=false;
             Generated=next; Seed=next.Recipe.Seed; difficulty=profileIndex;
             enableCubeEdgeExits=next.Rules.EnableCubeEdgeExits; enableDirectionalGates=next.Rules.EnableDirectionalGates;
-            movement.LoadDefinition(next);
+            movement.LoadDefinition(next,geometry); DisplayedShapeName=shapeName; focusIndex=0;
             message=$"Verified {next.VerifiedSolution.Count} removals. Unlimited attempts.";
             if(next.DependencyControlReport!=null)
                 message+=$" Initially free: {next.DependencyControlReport.InitiallyFree}/{next.DependencyControlReport.MaximumStartingFreeArrows} maximum; blockers/blocked arrow: {next.DependencyControlReport.AverageBlockersPerBlockedArrow:F1}.";
@@ -163,6 +246,12 @@ namespace ArrowCube.Presentation
             message="Exported dependency graph: "+path; return path;
         }
 
+        public bool FocusNextArrow()
+        {
+            if(Generated==null || Generated.Paths.Count==0) return false;
+            for(int i=0;i<Generated.Paths.Count;i++) { var path=Generated.Paths[focusIndex++%Generated.Paths.Count]; if(movement.Grid.Paths.ContainsKey(path.Id)) { movement.FocusCell(path.HeadCellId); return true; } }
+            return false;
+        }
         public void Restart()
         {
             if(Generated==null) return;
@@ -208,6 +297,9 @@ namespace ArrowCube.Presentation
                 GUILayout.Label($"Version {Generated.Recipe.GenerationVersion} | {Generated.Report.Milliseconds:F1} ms\nFingerprint: {Generated.Fingerprint.Substring(0,16)}");
             }
             GUILayout.Label(message);
+            GUILayout.Label("Shape for next puzzle: "+DesiredShapeName);
+            for(int i=0;i<ShapeOptions.Count;i++) if(GUILayout.Button(ShapeOptions[i].Label)) SelectShape(i);
+            GUILayout.Label(DesiredSurfaceDescription);
             seedText=GUILayout.TextField(seedText);
             if(customProfile==null)
             {
@@ -233,13 +325,14 @@ namespace ArrowCube.Presentation
             GUI.enabled=Generated!=null && !movement.IsAnimating && !autoPlaying;
             if(GUILayout.Button("Play next verified move")) PlayNextVerifiedMove();
             if(GUILayout.Button("Play complete verified solution")) PlayVerifiedSolution();
-            GUILayout.Label("Inspect face"); GUILayout.BeginHorizontal();
+            if(Generated?.Surface is CubeTopology) { GUILayout.Label("Inspect face"); GUILayout.BeginHorizontal();
             for(int f=0;f<6;f++) if(GUILayout.Button(((CubeFace)f).ToString())) movement.FocusFace((CubeFace)f);
-            GUILayout.EndHorizontal();
+            GUILayout.EndHorizontal(); }
+            if(GUILayout.Button("Focus next arrow")) FocusNextArrow();
             GUILayout.Label("Activate a path");
             if(Generated!=null)
                 foreach(var path in Generated.Paths)
-                    if(movement.Grid.Paths.ContainsKey(path.Id) && GUILayout.Button($"Path {path.Id} | {path.Cells.Count} cells | {path.Head.Face}")) movement.TryActivate(path.Id);
+                    if(movement.Grid.Paths.ContainsKey(path.Id) && GUILayout.Button($"Path {path.Id} | {path.CellIds.Count} cells | cell {path.HeadCellId}")) movement.TryActivate(path.Id);
             GUI.enabled=true; GUILayout.EndScrollView(); GUILayout.EndArea(); GUI.matrix=matrix;
         }
     }

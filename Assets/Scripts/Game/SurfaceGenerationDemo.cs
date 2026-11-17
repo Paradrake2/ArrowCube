@@ -14,6 +14,8 @@ namespace ArrowCube.Game
     public sealed class SurfaceGenerationDemo : MonoBehaviour
     {
         [SerializeField] private AuthoredGenerationShape shape;
+        [SerializeField] private ConvertedSurfaceAsset convertedSurface;
+        [SerializeField] private ConvertedSurfaceAsset[] convertedExamples=Array.Empty<ConvertedSurfaceAsset>();
         [SerializeField] private int seed=12345;
         [SerializeField,Range(2,8)] private int subdivisions=4;
         [SerializeField,Range(0,2)] private int exitMode=1;
@@ -32,7 +34,11 @@ namespace ArrowCube.Game
         private Text status;
         private bool expanded;
         private string fittedFingerprint;
-        public AuthoredGenerationShape Shape { get=>shape; set=>shape=value; }
+        public string LastGenerationError { get; private set; }
+        public AuthoredGenerationShape Shape { get=>shape; set { shape=value; convertedSurface=null; } }
+        public ConvertedSurfaceAsset ConvertedSurface { get=>convertedSurface; set { convertedSurface=value; if(value!=null) ConvertedSurfaceAsset.Register(value); } }
+        public ConvertedSurfaceAsset[] ConvertedExamples { get=>convertedExamples; set=>convertedExamples=value??Array.Empty<ConvertedSurfaceAsset>(); }
+        private string ShapeName() => convertedSurface!=null ? "Mesh / "+convertedSurface.name : shape.ToString();
         public int Seed { get=>seed; set=>seed=value; }
         public int Subdivisions { get=>subdivisions; set=>subdivisions=value; }
         public bool MeasuredDifficultySearch { get=>measuredDifficultySearch; set=>measuredDifficultySearch=value; }
@@ -40,22 +46,28 @@ namespace ArrowCube.Game
         private void Awake()
         {
             game=GetComponent<GameplayController>();
-            if(game.SavePathOverride==null) game.SavePathOverride=Path.Combine(Application.persistentDataPath,"arrow-cube-procedural-surfaces.json");
+            if(convertedSurface!=null) ConvertedSurfaceAsset.Register(convertedSurface);
+            foreach(var asset in convertedExamples) if(asset!=null) ConvertedSurfaceAsset.Register(asset);
+            if(game.SavePathOverride==null) game.SavePathOverride=Path.Combine(Application.persistentDataPath,convertedSurface==null ? "arrow-cube-procedural-surfaces.json" : "arrow-cube-imported-surfaces.json");
         }
         private void Start() { BuildUI(); Generate(); }
         public void Generate()
         {
+            LastGenerationError=null;
             try
             {
-                Authored=AuthoredGenerationSurfaces.Create(shape,subdivisions);
-                var baseProfile=AuthoredGenerationSurfaces.Profile(Authored.Shape.Topology.CellCount,targetCoverage,maximumLength);
+                SurfaceShapeDefinition definition; ISurfaceGeometry geometry;
+                if(convertedSurface!=null) { var baked=convertedSurface.Build(); definition=baked.Shape; geometry=baked.Geometry; }
+                else { Authored=AuthoredGenerationSurfaces.Create(shape,subdivisions); definition=Authored.Shape; geometry=Authored.Geometry; }
+                if(definition.Topology.CellCount<maximumLength) throw new ArgumentException($"This surface has {definition.Topology.CellCount} cells, but maximum arrow length is {maximumLength}. Increase conversion density or lower the arrow length setting.");
+                var baseProfile=AuthoredGenerationSurfaces.Profile(definition.Topology.CellCount,targetCoverage,maximumLength);
                 var difficulty=measuredDifficultySearch ? new DifficultySettings { TargetScore=targetScore,MaxCandidates=searchCandidates,
                     OptimizationIterations=4,CandidatePoolSize=12,MaxConstructionAttempts=12000 } : null;
-                var recipe=new PuzzleRecipe(seed,Authored.Shape,baseProfile,exitMode==0 ? ExitRules.EdgeOnly : exitMode==1 ? ExitRules.GateOnly : ExitRules.Hybrid,
+                var recipe=new PuzzleRecipe(seed,definition,baseProfile,exitMode==0 ? ExitRules.EdgeOnly : exitMode==1 ? ExitRules.GateOnly : ExitRules.Hybrid,
                     maxRestarts:restarts,difficulty:difficulty,dependencyControls:new DependencyControlSettings { Amount=dependencyAmount,MaximumStartingFreeArrows=maximumStartingFreeArrows });
-                game.StartSandboxGeneration(recipe,Authored.Geometry); expanded=false;
+                game.StartSandboxGeneration(recipe,geometry); expanded=false;
             }
-            catch(ArgumentException error) { expanded=true; status.text=error.Message; }
+            catch(ArgumentException error) { LastGenerationError=error.Message; expanded=true; if(status!=null) status.text=error.Message; }
         }
         private void BuildUI()
         {
@@ -71,8 +83,10 @@ namespace ArrowCube.Game
             var content=Rect("Settings",viewport); content.anchorMin=new Vector2(0,1); content.anchorMax=Vector2.one; content.pivot=new Vector2(.5f,1); content.sizeDelta=Vector2.zero;
             var layout=content.gameObject.AddComponent<VerticalLayoutGroup>(); layout.padding=new RectOffset(8,8,6,6); layout.spacing=5; layout.childForceExpandHeight=false;
             content.gameObject.AddComponent<ContentSizeFitter>().verticalFit=ContentSizeFitter.FitMode.PreferredSize; scroll.content=content;
-            var shapeButton=Button(content,"Shape: "+shape,()=>{});
-            shapeButton.transform.parent.GetComponent<Button>().onClick.AddListener(()=> { shape=(AuthoredGenerationShape)(((int)shape+1)%3); shapeButton.text="Shape: "+shape; });
+            var shapeButton=Button(content,"Shape: "+ShapeName(),()=>{});
+            shapeButton.transform.parent.GetComponent<Button>().onClick.AddListener(()=> { if(convertedExamples.Length>0) { int index=Array.IndexOf(convertedExamples,convertedSurface); ConvertedSurface=convertedExamples[(index+1)%convertedExamples.Length]; }
+                else { convertedSurface=null; shape=(AuthoredGenerationShape)(((int)shape+1)%3); }
+                shapeButton.text="Shape: "+ShapeName(); });
             // Label Text is a child; the actual clickable Button is on its parent.
             var seedRow=Rect("Seed",content); Height(seedRow,34); seedRow.gameObject.AddComponent<Image>().color=new Color(.18f,.25f,.34f);
             var input=seedRow.gameObject.AddComponent<InputField>(); input.textComponent=Text(seedRow,"",14); input.contentType=InputField.ContentType.IntegerNumber; input.text=seed.ToString(); input.onEndEdit.AddListener(v=> { if(int.TryParse(v,out int parsed)) seed=parsed; else input.text=seed.ToString(); });
@@ -80,7 +94,7 @@ namespace ArrowCube.Game
             Button(content,"Cancel generation",()=>game.CancelGeneration());
             var mode=Button(content,"Exits: "+ModeName(),()=>{});
             mode.transform.parent.GetComponent<Button>().onClick.AddListener(()=> { exitMode=(exitMode+1)%3; mode.text="Exits: "+ModeName(); });
-            Slider(content,"Cells per authored quad side",2,8,subdivisions,true,v=>subdivisions=(int)v);
+            if(convertedSurface==null) Slider(content,"Cells per authored quad side",2,8,subdivisions,true,v=>subdivisions=(int)v);
             Slider(content,"Target coverage",.4f,.9f,targetCoverage,false,v=>targetCoverage=v);
             Slider(content,"Maximum arrow length",4,24,maximumLength,true,v=>maximumLength=(int)v);
             Slider(content,"Maximum starting free arrows",1,12,maximumStartingFreeArrows,true,v=>maximumStartingFreeArrows=(int)v);
@@ -99,11 +113,13 @@ namespace ArrowCube.Game
             canvas.scaleFactor=Screen.dpi>0 ? Mathf.Clamp(Screen.dpi/120,1,2.5f) : 1; canvas.GetComponent<CanvasScaler>().scaleFactor=canvas.scaleFactor;
             float width=Mathf.Min(370,Screen.safeArea.width/canvas.scaleFactor-16),height=Mathf.Min(540,Screen.safeArea.height/canvas.scaleFactor-180);
             panel.sizeDelta=new Vector2(Mathf.Max(150,width),expanded ? Mathf.Max(180,height) : 34); panel.anchoredPosition=new Vector2(Screen.safeArea.xMin/canvas.scaleFactor+8,-(Screen.height-Screen.safeArea.yMax)/canvas.scaleFactor-94); viewport.gameObject.SetActive(expanded);
+            if(!string.IsNullOrEmpty(LastGenerationError)) { status.text=LastGenerationError; expanded=true; return; }
             if(game.IsGenerating) status.text=game.Message;
+            else if(game.Page==GamePage.Error) { status.text=game.Message; expanded=true; }
             else if(game.Session?.Puzzle is GeneratedPuzzle puzzle)
             {
                 var s=puzzle.Statistics;
-                status.text=$"{shape}: {puzzle.Surface.CellCount} cells / {puzzle.Paths.Count} arrows\nCoverage {s.Coverage:P0}; free {s.ImmediatelyRemovablePaths}; depth {s.DependencyDepth}\nDependencies {s.DependencyCount}; folds {s.GeometricFolds}; occupied regions {s.OccupiedRegions}/{s.RegionCount}\n"+(puzzle.Difficulty?.Warning??"");
+                status.text=$"{ShapeName()}: {puzzle.Surface.CellCount} cells / {puzzle.Paths.Count} arrows\nCoverage {s.Coverage:P0}; free {s.ImmediatelyRemovablePaths}; depth {s.DependencyDepth}\nDependencies {s.DependencyCount}; folds {s.GeometricFolds}; occupied regions {s.OccupiedRegions}/{s.RegionCount}\n"+(puzzle.Difficulty?.Warning??"");
                 if(fittedFingerprint!=puzzle.Fingerprint)
                 {
                     fittedFingerprint=puzzle.Fingerprint; game.Movement.AnimationCellsPerSecond=20;
@@ -111,7 +127,6 @@ namespace ArrowCube.Game
                     game.Input.Orbit.RestoreView(game.Input.Orbit.Rotation,Mathf.Max(game.Input.Orbit.Zoom,zoom));
                 }
             }
-            else if(game.Page==GamePage.Error) { status.text=game.Message; expanded=true; }
         }
         private static RectTransform Rect(string name,Transform parent) { var go=new GameObject(name,typeof(RectTransform)); go.transform.SetParent(parent,false); return (RectTransform)go.transform; }
         private static void Height(RectTransform rect,float height) { rect.gameObject.AddComponent<LayoutElement>().preferredHeight=height; }

@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SurfaceGeneration.unity
     guid: d7f0fb1838d4488d839d7340b1430c28
+  - enabled: 1
+    path: Assets/Scenes/SurfaceMeshConversion.unity
+    guid: 3200e05507daac84680405b6ae25c4ae
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

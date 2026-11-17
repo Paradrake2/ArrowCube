@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="5" result="Passed" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.8254478">
+  <test-suite type="TestSuite" id="1000" name="Project-0561fadb2191" fullname="Project-0561fadb2191" runstate="Runnable" testcasecount="357" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.825448" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1433" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/P5/Project-0561fadb2191/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="357" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.814582" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="14968" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1434" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="357" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.809453" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1435" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="357" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.807839" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1230" name="MeshSurfaceConversionTests" fullname="ArrowCube.Tests.MeshSurfaceConversionTests" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.804137" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1235" name="NativeQuadFixturesConvertGenerateAndSolve" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.784122" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1231" name="NativeQuadFixturesConvertGenerateAndSolve(RectangularPrism,96)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(RectangularPrism,96)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="1317156834" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:24Z" duration="0.161582" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 RectangularPrism cells=96 patches=6 flat=144 convex=48 concave=0 conversion_ms=41.66 validation_ms=2.79 memory_delta=188416 generation_ms=62.90 attempts=168 rejected=69 paths=7 dependencies=8 depth=4 fingerprint=5a3e8b4200f4d5441e45978f7982a322dc38d87ec924c3fa304a9c97c3372e43
+]]></output>
+              </test-case>
+              <test-case id="1232" name="NativeQuadFixturesConvertGenerateAndSolve(L,224)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(L,224)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="807817438" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:24Z" duration="0.134232" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 L cells=224 patches=14 flat=360 convex=84 concave=4 conversion_ms=6.35 validation_ms=0.67 memory_delta=-1306624 generation_ms=55.04 attempts=384 rejected=187 paths=16 dependencies=24 depth=7 fingerprint=7fd8029cc9b4012ff10a3d74090a2cd37b20d4c7dff33ebd248a94011fc63c52
+]]></output>
+              </test-case>
+              <test-case id="1233" name="NativeQuadFixturesConvertGenerateAndSolve(T,288)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(T,288)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="388989395" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:24Z" duration="0.259123" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 T cells=288 patches=18 flat=464 convex=104 concave=8 conversion_ms=4.38 validation_ms=0.75 memory_delta=835584 generation_ms=119.47 attempts=504 rejected=239 paths=21 dependencies=37 depth=8 fingerprint=6338a1fa9b4ad2587b4d2b85de3a0ad5d98bd48f3d62d80893a6d73d30f6ebbf
+]]></output>
+              </test-case>
+              <test-case id="1234" name="NativeQuadFixturesConvertGenerateAndSolve(AngularPrism,192)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(AngularPrism,192)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="22489059" result="Passed" start-time="2026-11-16 22:49:24Z" end-time="2026-11-16 22:49:25Z" duration="0.219164" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 AngularPrism cells=192 patches=12 flat=324 convex=60 concave=0 conversion_ms=71.92 validation_ms=0.50 memory_delta=-1495040 generation_ms=61.90 attempts=312 rejected=131 paths=13 dependencies=23 depth=8 fingerprint=17f7c40e418012991c97e65cd36c2318197c8b37fe392a71fc4f128adf69515a
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1236" name="TrianglePrismPairsUniquelyAndMatchesNativeQuadConversion" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.TrianglePrismPairsUniquelyAndMatchesNativeQuadConversion" methodname="TrianglePrismPairsUniquelyAndMatchesNativeQuadConversion" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="2041783891" result="Passed" start-time="2026-11-16 22:49:25Z" end-time="2026-11-16 22:49:25Z" duration="0.010862" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\P5\Project-0561fadb2191\results-EditMode.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

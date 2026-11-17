@@ -1,0 +1,13 @@
+capture,cells,surface_material_groups,cpu_render_request_ms
+Converted-RectangularPrism-front,96,3,244.37
+Converted-RectangularPrism-rear,96,3,3.34
+Converted-RectangularPrism-moving,96,3,4.34
+Converted-L-front,224,4,4.61
+Converted-L-rear,224,4,1.04
+Converted-L-moving,224,4,3.05
+Converted-T-front,288,3,5.08
+Converted-T-rear,288,3,1.08
+Converted-T-moving,288,3,2.99
+Converted-AngularPrism-front,192,4,4.26
+Converted-AngularPrism-rear,192,4,0.86
+Converted-AngularPrism-moving,192,4,3.17

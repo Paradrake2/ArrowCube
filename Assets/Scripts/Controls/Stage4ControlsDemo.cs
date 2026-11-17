@@ -21,7 +21,10 @@ namespace ArrowCube.Controls
         private Canvas canvas;
         private RectTransform panel;
         private GridLayoutGroup faces;
-        private Text stats,status,profileText;
+        private Text stats,status,profileText,shapeText,surfaceInfo;
+        private RectTransform shapeChoices,authoredResolution,cubeGridSettings;
+        private Text faceHeading;
+        private IReadOnlyList<GenerationLabShapeOption> displayedShapeOptions;
         private Font font;
         private int profile=1;
         private bool edges=true,gates=true;
@@ -51,12 +54,12 @@ namespace ArrowCube.Controls
         }
         private void Update()
         {
-            UpdateLayout();
+            UpdateLayout(); RefreshShapeSelection();
             estimate.text=$"Next config estimate: {generation.EditingProfile.difficultySettings.ConfigurationEstimate():F1}/100 (unverified)";
             var puzzle=generation.Generated;
             if(puzzle==null) { stats.text=generation.IsGenerating ? "Measuring the next puzzle..." : "Create a puzzle to begin."; status.text=generation.StatusMessage; return; }
             string mode=puzzle.Rules.EnableCubeEdgeExits ? (puzzle.Rules.EnableDirectionalGates ? "Hybrid" : "Edge-only") : "Gate-only";
-            stats.text=$"Seed {puzzle.Recipe.Seed} | {puzzle.Recipe.Profile.Name}\nPaths {generation.Movement.Grid.Paths.Count}/{puzzle.Paths.Count} | {mode}";
+            stats.text=$"Seed {puzzle.Recipe.Seed} | {puzzle.Recipe.Profile.Name} | {generation.DisplayedShapeName}\nPaths {generation.Movement.Grid.Paths.Count}/{puzzle.Paths.Count} | {mode}";
             if(puzzle.Difficulty!=null) stats.text+=$"\nTarget {puzzle.Difficulty.RequestedScore:F0} | Measured {puzzle.Difficulty.MeasuredScore:F1}/100";
             if(puzzle.DependencyControlReport!=null) stats.text+=$"\nFree at start {puzzle.DependencyControlReport.InitiallyFree}/{puzzle.DependencyControlReport.MaximumStartingFreeArrows} max | Blockers {puzzle.DependencyControlReport.AverageBlockersPerBlockedArrow:F1}";
             status.text=generation.IsGenerating || generation.GenerationFailed || !string.IsNullOrEmpty(puzzle.Difficulty?.Warning) ? generation.StatusMessage
@@ -116,6 +119,7 @@ namespace ArrowCube.Controls
             Label(content,"ARROW CUBE",26,16);
             stats=Label(content,"Loading puzzle...",88,14);
             status=Label(content,"",92,13);
+            AddShapeSelection(content);
             profile=generation.PresetIndex; edges=generation.EnableCubeEdgeExits; gates=generation.EnableDirectionalGates;
             profileText=Button(content,"Difficulty: "+DifficultyPresets.All[profile].Name,()=>
             { profile=(profile+1)%DifficultyPresets.All.Count; generation.SelectPreset(profile); RefreshSettings(); });
@@ -127,7 +131,7 @@ namespace ArrowCube.Controls
             Label(content,"Click/tap a black path to activate it.\nDrag empty space or right-drag to orbit.\nTouch-drag anywhere; pinch or wheel to zoom.",70,13);
             Label(content,"Unlimited attempts at every difficulty.",24,12);
             Button(content,"Reset camera (R)",()=> { input.CancelActiveGestures(); input.Orbit.ResetView(); });
-            var edgeToggle=Toggle(content,"Cube-edge exits for next puzzle",edges,value=> { edges=value; generation.EnableCubeEdgeExits=value; });
+            var edgeToggle=Toggle(content,"Geometric edge exits for next puzzle",edges,value=> { edges=value; generation.EnableCubeEdgeExits=value; });
             var gateToggle=Toggle(content,"Directional gates for next puzzle",gates,value=> { gates=value; generation.EnableDirectionalGates=value; });
             refreshSettings.Add(()=> { edges=generation.EnableCubeEdgeExits; gates=generation.EnableDirectionalGates; edgeToggle.SetIsOnWithoutNotify(edges); gateToggle.SetIsOnWithoutNotify(gates); });
             AddSeedField(content);
@@ -147,7 +151,8 @@ namespace ArrowCube.Controls
             advanced.gameObject.SetActive(false);
             var advancedButton=Button(content,"Show / hide advanced settings",()=>advanced.gameObject.SetActive(!advanced.gameObject.activeSelf));
             advancedButton.transform.parent.SetSiblingIndex(advanced.GetSiblingIndex());
-            Label(content,"Inspect a face",22,13);
+            faceHeading=Label(content,"Inspect a face (cube only)",22,13);
+            Button(content,"Focus next arrow",()=>generation.FocusNextArrow());
             var faceRoot=Rect("Face buttons",content);
             faceRoot.gameObject.AddComponent<LayoutElement>().preferredHeight=70;
             faces=faceRoot.gameObject.AddComponent<GridLayoutGroup>(); faces.constraint=GridLayoutGroup.Constraint.FixedColumnCount; faces.constraintCount=3; faces.spacing=new Vector2(4,4);
@@ -190,6 +195,41 @@ namespace ArrowCube.Controls
         {
             if(addedExternalModule!=null) Destroy(addedExternalModule);
             if(legacyModule!=null) legacyModule.enabled=true;
+        }
+        private void AddShapeSelection(Transform parent)
+        {
+            Label(parent,"Desired shape (next puzzle)",24,14);
+            shapeText=Button(parent,"Choose shape",()=> { shapeChoices.gameObject.SetActive(!shapeChoices.gameObject.activeSelf); });
+            shapeText.transform.parent.name="Choose shape";
+            shapeChoices=Rect("Shape choices",parent); var layout=shapeChoices.gameObject.AddComponent<VerticalLayoutGroup>(); layout.childForceExpandHeight=false; layout.spacing=3;
+            RebuildShapeOptions();
+            shapeChoices.gameObject.SetActive(false);
+            authoredResolution=Rect("Authored surface resolution",parent); authoredResolution.gameObject.AddComponent<VerticalLayoutGroup>().childForceExpandHeight=false;
+            SettingSlider(authoredResolution,"Surface resolution",2,12,true,()=>generation.SurfaceSubdivisions,v=>generation.SurfaceSubdivisions=(int)v,
+                "Cells per authored parent quad side. Applies to authored L, T and oblique prism only. Does not reset puzzle settings. Reconvert/rebake a converted asset to change its density.",false);
+            surfaceInfo=Label(parent,"",74,12); RefreshShapeSelection();
+        }
+        private void RebuildShapeOptions()
+        {
+            foreach(Transform child in shapeChoices) { child.gameObject.SetActive(false); Destroy(child.gameObject); }
+            displayedShapeOptions=generation.ShapeOptions;
+            for(int i=0;i<displayedShapeOptions.Count;i++)
+            {
+                int index=i; var option=displayedShapeOptions[i];
+                Button(shapeChoices,option.Label,()=> { generation.SelectShape(index); shapeChoices.gameObject.SetActive(false); error=null; RefreshShapeSelection(); });
+            }
+        }
+        private void RefreshShapeSelection()
+        {
+            if(shapeText==null) return;
+            if(!ReferenceEquals(displayedShapeOptions,generation.ShapeOptions)) RebuildShapeOptions();
+            shapeText.text="Shape: "+generation.DesiredShapeName;
+            surfaceInfo.text=generation.DesiredSurfaceDescription;
+            authoredResolution.gameObject.SetActive(generation.DesiredShape!=GenerationLabShape.Cube && generation.DesiredShape!=GenerationLabShape.ConvertedSurface);
+            if(cubeGridSettings!=null) cubeGridSettings.gameObject.SetActive(generation.DesiredShape==GenerationLabShape.Cube);
+            bool cube=generation.Generated?.Surface is CubeTopology;
+            if(faces!=null) faces.gameObject.SetActive(cube);
+            if(faceHeading!=null) faceHeading.gameObject.SetActive(cube);
         }
         private void Generate(bool next)
         {
@@ -245,7 +285,8 @@ namespace ArrowCube.Controls
             refreshSettings.Add(()=>quality.text="Search quality: "+d().Quality); quality.text="Search quality: "+d().Quality;
             var placement=Button(parent,"",()=> { generation.UseEditedProfile(); d().Placement=(PlacementStrategy)(((int)d().Placement+1)%5); RefreshSettings(); });
             refreshSettings.Add(()=>placement.text="Placement: "+d().Placement); placement.text="Placement: "+d().Placement;
-            SettingSlider(parent,"Grid size",4,64,true,()=>a().gridSize,v=>a().gridSize=(int)v,"Cells along each face. Size changes do not automatically change other Custom settings.");
+            cubeGridSettings=Rect("Cube grid settings",parent); cubeGridSettings.gameObject.AddComponent<VerticalLayoutGroup>().childForceExpandHeight=false;
+            SettingSlider(cubeGridSettings,"Grid size",4,64,true,()=>a().gridSize,v=>a().gridSize=(int)v,"Cube only: cells along each face. Authored shapes use Surface resolution; converted shapes keep baked density. Other settings remain independent.");
             SettingSlider(parent,"Minimum paths",1,30000,true,()=>a().minPathCount,v=>a().minPathCount=(int)v,"Mandatory minimum number of paths.");
             SettingSlider(parent,"Maximum paths",1,30000,true,()=>a().maxPathCount,v=>a().maxPathCount=(int)v,"Hard path-count cap. Incompatible constraints produce an explicit error.");
             SettingSlider(parent,"Minimum coverage",.05f,1,false,()=>a().minimumCoverage,v=>a().minimumCoverage=v,"Mandatory occupied-cell fraction. Must not exceed the target.");
@@ -254,7 +295,7 @@ namespace ArrowCube.Controls
             SettingSlider(parent,"Maximum path length",2,128,true,()=>a().maxPathLength,v=>a().maxPathLength=(int)v,"Maximum cells per arrow. Must be at least the minimum.");
             SettingSlider(parent,"Turn probability",0,1,false,()=>a().turnProbability,v=>a().turnProbability=v,"Bias toward body bends. Visual complexity alone does not determine measured difficulty.");
             SettingSlider(parent,"Cross-face frequency",0,1,false,()=>(float)d().CrossFaceFrequency,v=>d().CrossFaceFrequency=v,"Extra probability of proposing a seam-crossing body, beyond the required quota.");
-            SettingSlider(parent,"Minimum cross-face paths",1,128,true,()=>a().minCrossFacePaths,v=>a().minCrossFacePaths=(int)v,"Mandatory quota; all six faces must also be connected by path geometry.");
+            SettingSlider(parent,"Minimum cross-face paths",0,128,true,()=>a().minCrossFacePaths,v=>a().minCrossFacePaths=(int)v,"For cubes: face crossings and six-face connectivity. For other shapes: cross-region path quota. Zero is allowed on generic single-region surfaces; cubes require at least one.");
             SettingSlider(parent,"Target difficulty score",0,100,true,()=>(float)d().TargetScore,v=>d().TargetScore=v,"Independent score target. Unlike the master slider, this preserves all other Custom values.");
             SettingSlider(parent,"Minimum blocked fraction",0,.99f,false,()=>a().minimumBlockedFraction,v=>a().minimumBlockedFraction=v,"Mandatory fraction initially blocked by other paths.");
             SettingSlider(parent,"Desired safe fraction",0,1,false,()=>(float)d().DesiredSafeFraction,v=>d().DesiredSafeFraction=v,"Soft target for immediately removable paths. At least one safe opening is always required.");
@@ -290,8 +331,8 @@ namespace ArrowCube.Controls
             SettingSlider(parent,"Optimization iterations",0,64,true,()=>d().OptimizationIterations,v=>d().OptimizationIterations=(int)v,"Bounded local geometry, orientation or gate mutations. Every proposal is validated before acceptance.");
             SettingSlider(parent,"Proposal pool size",1,32,true,()=>d().CandidatePoolSize,v=>d().CandidatePoolSize=(int)v,"Compare this many reverse-construction path proposals at each placement.");
             SettingSlider(parent,"Alternative random orders",1,8,true,()=>d().AlternativeOrderSamples,v=>d().AlternativeOrderSamples=(int)v,"Number of seeded random heuristic runs per candidate. Reports retain their individual outcomes and mean success rate.");
-            SettingSlider(parent,"Maximum gates",1,30000,true,()=>a().maxGates,v=>a().maxGates=(int)v,"Absolute cap unless area scaling is enabled. Ignored for edge-only levels.");
-            var scaling=Toggle(parent,"Scale gate budget with grid size",a().scaleGateBudgetWithGridSize,v=> { generation.UseEditedProfile(); a().scaleGateBudgetWithGridSize=v; });
+            SettingSlider(parent,"Maximum gates",1,30000,true,()=>a().maxGates,v=>a().maxGates=(int)v,"Absolute cap unless area scaling is enabled. Scaling uses actual cell count above 384 cells (an 8x8 cube); ignored for edge-only levels.");
+            var scaling=Toggle(parent,"Scale gate budget with surface area",a().scaleGateBudgetWithGridSize,v=> { generation.UseEditedProfile(); a().scaleGateBudgetWithGridSize=v; });
             refreshSettings.Add(()=>scaling.SetIsOnWithoutNotify(a().scaleGateBudgetWithGridSize));
             Label(parent,"Score weights (relative)",24,13);
             SettingSlider(parent,"Weight: edge resistance",0,100,false,()=>(float)d().Weights.EdgeResistance,v=>d().Weights.EdgeResistance=v,"Relative contribution; weights are normalized to sum to 100%.");

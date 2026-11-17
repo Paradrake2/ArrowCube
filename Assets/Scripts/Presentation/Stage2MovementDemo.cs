@@ -221,7 +221,13 @@ public sealed class Stage2MovementDemo : MonoBehaviour
         var cube = new GameObject("Puzzle surface");
         cube.transform.SetParent(content, false);
         var faceMaterials=new Material[geometry.RenderQuads.Count];
-        for(int face=0;face<faceMaterials.Length;face++) faceMaterials[face]=Material(geometry.RenderQuads[face].Color);
+        var surfaceMaterials=new Dictionary<Color,Material>();
+        for(int face=0;face<faceMaterials.Length;face++)
+        {
+            var color=geometry.RenderQuads[face].Color;
+            if(!surfaceMaterials.TryGetValue(color,out var material)) { material=Material(color); surfaceMaterials.Add(color,material); }
+            faceMaterials[face]=material;
+        }
         if(geometry is CubeSurfaceGeometry cubeGeometry) cube.AddComponent<ColoredCubeSurface>().Initialize(puzzle.Topology,cubeGeometry.SideLength,faceMaterials);
         else cube.AddComponent<SurfaceMeshRenderer>().Initialize(geometry,faceMaterials);
 

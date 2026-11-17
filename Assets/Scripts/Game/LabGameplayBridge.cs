@@ -13,6 +13,9 @@ namespace ArrowCube.Game
         public static bool ReturningToLab;
         public static string LabJson;
         public static int LabSeed;
+        public static GenerationLabShape LabShape;
+        public static int LabSurfaceSubdivisions=4;
+        public static ConvertedSurfaceAsset LabConvertedSurface;
         public static bool LabEdges,LabGates;
         public static bool LabInvertMouseRotation,LabInvertTouchRotation;
         public static float LabThickness=.35f,LabSensitivity=1,LabZoom=.35f;
@@ -37,6 +40,7 @@ namespace ArrowCube.Game
                 JsonUtility.FromJsonOverwrite(GameSceneLaunch.LabJson,returnedProfile);
                 var generation=GetComponent<Stage3GenerationDemo>();
                 generation.CustomProfile=returnedProfile; generation.Seed=GameSceneLaunch.LabSeed;
+                generation.DesiredShape=GameSceneLaunch.LabShape; generation.SurfaceSubdivisions=GameSceneLaunch.LabSurfaceSubdivisions; generation.ConvertedSurface=GameSceneLaunch.LabConvertedSurface;
                 generation.EnableCubeEdgeExits=GameSceneLaunch.LabEdges; generation.EnableDirectionalGates=GameSceneLaunch.LabGates;
                 GetComponent<Stage2MovementDemo>().ArrowThickness=GameSceneLaunch.LabThickness;
                 GetComponent<OrbitCameraController>().Sensitivity=GameSceneLaunch.LabSensitivity;
@@ -52,6 +56,7 @@ namespace ArrowCube.Game
             if(!Application.CanStreamedLevelBeLoaded("Game")) { Debug.LogError("Add Assets/Scenes/Game.unity to the build scene list."); return; }
             GameSceneLaunch.LabJson=JsonUtility.ToJson(lab.Generation.EditingProfile);
             GameSceneLaunch.LabSeed=puzzle.Recipe.Seed;
+            GameSceneLaunch.LabShape=lab.Generation.DesiredShape; GameSceneLaunch.LabSurfaceSubdivisions=lab.Generation.SurfaceSubdivisions; GameSceneLaunch.LabConvertedSurface=lab.Generation.ConvertedSurface;
             GameSceneLaunch.LabEdges=lab.Generation.EnableCubeEdgeExits; GameSceneLaunch.LabGates=lab.Generation.EnableDirectionalGates;
             GameSceneLaunch.LabThickness=lab.Generation.Movement.ArrowThickness;
             GameSceneLaunch.LabSensitivity=lab.Input.Orbit.Sensitivity; GameSceneLaunch.LabZoom=lab.Input.Orbit.ZoomSpeed;

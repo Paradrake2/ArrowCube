@@ -1,0 +1,27 @@
+digraph ArrowCube {
+  rankdir=LR;
+  p0 [label="Arrow 0 / depth 2"];
+  p1 [label="Arrow 1 / depth 1"];
+  p2 [label="Arrow 2 / depth 1"];
+  p3 [label="Arrow 3 / depth 1"];
+  p4 [label="Arrow 4 / depth 1"];
+  p5 [label="Arrow 5 / depth 2"];
+  p6 [label="Arrow 6 / depth 1"];
+  p7 [label="Arrow 7 / depth 1"];
+  p8 [label="Arrow 8 / depth 1"];
+  p9 [label="Arrow 9 / depth 1"];
+  p10 [label="Arrow 10 / depth 1"];
+  p11 [label="Arrow 11 / depth 1"];
+  p12 [label="Arrow 12 / depth 1"];
+  p13 [label="Arrow 13 / depth 1"];
+  p14 [label="Arrow 14 / depth 1"];
+  p15 [label="Arrow 15 / depth 1"];
+  p16 [label="Arrow 16 / depth 1"];
+  p17 [label="Arrow 17 / depth 1"];
+  p18 [label="Arrow 18 / depth 1"];
+  p19 [label="Arrow 19 / depth 1"];
+  p20 [label="Arrow 20 / depth 1"];
+  p21 [label="Arrow 21 / depth 1"];
+  p17 -> p0 [label="confirmed cross-face"];
+  p21 -> p5 [label="confirmed"];
+}

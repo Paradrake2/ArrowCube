@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="27" result="Passed" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:58Z" duration="3.8110399">
+  <test-suite type="TestSuite" id="1000" name="Project-df4e0cc2ae93" fullname="Project-df4e0cc2ae93" runstate="Runnable" testcasecount="379" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:58Z" duration="3.811040" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1457" name="ArrowCube.Topology.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/P5Final/Project-df4e0cc2ae93/Library/ScriptAssemblies/ArrowCube.Topology.Tests.dll" runstate="Runnable" testcasecount="379" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:58Z" duration="3.792010" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="20492" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1458" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="379" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:58Z" duration="3.788360" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1459" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="379" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:58Z" duration="3.784622" total="27" passed="27" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1230" name="MeshConversionValidationTests" fullname="ArrowCube.Tests.MeshConversionValidationTests" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:57Z" duration="2.140568" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1237" name="AmbiguousTrianglePairingIsRejectedAndExplicitCompanionResolvesIt" fullname="ArrowCube.Tests.MeshConversionValidationTests.AmbiguousTrianglePairingIsRejectedAndExplicitCompanionResolvesIt" methodname="AmbiguousTrianglePairingIsRejectedAndExplicitCompanionResolvesIt" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="213236196" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:55Z" duration="0.131440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1245" name="BakedAssetPreservesExactGeometryAndRestoresSavedGeneratedPuzzle" fullname="ArrowCube.Tests.MeshConversionValidationTests.BakedAssetPreservesExactGeometryAndRestoresSavedGeneratedPuzzle" methodname="BakedAssetPreservesExactGeometryAndRestoresSavedGeneratedPuzzle" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="69890575" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:55Z" duration="0.128832" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1249" name="CancellationAndInvalidCoordinateDataFailWithoutPartialResults" fullname="ArrowCube.Tests.MeshConversionValidationTests.CancellationAndInvalidCoordinateDataFailWithoutPartialResults" methodname="CancellationAndInvalidCoordinateDataFailWithoutPartialResults" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1578021654" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:55Z" duration="0.002395" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1247" name="ConnectedSelfIntersectingShellIsRejectedBeforeQuadReconstruction" fullname="ArrowCube.Tests.MeshConversionValidationTests.ConnectedSelfIntersectingShellIsRejectedBeforeQuadReconstruction" methodname="ConnectedSelfIntersectingShellIsRejectedBeforeQuadReconstruction" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1349825662" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:55Z" duration="0.000820" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1253" name="ConversionAndGenerationPerformanceAcrossFourModels" fullname="ArrowCube.Tests.MeshConversionValidationTests.ConversionAndGenerationPerformanceAcrossFourModels" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:57Z" duration="1.664984" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1250" name="ConversionAndGenerationPerformanceAcrossFourModels(2)" fullname="ArrowCube.Tests.MeshConversionValidationTests.ConversionAndGenerationPerformanceAcrossFourModels(2)" methodname="ConversionAndGenerationPerformanceAcrossFourModels" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="719686209" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:55Z" duration="0.056503" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[MESH PERFORMANCE RectangularPrism n=2 cells=24 conversion_ms=0.61 validation_ms=0.10 memory_delta=114688 generation_ms=9.97 attempts=3248 rejected=3153
+MESH PERFORMANCE L n=2 cells=56 conversion_ms=1.71 validation_ms=0.23 memory_delta=126976 generation_ms=6.33 attempts=96 rejected=23
+MESH PERFORMANCE T n=2 cells=72 conversion_ms=5.48 validation_ms=0.24 memory_delta=380928 generation_ms=9.95 attempts=120 rejected=35
+MESH PERFORMANCE AngularPrism n=2 cells=48 conversion_ms=1.63 validation_ms=0.24 memory_delta=143360 generation_ms=3.55 attempts=96 rejected=32
+]]></output>
+              </test-case>
+              <test-case id="1251" name="ConversionAndGenerationPerformanceAcrossFourModels(4)" fullname="ArrowCube.Tests.MeshConversionValidationTests.ConversionAndGenerationPerformanceAcrossFourModels(4)" methodname="ConversionAndGenerationPerformanceAcrossFourModels" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1939628728" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:55Z" duration="0.102413" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[MESH PERFORMANCE RectangularPrism n=4 cells=96 conversion_ms=1.52 validation_ms=0.30 memory_delta=188416 generation_ms=7.93 attempts=168 rejected=69
+MESH PERFORMANCE L n=4 cells=224 conversion_ms=7.81 validation_ms=0.67 memory_delta=-1114112 generation_ms=20.92 attempts=384 rejected=187
+MESH PERFORMANCE T n=4 cells=288 conversion_ms=5.81 validation_ms=0.93 memory_delta=954368 generation_ms=25.91 attempts=504 rejected=239
+MESH PERFORMANCE AngularPrism n=4 cells=192 conversion_ms=3.20 validation_ms=0.58 memory_delta=421888 generation_ms=15.72 attempts=312 rejected=131
+]]></output>
+              </test-case>
+              <test-case id="1252" name="ConversionAndGenerationPerformanceAcrossFourModels(8)" fullname="ArrowCube.Tests.MeshConversionValidationTests.ConversionAndGenerationPerformanceAcrossFourModels(8)" methodname="ConversionAndGenerationPerformanceAcrossFourModels" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="161130072" result="Passed" start-time="2026-11-16 23:21:55Z" end-time="2026-11-16 23:21:57Z" duration="1.502300" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[MESH PERFORMANCE RectangularPrism n=8 cells=384 conversion_ms=8.20 validation_ms=1.43 memory_delta=1024000 generation_ms=127.99 attempts=648 rejected=297
+MESH PERFORMANCE L n=8 cells=896 conversion_ms=35.47 validation_ms=4.04 memory_delta=1265664 generation_ms=357.87 attempts=1536 rejected=727
+MESH PERFORMANCE T n=8 cells=1152 conversion_ms=49.44 validation_ms=6.01 memory_delta=2203648 generation_ms=488.70 attempts=1944 rejected=985
+MESH PERFORMANCE AngularPrism n=8 cells=768 conversion_ms=31.92 validation_ms=12.31 memory_delta=512000 generation_ms=303.28 attempts=1440 rejected=696
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1232" name="DegenerateTrianglesAreRejectedBeforePairing" fullname="ArrowCube.Tests.MeshConversionValidationTests.DegenerateTrianglesAreRejectedBeforePairing" methodname="DegenerateTrianglesAreRejectedBeforePairing" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="2064960816" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.001141" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1248" name="DeliveredBakedAssetsMatchConversionOfTheirSourceMeshBuffers" fullname="ArrowCube.Tests.MeshConversionValidationTests.DeliveredBakedAssetsMatchConversionOfTheirSourceMeshBuffers" methodname="DeliveredBakedAssetsMatchConversionOfTheirSourceMeshBuffers" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1899803890" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.059575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1236" name="DisconnectedAndNonManifoldShellsAreRejected" fullname="ArrowCube.Tests.MeshConversionValidationTests.DisconnectedAndNonManifoldShellsAreRejected" methodname="DisconnectedAndNonManifoldShellsAreRejected" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1972448942" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.006380" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1244" name="EdgeExitOverrideKeepsPhysicalFoldsAndSupportsGateOnlyGeneration" fullname="ArrowCube.Tests.MeshConversionValidationTests.EdgeExitOverrideKeepsPhysicalFoldsAndSupportsGateOnlyGeneration" methodname="EdgeExitOverrideKeepsPhysicalFoldsAndSupportsGateOnlyGeneration" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="426717176" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.024116" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1234" name="MixedWindingIsNeverRepairedByTheUniformRepairOption" fullname="ArrowCube.Tests.MeshConversionValidationTests.MixedWindingIsNeverRepairedByTheUniformRepairOption" methodname="MixedWindingIsNeverRepairedByTheUniformRepairOption" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="748509119" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.002117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1238" name="NativeAndExplicitTriangleQuadDefinitionsHaveIdenticalIdentity" fullname="ArrowCube.Tests.MeshConversionValidationTests.NativeAndExplicitTriangleQuadDefinitionsHaveIdenticalIdentity" methodname="NativeAndExplicitTriangleQuadDefinitionsHaveIdenticalIdentity" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1747315260" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.006533" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1231" name="OpenBoundariesAreRejectedWithSpatialDiagnostics" fullname="ArrowCube.Tests.MeshConversionValidationTests.OpenBoundariesAreRejectedWithSpatialDiagnostics" methodname="OpenBoundariesAreRejectedWithSpatialDiagnostics" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="314510752" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.002713" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1246" name="QuadObjPreservesExplicitFacesAndRejectsTrianglesAndBadIndices" fullname="ArrowCube.Tests.MeshConversionValidationTests.QuadObjPreservesExplicitFacesAndRejectsTrianglesAndBadIndices" methodname="QuadObjPreservesExplicitFacesAndRejectsTrianglesAndBadIndices" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1061191735" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.019530" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1242" name="ReorderingVerticesFacesAndQuadStartingCornersKeepsIdentity" fullname="ArrowCube.Tests.MeshConversionValidationTests.ReorderingVerticesFacesAndQuadStartingCornersKeepsIdentity" methodname="ReorderingVerticesFacesAndQuadStartingCornersKeepsIdentity" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="433713331" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.008020" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1239" name="SubdivisionsPropagateAcrossRotatedPatchAxesOrFailExplicitly" fullname="ArrowCube.Tests.MeshConversionValidationTests.SubdivisionsPropagateAcrossRotatedPatchAxesOrFailExplicitly" methodname="SubdivisionsPropagateAcrossRotatedPatchAxesOrFailExplicitly" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="128394073" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.005192" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1240" name="TargetCellSizeSupportsUnequalPatchDimensionsAndEnforcesCaps" fullname="ArrowCube.Tests.MeshConversionValidationTests.TargetCellSizeSupportsUnequalPatchDimensionsAndEnforcesCaps" methodname="TargetCellSizeSupportsUnequalPatchDimensionsAndEnforcesCaps" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="709434594" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.011996" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1243" name="TransformGeometryAndSettingsArePartOfTheReproducibleIdentity" fullname="ArrowCube.Tests.MeshConversionValidationTests.TransformGeometryAndSettingsArePartOfTheReproducibleIdentity" methodname="TransformGeometryAndSettingsArePartOfTheReproducibleIdentity" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1181354863" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.020239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1235" name="UniformInwardWindingRequiresExplicitRepair" fullname="ArrowCube.Tests.MeshConversionValidationTests.UniformInwardWindingRequiresExplicitRepair" methodname="UniformInwardWindingRequiresExplicitRepair" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1810703939" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.005550" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1233" name="WarpedAndConcaveQuadsAreRejected" fullname="ArrowCube.Tests.MeshConversionValidationTests.WarpedAndConcaveQuadsAreRejected" methodname="WarpedAndConcaveQuadsAreRejected" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="1474134678" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.000918" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1241" name="WeldingIsDeterministicTolerantAndRejectsAmbiguousAnchors" fullname="ArrowCube.Tests.MeshConversionValidationTests.WeldingIsDeterministicTolerantAndRejectsAmbiguousAnchors" methodname="WeldingIsDeterministicTolerantAndRejectsAmbiguousAnchors" classname="ArrowCube.Tests.MeshConversionValidationTests" runstate="Runnable" seed="465131108" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.012898" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1254" name="MeshSurfaceConversionTests" fullname="ArrowCube.Tests.MeshSurfaceConversionTests" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:58Z" duration="1.633238" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1259" name="NativeQuadFixturesConvertGenerateAndSolve" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:58Z" duration="1.623713" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1255" name="NativeQuadFixturesConvertGenerateAndSolve(RectangularPrism,96)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(RectangularPrism,96)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="307647859" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.132730" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 RectangularPrism cells=96 patches=6 flat=144 convex=48 concave=0 conversion_ms=7.51 validation_ms=0.51 memory_delta=-1441792 generation_ms=48.57 attempts=168 rejected=69 paths=7 dependencies=8 depth=4 fingerprint=5a3e8b4200f4d5441e45978f7982a322dc38d87ec924c3fa304a9c97c3372e43
+]]></output>
+              </test-case>
+              <test-case id="1256" name="NativeQuadFixturesConvertGenerateAndSolve(L,224)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(L,224)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="980142743" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:57Z" duration="0.402364" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 L cells=224 patches=14 flat=360 convex=84 concave=4 conversion_ms=5.97 validation_ms=1.08 memory_delta=393216 generation_ms=179.75 attempts=384 rejected=187 paths=16 dependencies=24 depth=7 fingerprint=7fd8029cc9b4012ff10a3d74090a2cd37b20d4c7dff33ebd248a94011fc63c52
+]]></output>
+              </test-case>
+              <test-case id="1257" name="NativeQuadFixturesConvertGenerateAndSolve(T,288)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(T,288)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="1625838187" result="Passed" start-time="2026-11-16 23:21:57Z" end-time="2026-11-16 23:21:58Z" duration="0.693683" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 T cells=288 patches=18 flat=464 convex=104 concave=8 conversion_ms=23.25 validation_ms=1.33 memory_delta=-2101248 generation_ms=376.29 attempts=504 rejected=239 paths=21 dependencies=37 depth=8 fingerprint=6338a1fa9b4ad2587b4d2b85de3a0ad5d98bd48f3d62d80893a6d73d30f6ebbf
+]]></output>
+              </test-case>
+              <test-case id="1258" name="NativeQuadFixturesConvertGenerateAndSolve(AngularPrism,192)" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.NativeQuadFixturesConvertGenerateAndSolve(AngularPrism,192)" methodname="NativeQuadFixturesConvertGenerateAndSolve" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="1517449368" result="Passed" start-time="2026-11-16 23:21:58Z" end-time="2026-11-16 23:21:58Z" duration="0.393148" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[PHASE5 AngularPrism cells=192 patches=12 flat=324 convex=60 concave=0 conversion_ms=6.21 validation_ms=1.01 memory_delta=520192 generation_ms=166.41 attempts=312 rejected=131 paths=13 dependencies=23 depth=8 fingerprint=17f7c40e418012991c97e65cd36c2318197c8b37fe392a71fc4f128adf69515a
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1260" name="TrianglePrismPairsUniquelyAndMatchesNativeQuadConversion" fullname="ArrowCube.Tests.MeshSurfaceConversionTests.TrianglePrismPairsUniquelyAndMatchesNativeQuadConversion" methodname="TrianglePrismPairsUniquelyAndMatchesNativeQuadConversion" classname="ArrowCube.Tests.MeshSurfaceConversionTests" runstate="Runnable" seed="1404744185" result="Passed" start-time="2026-11-16 23:21:58Z" end-time="2026-11-16 23:21:58Z" duration="0.006392" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:\Users\Leo\OneDrive\Desktop\CubePuzzleGame\Temp\P5Final\Project-df4e0cc2ae93\results-EditMode.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

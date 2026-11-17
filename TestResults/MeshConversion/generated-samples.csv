@@ -1,0 +1,5 @@
+shape,cells,parent_quads,coplanar,convex,concave,conversion_ms,validation_ms,net_managed_memory_delta,generation_ms,candidate_attempts,rejected_candidates,paths,dependencies,depth,fingerprint
+RectangularPrism,96,6,144,48,0,7.51,0.51,-1441792,48.57,168,69,7,8,4,5a3e8b4200f4d5441e45978f7982a322dc38d87ec924c3fa304a9c97c3372e43
+L,224,14,360,84,4,5.97,1.08,393216,179.75,384,187,16,24,7,7fd8029cc9b4012ff10a3d74090a2cd37b20d4c7dff33ebd248a94011fc63c52
+T,288,18,464,104,8,23.25,1.33,-2101248,376.29,504,239,21,37,8,6338a1fa9b4ad2587b4d2b85de3a0ad5d98bd48f3d62d80893a6d73d30f6ebbf
+AngularPrism,192,12,324,60,0,6.21,1.01,520192,166.41,312,131,13,23,8,17f7c40e418012991c97e65cd36c2318197c8b37fe392a71fc4f128adf69515a

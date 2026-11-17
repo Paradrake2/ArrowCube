@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-16 23:23:01Z" end-time="2026-11-16 23:23:19Z" duration="17.2175609">
+  <test-suite type="TestSuite" id="1081" name="Project-839d6a7aa32f" fullname="Project-839d6a7aa32f" runstate="Runnable" testcasecount="60" result="Passed" start-time="2026-11-16 23:23:01Z" end-time="2026-11-16 23:23:19Z" duration="17.217561" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="PlayMode" />
+    </properties>
+    <test-suite type="Assembly" id="1069" name="ArrowCube.Movement.PlayMode.Tests.dll" fullname="C:/Users/Leo/OneDrive/Desktop/CubePuzzleGame/Temp/P5FinalGPU/Project-839d6a7aa32f/Library/ScriptAssemblies/ArrowCube.Movement.PlayMode.Tests.dll" runstate="Runnable" testcasecount="56" result="Passed" start-time="2026-11-16 23:23:01Z" end-time="2026-11-16 23:23:19Z" duration="17.207459" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="4828" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="PlayMode" />
+        <property name="EditorOnly" value="False" />
+      </properties>
+      <test-suite type="TestSuite" id="1070" name="ArrowCube" fullname="ArrowCube" runstate="Runnable" testcasecount="56" result="Passed" start-time="2026-11-16 23:23:01Z" end-time="2026-11-16 23:23:19Z" duration="17.206491" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1071" name="Tests" fullname="ArrowCube.Tests" runstate="Runnable" testcasecount="56" result="Passed" start-time="2026-11-16 23:23:01Z" end-time="2026-11-16 23:23:19Z" duration="17.205832" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1021" name="ConvertedMeshGameplayTests" fullname="ArrowCube.Tests.ConvertedMeshGameplayTests" classname="ArrowCube.Tests.ConvertedMeshGameplayTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-11-16 23:23:02Z" end-time="2026-11-16 23:23:19Z" duration="17.203546" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1023" name="ConvertedRuntimeSelectorAndMeasuredDifficultyRetainBakedIdentity" fullname="ArrowCube.Tests.ConvertedMeshGameplayTests.ConvertedRuntimeSelectorAndMeasuredDifficultyRetainBakedIdentity" methodname="ConvertedRuntimeSelectorAndMeasuredDifficultyRetainBakedIdentity" classname="ArrowCube.Tests.ConvertedMeshGameplayTests" runstate="Runnable" seed="972515727" result="Passed" start-time="2026-11-16 23:23:02Z" end-time="2026-11-16 23:23:10Z" duration="8.787198" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="DeliveredMeshLabPlaysAllFourBakedSurfacesWithRealMouseAndTouch" fullname="ArrowCube.Tests.ConvertedMeshGameplayTests.DeliveredMeshLabPlaysAllFourBakedSurfacesWithRealMouseAndTouch" methodname="DeliveredMeshLabPlaysAllFourBakedSurfacesWithRealMouseAndTouch" classname="ArrowCube.Tests.ConvertedMeshGameplayTests" runstate="Runnable" seed="1967756819" result="Passed" start-time="2026-11-16 23:23:10Z" end-time="2026-11-16 23:23:19Z" duration="8.319640" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[MESH RENDER Converted-RectangularPrism-front: cells=96 surface_draw_groups=3 render_submit_ms=244.37
+MESH RENDER Converted-RectangularPrism-rear: cells=96 surface_draw_groups=3 render_submit_ms=3.34
+MESH RENDER Converted-RectangularPrism-moving: cells=96 surface_draw_groups=3 render_submit_ms=4.34
+MESH RENDER Converted-L-front: cells=224 surface_draw_groups=4 render_submit_ms=4.61
+MESH RENDER Converted-L-rear: cells=224 surface_draw_groups=4 render_submit_ms=1.04
+MESH RENDER Converted-L-moving: cells=224 surface_draw_groups=4 render_submit_ms=3.05
+MESH RENDER Converted-T-front: cells=288 surface_draw_groups=3 render_submit_ms=5.08
+MESH RENDER Converted-T-rear: cells=288 surface_draw_groups=3 render_submit_ms=1.08
+MESH RENDER Converted-T-moving: cells=288 surface_draw_groups=3 render_submit_ms=2.99
+MESH RENDER Converted-AngularPrism-front: cells=192 surface_draw_groups=4 render_submit_ms=4.26
+MESH RENDER Converted-AngularPrism-rear: cells=192 surface_draw_groups=4 render_submit_ms=0.86
+MESH RENDER Converted-AngularPrism-moving: cells=192 surface_draw_groups=4 render_submit_ms=3.17
+]]></output>
+            </test-case>
+            <test-case id="1024" name="TooCoarseAConvertedSurfaceReportsTheConflictAndKeepsThePreviousPuzzle" fullname="ArrowCube.Tests.ConvertedMeshGameplayTests.TooCoarseAConvertedSurfaceReportsTheConflictAndKeepsThePreviousPuzzle" methodname="TooCoarseAConvertedSurfaceReportsTheConflictAndKeepsThePreviousPuzzle" classname="ArrowCube.Tests.ConvertedMeshGameplayTests" runstate="Runnable" seed="2119303262" result="Passed" start-time="2026-11-16 23:23:19Z" end-time="2026-11-16 23:23:19Z" duration="0.082293" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/Leo/AppData/LocalLow/DefaultCompany/Project-839d6a7aa32f\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
