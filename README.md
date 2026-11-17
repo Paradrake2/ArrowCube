@@ -1,7 +1,7 @@
 # ArrowCube
 
 **A 3D surface-based arrow puzzle game built in Unity, with deterministic procedural generation and dependency-driven puzzles.**
-
+Itch.io link: https://paradrake2.itch.io/arrowcube
 ArrowCube challenges you to clear a shape covered in connected arrows. Select an arrow to send it forward along the surface: if its route is clear, the entire arrow slides along its path and exits. If another arrow blocks the route, the move fails. The challenge is working out which arrows must be removed first.
 
 The project began on a cube, but now includes a shape-independent logical topology, rendering, and generation pipeline for **manually authored quadrilateral surfaces**, including L-shaped solids, T-shaped solids, and non-right-angle prisms. It is an active hobby project focused on puzzle generation, geometry, and game-system engineering.
@@ -160,8 +160,6 @@ The repository includes EditMode, PlayMode, integration, generation, and regress
 ```
 
 The runner uses an isolated validation project so it does not need to take over your open Unity scene. It can also be configured with an explicit `-UnityPath` if the editor is installed elsewhere.
-
-The documented **Phase 4 verification run** reported **352 EditMode and 53 PlayMode tests passed**, along with a matching historical corpus of **1,008 cube-generation fingerprints**. These are recorded results, not a claim that tests were rerun for this README; see [`TestResults/SurfaceGeneration/Summary.md`](TestResults/SurfaceGeneration/Summary.md).
 
 ## Documentation
 
